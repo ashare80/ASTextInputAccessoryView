@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'ASTextInputAccessoryView_Example', :exclusive => true do
+  pod 'ASTextInputAccessoryView', :path => '../'
+end
+
+target 'ASTextInputAccessoryView_Tests', :exclusive => true do
+  pod 'ASTextInputAccessoryView', :path => '../'
+
+  
+end
