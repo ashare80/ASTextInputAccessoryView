@@ -1,0 +1,6 @@
+framework module ASPlaceholderTextView {
+  umbrella header "ASPlaceholderTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_ASTextInputAccessoryView_Example {
+  umbrella header "Pods-ASTextInputAccessoryView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

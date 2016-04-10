@@ -1,0 +1,17 @@
+PODS:
+  - ASPlaceholderTextView (0.1.2)
+  - ASTextInputAccessoryView (0.1.0):
+    - ASPlaceholderTextView (~> 0.1)
+
+DEPENDENCIES:
+  - ASTextInputAccessoryView (from `../`)
+
+EXTERNAL SOURCES:
+  ASTextInputAccessoryView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ASPlaceholderTextView: 4f57aafcb75431967a3ce3f17366e8eabf00ae92
+  ASTextInputAccessoryView: 192f7b76065844ee4a2febc4e561ffed70918a1b
+
+COCOAPODS: 0.39.0
