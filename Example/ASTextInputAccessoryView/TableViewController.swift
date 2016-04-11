@@ -98,26 +98,12 @@ extension ASTableViewController {
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
-}
-
-
-//MARK: DataSource
-extension ASTableViewController {
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    // Handle Rotation
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath)
-        cell.textLabel?.text = messages[indexPath.row]
-        
-        return cell
+        textInputAccessoryView.refreshBarHeight()
     }
 }
 
@@ -133,6 +119,29 @@ extension ASTableViewController {
             contentInset.bottom = keyboardFrame.height
             tableView.scrollToBottomContent(contentInset, animated: !animated)
         }
+    }
+}
+
+
+
+
+//MARK: DataSource
+extension ASTableViewController {
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath)
+        cell.textLabel?.text = messages[indexPath.row]
+        
+        return cell
     }
 }
 

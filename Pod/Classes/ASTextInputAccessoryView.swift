@@ -81,7 +81,6 @@ public class ASTextInputAccessoryView: UIView {
         minimumHeight = frame.size.height
         setupContentView()
         setupMessageView()
-        monitorRotation()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -89,26 +88,6 @@ public class ASTextInputAccessoryView: UIView {
         minimumHeight = frame.size.height
         setupContentView()
         setupMessageView()
-        monitorRotation()
-    }
-    
-    deinit {
-        UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func monitorRotation() {
-        UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
-
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            UIDeviceOrientationDidChangeNotification,
-            object: nil,
-            queue: NSOperationQueue.mainQueue()
-        ) { [weak self] (notification) in
-            if self?.superview != nil {
-                self?.refreshBarHeight()
-            }
-        }
     }
     
     // MARK: Main Content Views
@@ -358,26 +337,6 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
         delegate?.textViewDidChange?(textView)
     }
     
-    func barFrameChange(nextBarHeight: CGFloat, forced: Bool = false) {
-        if (forced || frame.size.height != nextBarHeight) {
-            
-            if let heightConstraint = heightConstraint {
-                heightConstraint.constant = nextBarHeight
-                textView.layoutIfNeeded()
-            } else {
-                // If internal height constraint wasn't found this will do...
-                // Because resign and become switch the backspace can't be held down
-                var nextFrame = frame
-                nextFrame.size.height = nextBarHeight
-                textView.resignFirstResponder()
-                frame = nextFrame
-                textView.becomeFirstResponder()
-            }
-            
-            textView.scrollToBottomText()
-        }
-    }
-    
     private var maxHeight: CGFloat {
         var keyboardHeight:CGFloat = 0
         if let superview = superview {
@@ -398,7 +357,7 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
     public func refreshBarHeight(forced: Bool = false) {
         var nextBarHeight = minimumHeight
         
-        if (textView.text.characters.count == 0) {
+        if textView.text.characters.count == 0 {
             barFrameChange(nextBarHeight, forced: forced)
             return
         }
@@ -409,11 +368,33 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
         
         nextBarHeight = (CGFloat(rows) * lineHeight) + (minimumHeight - lineHeight)
         
-        if (nextBarHeight > maxBarHeight) {
+        if nextBarHeight > maxBarHeight {
             nextBarHeight = maxBarHeight
         }
-        
+        if nextBarHeight < minimumHeight {
+            nextBarHeight = minimumHeight
+        }
         barFrameChange(nextBarHeight, forced: forced)
+    }
+    
+    func barFrameChange(nextBarHeight: CGFloat, forced: Bool = false) {
+        if forced || frame.size.height != nextBarHeight {
+            
+            if let heightConstraint = heightConstraint {
+                heightConstraint.constant = nextBarHeight
+                textView.layoutIfNeeded()
+            } else {
+                // If internal height constraint wasn't found this will do...
+                // Because resign and become switch the backspace can't be held down
+                var nextFrame = frame
+                nextFrame.size.height = nextBarHeight
+                textView.resignFirstResponder()
+                frame = nextFrame
+                textView.becomeFirstResponder()
+            }
+            
+            textView.scrollToBottomText()
+        }
     }
 }
 
@@ -436,7 +417,7 @@ public extension ASTextInputAccessoryView {
     
     override func forwardingTargetForSelector(aSelector: Selector) -> AnyObject? {
         
-        if (delegate?.respondsToSelector(aSelector) == true) {
+        if delegate?.respondsToSelector(aSelector) == true {
             return delegate
         }
         
