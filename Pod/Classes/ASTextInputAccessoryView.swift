@@ -9,16 +9,50 @@
 import UIKit
 import ASPlaceholderTextView
 
+public protocol ASTextInputAccessoryViewDelegate: UITextViewDelegate {
+    /**
+     The maximum point in the window's Y axis that the InputAccessoryView origin should reach. 
+     
+     - default: 
+     ````
+     UIApplication.sharedApplication().statusBarFrame.size.height + navigationController!.navigationBar.frame.size.height
+     ````
+     */
+    func maximumBarY() -> CGFloat
+}
+
+extension ASTextInputAccessoryViewDelegate where Self: UIViewController {
+    
+    func maximumBarY() -> CGFloat {
+        return topBarHeight
+    }
+}
+
 public class ASTextInputAccessoryView: UIView {
     
-    public var maximumBarY: CGFloat = 64
+    /**
+     The maximum point in the window's Y axis that the InputAccessoryView origin should reach.
+    */
+    private var maximumBarY: CGFloat {
+        if let max = delegate?.maximumBarY() {
+            return max
+        }
+        return UIViewController.topViewController.topBarHeight
+    }
     
+    /**
+     Standard height of bar without text.
+     */
     public var minimumHeight: CGFloat = 44 {
         didSet {
             refreshBarHeight()
         }
     }
     
+    
+    /**
+     Internal height constraint that is created when added to keyboard.
+     */
     private var heightConstraint: NSLayoutConstraint?
     override public func addConstraint(constraint: NSLayoutConstraint) {
         // Capture the height layout constraint
@@ -28,9 +62,10 @@ public class ASTextInputAccessoryView: UIView {
         super.addConstraint(constraint)
     }
 
-    public weak var delegate: UITextViewDelegate?
     
-    public convenience init(maximumBarY: CGFloat, minimumHeight: CGFloat = 44) {
+    public weak var delegate: ASTextInputAccessoryViewDelegate?
+    
+    public convenience init(minimumHeight: CGFloat = 44) {
         self.init(frame: CGRect(
             x: 0,
             y: 0,
@@ -38,7 +73,6 @@ public class ASTextInputAccessoryView: UIView {
             height: minimumHeight
             )
         )
-        self.maximumBarY = maximumBarY
     }
     
     
@@ -47,6 +81,7 @@ public class ASTextInputAccessoryView: UIView {
         minimumHeight = frame.size.height
         setupContentView()
         setupMessageView()
+        monitorRotation()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -54,12 +89,38 @@ public class ASTextInputAccessoryView: UIView {
         minimumHeight = frame.size.height
         setupContentView()
         setupMessageView()
+        monitorRotation()
     }
     
+    deinit {
+        UIDevice.currentDevice().endGeneratingDeviceOrientationNotifications()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func monitorRotation() {
+        UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            UIDeviceOrientationDidChangeNotification,
+            object: nil,
+            queue: NSOperationQueue.mainQueue()
+        ) { [weak self] (notification) in
+            if self?.superview != nil {
+                self?.refreshBarHeight()
+            }
+        }
+    }
     
     // MARK: Main Content Views
     
+    /**
+     Any custom views should be added to the contentView subview hierarchy.
+     */
     public let contentView = UIView()
+    
+    /**
+     Background toolbar for standard appearance.
+     */
     public let toolbar = UIToolbar()
     
     func setupContentView() {
@@ -78,11 +139,32 @@ public class ASTextInputAccessoryView: UIView {
     
     // MARK: Message Views
     
+    /**
+     Container view for textView and buttonContainerViews.
+     */
     public let messageView = UIView()
+    
+    /**
+     Placeholder textView.
+     
+     - Note: For automatic resizing, update the font var on the accessory view.
+     */
     public let textView = ASPlaceholderTextView(frame: CGRectZero, textContainer: nil)
+    
+    /**
+     Container view for a custom button view autoresized to the left of the textView.
+     */
     public let leftButtonContainerView = UIView()
+    
+    /**
+     Container view for a custom button view autoresized to the right of the textView.
+     */
     public let rightButtonContainerView = UIView()
     
+    
+    /**
+     Space the textView and button views keep from surrounding views.
+     */
     public var margin: CGFloat = 7 {
         didSet {
             updateContentConstraints()
@@ -91,6 +173,9 @@ public class ASTextInputAccessoryView: UIView {
         }
     }
     
+    /**
+     Resets textContainerInset based off the text line height and margin.
+     */
     public func resetTextContainerInset() {
         var height = frame.size.height
         if let constant = heightConstraint?.constant {
@@ -194,8 +279,14 @@ public class ASTextInputAccessoryView: UIView {
     
     // MARK: Button Views
     
+    /**
+     Standard "Send" button set as the rightButton.
+     */
     public let defaultSendButton: UIButton = UIButton(type: .Custom)
     
+    /**
+     Sets the standard "Send" button as the rightButton.
+     */
     public func addStandardSendButton() {
         
         defaultSendButton.setTitle("Send", forState: .Normal)
@@ -208,14 +299,9 @@ public class ASTextInputAccessoryView: UIView {
         rightButton = defaultSendButton
     }
     
-    
-    public func setRightView(view: UIView) {
-        rightButtonContainerView.subviews.forEach({ $0.removeFromSuperview() })
-        rightButtonContainerView.addSubview(view)
-        view.autoLayoutToSuperview()
-    }
-    
-    
+    /**
+     Sets the left button view and removes any existing subviews.
+     */
     public weak var leftButton: UIView? {
         didSet {
             leftButtonContainerView.subviews.forEach({ $0.removeFromSuperview() })
@@ -227,6 +313,9 @@ public class ASTextInputAccessoryView: UIView {
         }
     }
     
+    /**
+     Sets the right button view and removes any existing subviews.
+     */
     public weak var rightButton: UIView? {
         didSet {
             rightButtonContainerView.subviews.forEach({ $0.removeFromSuperview() })
@@ -242,7 +331,9 @@ public class ASTextInputAccessoryView: UIView {
 // MARK: Get / Set
 
 public extension ASTextInputAccessoryView {
-    
+    /**
+     Font for the textView.
+     */
     var font: UIFont {
         set {
             textView.font = newValue
@@ -298,7 +389,13 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
         return fullHeight - keyboardHeight - maximumBarY + barHeight
     }
 
-    func refreshBarHeight(forced: Bool = false) {
+    /**
+     Refreshes the bar height based on minimumHeight, textView.lineHeight, and maximumBarY.
+     
+     - parameters:
+        - forced: If `true` will set values even if the height did not change.
+     */
+    public func refreshBarHeight(forced: Bool = false) {
         var nextBarHeight = minimumHeight
         
         if (textView.text.characters.count == 0) {

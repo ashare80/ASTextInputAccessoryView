@@ -18,7 +18,7 @@ class ASTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textInputAccessoryView = ASTextInputAccessoryView(maximumBarY: topBarHeight, minimumHeight: 44)
+        textInputAccessoryView = ASTextInputAccessoryView(minimumHeight: 44)
         
         // Add a target to the standard send button or optionally set your own custom button
         textInputAccessoryView.defaultSendButton.addTarget(
