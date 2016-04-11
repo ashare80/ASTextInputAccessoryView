@@ -374,7 +374,9 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
         if nextBarHeight < minimumHeight {
             nextBarHeight = minimumHeight
         }
-        barFrameChange(nextBarHeight, forced: forced)
+        
+        
+        barFrameChange(nextBarHeight.roundToHalf, forced: forced)
     }
     
     func barFrameChange(nextBarHeight: CGFloat, forced: Bool = false) {
