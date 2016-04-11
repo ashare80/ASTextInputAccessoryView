@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3328DF77FDE4428357851677'
+               BlueprintIdentifier = '0CE34F48C354C7B3035D3C40'
                BlueprintName = 'ASTextInputAccessoryView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'ASTextInputAccessoryView.framework'>
