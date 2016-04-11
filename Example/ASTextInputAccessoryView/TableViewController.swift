@@ -112,12 +112,19 @@ extension ASTableViewController {
 extension ASTableViewController {
     
     override func keyboardWillShow(keyboardFrame: CGRect, animated: Bool) {
-        
+        scrollToBottomIfNeeded(keyboardFrame, animated: !animated)
+    }
+    
+    override func keyboardDidShow(keyboardFrame: CGRect) {
+        scrollToBottomIfNeeded(keyboardFrame)
+    }
+    
+    func scrollToBottomIfNeeded(keyboardFrame: CGRect, animated: Bool = true) {
         // In case of weird results from interactive dismiss
         if keyboardFrame.origin.y + textInputAccessoryView.frame.size.height < view.frame.size.height {
             var contentInset = tableView.contentInset
             contentInset.bottom = keyboardFrame.height
-            tableView.scrollToBottomContent(contentInset, animated: !animated)
+            tableView.scrollToBottomContent(contentInset, animated: animated)
         }
     }
 }

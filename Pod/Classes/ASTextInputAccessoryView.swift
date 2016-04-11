@@ -49,6 +49,10 @@ public class ASTextInputAccessoryView: UIView {
         }
     }
     
+    /**
+     Animates changes to the contentView height before height change of self
+     */
+    public var animateBarHeight: Bool = true
     
     /**
      Internal height constraint that is created when added to keyboard.
@@ -56,7 +60,7 @@ public class ASTextInputAccessoryView: UIView {
     private var heightConstraint: NSLayoutConstraint?
     override public func addConstraint(constraint: NSLayoutConstraint) {
         // Capture the height layout constraint
-        if constraint.firstAttribute == .Height {
+        if constraint.firstAttribute == .Height && constraint.firstItem as? NSObject == self {
             heightConstraint = constraint
         }
         super.addConstraint(constraint)
@@ -102,13 +106,16 @@ public class ASTextInputAccessoryView: UIView {
      */
     public let toolbar = UIToolbar()
     
+    private var contentViewHeight: NSLayoutConstraint!
+    
     func setupContentView() {
         
         backgroundColor = UIColor.clearColor()
         
         addSubview(contentView)
-        contentView.autoLayoutToSuperview()
         contentView.backgroundColor = UIColor.clearColor()
+        contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
+        contentViewHeight = contentView.addHeightConstraint(minimumHeight)
         
         contentView.insertSubview(toolbar, atIndex: 0)
         toolbar.barStyle = .Default
@@ -147,7 +154,7 @@ public class ASTextInputAccessoryView: UIView {
     public var margin: CGFloat = 7 {
         didSet {
             updateContentConstraints()
-            refreshBarHeight(true)
+            refreshBarHeight()
             resetTextContainerInset()
         }
     }
@@ -156,10 +163,7 @@ public class ASTextInputAccessoryView: UIView {
      Resets textContainerInset based off the text line height and margin.
      */
     public func resetTextContainerInset() {
-        var height = frame.size.height
-        if let constant = heightConstraint?.constant {
-            height = constant
-        }
+        var height = contentViewHeight.constant
         let inset = (height - margin * 2 - textView.lineHeight)/2
         textView.textContainerInset = UIEdgeInsets(top: inset, left: 3, bottom: inset, right: 3)
     }
@@ -227,29 +231,8 @@ public class ASTextInputAccessoryView: UIView {
         
         for view in [leftButtonContainerView, rightButtonContainerView] {
             
-            let width = NSLayoutConstraint(
-                item: view,
-                attribute: .Width,
-                relatedBy: .Equal,
-                toItem: nil,
-                attribute: .NotAnAttribute,
-                multiplier: 1,
-                constant: 0
-            )
-            
-            let height = NSLayoutConstraint(
-                item: view,
-                attribute: .Height,
-                relatedBy: .Equal,
-                toItem: nil,
-                attribute: .NotAnAttribute,
-                multiplier: 1,
-                constant: minimumHeight - margin * 2
-            )
-            
-            width.priority = UILayoutPriorityDefaultLow
-            view.superview?.addConstraints([width, height])
-            
+            view.addHeightConstraint(minimumHeight - margin * 2)
+            view.addWidthConstraint(0, priority: UILayoutPriorityDefaultLow)
             view.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Horizontal)
             view.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, forAxis: .Horizontal)
         }
@@ -358,7 +341,7 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
         var nextBarHeight = minimumHeight
         
         if textView.text.characters.count == 0 {
-            barFrameChange(nextBarHeight, forced: forced)
+            height = nextBarHeight
             return
         }
         
@@ -376,27 +359,71 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
         }
         
         
-        barFrameChange(nextBarHeight, forced: forced)
+        height = nextBarHeight
     }
     
-    func barFrameChange(nextBarHeight: CGFloat, forced: Bool = false) {
-        if forced || frame.size.height != nextBarHeight.roundToNearestHalf {
-            
-            if let heightConstraint = heightConstraint {
-                heightConstraint.constant = nextBarHeight
-                textView.layoutIfNeeded()
-            } else {
-                // If internal height constraint wasn't found this will do...
-                // Because resign and become switch the backspace can't be held down
-                var nextFrame = frame
-                nextFrame.size.height = nextBarHeight
-                textView.resignFirstResponder()
-                frame = nextFrame
-                textView.becomeFirstResponder()
-            }
-            
-            textView.scrollToBottomText()
+    
+    public var height: CGFloat {
+        set {
+            _setHeight(newValue)
         }
+        get {
+            return contentViewHeight.constant
+        }
+    }
+    
+    private func _setHeight(nextBarHeight: CGFloat) {
+        guard contentViewHeight.constant.roundToNearestHalf  != nextBarHeight.roundToNearestHalf else {
+            return
+        }
+        
+        guard let heightConstraint = heightConstraint else {
+            print("ASTextInputAccessoryView heightConstraint was not found")
+            // If internal height constraint wasn't found this can work but not optimal...
+            // resignFirstResponder to allow frame change and then regain responder
+            // Because of resignFirstResponder and becomeFirstResponder, the backspace can't be held down
+            var nextFrame = frame
+            nextFrame.size.height = nextBarHeight
+            textView.resignFirstResponder()
+            frame = nextFrame
+            contentViewHeight.constant = nextBarHeight
+            contentView.layoutIfNeeded()
+            textView.becomeFirstResponder()
+            textView.scrollToBottomText()
+            return
+        }
+        
+        barChangeAnimation({
+            self.contentViewHeight.constant = nextBarHeight
+            self.contentView.layoutIfNeeded()
+            self.textView.scrollToBottomText()
+            }, completion: {
+                heightConstraint.constant = nextBarHeight
+                self.textView.layoutIfNeeded()
+        })
+    }
+    
+    func barChangeAnimation(animate:() -> Void, completion:() -> Void) {
+        
+        if !animateBarHeight {
+            animate()
+            completion()
+            return
+        }
+        
+        UIView.animateWithDuration(
+            0.2,
+            delay: 0.0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.8,
+            options: .BeginFromCurrentState,
+            animations: {
+                animate()
+            },
+            completion: { [weak self] (finished) in
+                completion()
+            }
+        )
     }
 }
 
