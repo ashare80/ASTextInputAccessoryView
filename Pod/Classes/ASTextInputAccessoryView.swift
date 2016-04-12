@@ -9,117 +9,65 @@
 import UIKit
 import ASPlaceholderTextView
 
-public protocol ASTextInputAccessoryViewDelegate: UITextViewDelegate {
-    /**
-     The maximum point in the window's Y axis that the InputAccessoryView origin should reach. 
-     
-     - default: 
-     ````
-     UIApplication.sharedApplication().statusBarFrame.size.height + navigationController!.navigationBar.frame.size.height
-     ````
-     */
-    func maximumBarY() -> CGFloat
-}
 
-extension ASTextInputAccessoryViewDelegate where Self: UIViewController {
-    
-    func maximumBarY() -> CGFloat {
-        return topBarHeight
-    }
-}
-
-public class ASTextInputAccessoryView: UIView {
-    
-    /**
-     The maximum point in the window's Y axis that the InputAccessoryView origin should reach.
-    */
-    private var maximumBarY: CGFloat {
-        if let max = delegate?.maximumBarY() {
-            return max
-        }
-        return UIViewController.topViewController.topBarHeight
-    }
-    
-    /**
-     Standard height of bar without text.
-     */
-    public var minimumHeight: CGFloat = 44 {
-        didSet {
-            refreshBarHeight()
-        }
-    }
-    
-    /**
-     Animates changes to the contentView height before height change of self
-     */
-    public var animateBarHeight: Bool = true
-    
-    /**
-     Internal height constraint that is created when added to keyboard.
-     */
-    private var heightConstraint: NSLayoutConstraint?
-    override public func addConstraint(constraint: NSLayoutConstraint) {
-        // Capture the height layout constraint
-        if constraint.firstAttribute == .Height && constraint.firstItem as? NSObject == self {
-            heightConstraint = constraint
-        }
-        super.addConstraint(constraint)
-    }
-
-    
-    public weak var delegate: ASTextInputAccessoryViewDelegate?
-    
-    public convenience init(minimumHeight: CGFloat = 44) {
-        self.init(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: UIScreen.mainScreen().bounds.width,
-            height: minimumHeight
-            )
-        )
-    }
-    
+public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        minimumHeight = frame.size.height
-        setupContentView()
         setupMessageView()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        minimumHeight = frame.size.height
-        setupContentView()
         setupMessageView()
     }
     
-    // MARK: Main Content Views
     
-    /**
-     Any custom views should be added to the contentView subview hierarchy.
-     */
-    public let contentView = UIView()
+    //MARK: Monitor textView contentSize updates
     
-    /**
-     Background toolbar for standard appearance.
-     */
-    public let toolbar = UIToolbar()
+    private let contentSizeKey = "contentSize"
     
-    private var contentViewHeight: NSLayoutConstraint!
+    deinit {
+        textView.removeObserver(self, forKeyPath: contentSizeKey)
+    }
     
-    func setupContentView() {
+    func monitorTextViewContentSize() {
+        textView.addObserver(self, forKeyPath: contentSizeKey, options: .New, context: nil)
+    }
+    
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
-        backgroundColor = UIColor.clearColor()
+        if let object = object as? UITextView where object == textView, let keyPath = keyPath {
+            switch keyPath {
+            case contentSizeKey:
+                reloadHeight()
+            default:
+                break
+            }
+        }
+    }
+    
+    public override var contentHeight: CGFloat {
+        var nextBarHeight = minimumHeight
         
-        addSubview(contentView)
-        contentView.backgroundColor = UIColor.clearColor()
-        contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
-        contentViewHeight = contentView.addHeightConstraint(minimumHeight)
+        if textView.text.characters.count == 0 {
+            return nextBarHeight
+        }
         
-        contentView.insertSubview(toolbar, atIndex: 0)
-        toolbar.barStyle = .Default
-        toolbar.autoLayoutToSuperview()
+        let lineHeight = textView.lineHeight
+        let rows = textView.numberOfRows
+        let maxBarHeight = maxHeight
+        
+        nextBarHeight = (CGFloat(rows) * lineHeight) + (minimumHeight - lineHeight)
+        
+        if nextBarHeight > maxBarHeight {
+            nextBarHeight = maxBarHeight
+        }
+        if nextBarHeight < minimumHeight {
+            nextBarHeight = minimumHeight
+        }
+        
+        return nextBarHeight
     }
     
     
@@ -129,6 +77,11 @@ public class ASTextInputAccessoryView: UIView {
      Container view for textView and buttonContainerViews.
      */
     public let messageView = UIView()
+    
+    /**
+     Background toolbar for standard appearance.
+     */
+    public let toolbar = UIToolbar()
     
     /**
      Placeholder textView.
@@ -154,21 +107,22 @@ public class ASTextInputAccessoryView: UIView {
     public var margin: CGFloat = 7 {
         didSet {
             updateContentConstraints()
-            refreshBarHeight()
+            reloadHeight()
             resetTextContainerInset()
         }
     }
+    
     
     /**
      Resets textContainerInset based off the text line height and margin.
      */
     public func resetTextContainerInset() {
-        var height = contentViewHeight.constant
-        let inset = (height - margin * 2 - textView.lineHeight)/2
+        let inset = (contentViewHeight.constant - margin * 2 - textView.lineHeight)/2
         textView.textContainerInset = UIEdgeInsets(top: inset, left: 3, bottom: inset, right: 3)
     }
     
     func setupMessageView() {
+        
         contentView.addSubview(messageView)
         
         messageView.autoLayoutToSuperview()
@@ -177,12 +131,16 @@ public class ASTextInputAccessoryView: UIView {
         messageView.addSubview(rightButtonContainerView)
         messageView.addSubview(textView)
         
+        contentView.insertSubview(toolbar, atIndex: 0)
+        toolbar.barStyle = .Default
+        toolbar.autoLayoutToSuperview()
+        
         textView.placeholder = "Text Message"
         textView.placeholderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.7)
-        textView.delegate = self
         textView.layer.cornerRadius = 5.0
         textView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textView.layer.borderWidth = 0.5
+        textView.delegate = self
         
         textView.font = UIFont.systemFontOfSize(17)
         resetTextContainerInset()
@@ -193,6 +151,8 @@ public class ASTextInputAccessoryView: UIView {
         updateContentConstraints()
         
         addStandardSendButton()
+        
+        monitorTextViewContentSize()
     }
     
     func updateContentConstraints() {
@@ -299,8 +259,7 @@ public extension ASTextInputAccessoryView {
     var font: UIFont {
         set {
             textView.font = newValue
-            
-            refreshBarHeight()
+            reloadHeight()
             resetTextContainerInset()
         }
         get {
@@ -309,121 +268,14 @@ public extension ASTextInputAccessoryView {
     }
 }
 
-// MARK: UITextViewDelegate
+
+// MARK: Content Height
 extension ASTextInputAccessoryView: UITextViewDelegate {
     
     public func textViewDidChange(textView: UITextView) {
-        
-        defaultSendButton.enabled = textView.text.characters.count != 0
-        
-        refreshBarHeight()
-        delegate?.textViewDidChange?(textView)
-    }
-    
-    private var maxHeight: CGFloat {
-        var keyboardHeight:CGFloat = 0
-        if let superview = superview {
-            keyboardHeight = superview.frame.size.height
+        if textView == self.textView {
+            defaultSendButton.enabled = textView.text.characters.count != 0
         }
-        let fullHeight = UIScreen.mainScreen().bounds.size.height
-        let barHeight = frame.size.height
-        
-        return fullHeight - keyboardHeight - maximumBarY + barHeight
-    }
-
-    /**
-     Refreshes the bar height based on minimumHeight, textView.lineHeight, and maximumBarY.
-     
-     - parameters:
-        - forced: If `true` will set values even if the height did not change.
-     */
-    public func refreshBarHeight(forced: Bool = false) {
-        var nextBarHeight = minimumHeight
-        
-        if textView.text.characters.count == 0 {
-            height = nextBarHeight
-            return
-        }
-        
-        let lineHeight = textView.lineHeight
-        let rows = textView.numberOfRows
-        let maxBarHeight = maxHeight
-        
-        nextBarHeight = (CGFloat(rows) * lineHeight) + (minimumHeight - lineHeight)
-        
-        if nextBarHeight > maxBarHeight {
-            nextBarHeight = maxBarHeight
-        }
-        if nextBarHeight < minimumHeight {
-            nextBarHeight = minimumHeight
-        }
-        
-        
-        height = nextBarHeight
-    }
-    
-    
-    public var height: CGFloat {
-        set {
-            _setHeight(newValue)
-        }
-        get {
-            return contentViewHeight.constant
-        }
-    }
-    
-    private func _setHeight(nextBarHeight: CGFloat) {
-        guard contentViewHeight.constant.roundToNearestHalf  != nextBarHeight.roundToNearestHalf else {
-            return
-        }
-        
-        guard let heightConstraint = heightConstraint else {
-            print("ASTextInputAccessoryView heightConstraint was not found")
-            // If internal height constraint wasn't found this can work but not optimal...
-            // resignFirstResponder to allow frame change and then regain responder
-            // Because of resignFirstResponder and becomeFirstResponder, the backspace can't be held down
-            var nextFrame = frame
-            nextFrame.size.height = nextBarHeight
-            textView.resignFirstResponder()
-            frame = nextFrame
-            contentViewHeight.constant = nextBarHeight
-            contentView.layoutIfNeeded()
-            textView.becomeFirstResponder()
-            textView.scrollToBottomText()
-            return
-        }
-        
-        barChangeAnimation({
-            self.contentViewHeight.constant = nextBarHeight
-            self.contentView.layoutIfNeeded()
-            self.textView.scrollToBottomText()
-            }, completion: {
-                heightConstraint.constant = nextBarHeight
-                self.textView.layoutIfNeeded()
-        })
-    }
-    
-    func barChangeAnimation(animate:() -> Void, completion:() -> Void) {
-        
-        if !animateBarHeight {
-            animate()
-            completion()
-            return
-        }
-        
-        UIView.animateWithDuration(
-            0.2,
-            delay: 0.0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.8,
-            options: .BeginFromCurrentState,
-            animations: {
-                animate()
-            },
-            completion: { [weak self] (finished) in
-                completion()
-            }
-        )
     }
 }
 
@@ -437,19 +289,19 @@ extension ASTextInputAccessoryView: UIInputViewAudioFeedback {
 }
 
 
-// MARK: Forwarding Delegate
-public extension ASTextInputAccessoryView {
+extension ASTextInputAccessoryView {
     
-    override func respondsToSelector(aSelector: Selector) -> Bool {
-        return super.respondsToSelector(aSelector) || delegate?.respondsToSelector(aSelector) == true
-    }
-    
-    override func forwardingTargetForSelector(aSelector: Selector) -> AnyObject? {
-        
-        if delegate?.respondsToSelector(aSelector) == true {
-            return delegate
-        }
-        
-        return super.forwardingTargetForSelector(aSelector)
+    override func updateBarHeight(animated: Bool, animateableChange: () -> Void, completion: () -> Void) {
+        super.updateBarHeight(
+            animated,
+            animateableChange:{
+                animateableChange()
+                self.textView.scrollToBottomText()
+            },
+            completion:{
+                completion()
+                self.textView.layoutIfNeeded()
+            }
+        )
     }
 }

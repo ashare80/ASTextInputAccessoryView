@@ -49,33 +49,6 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>05C851A74456D72A690D19BA37F67840</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9668FD885F826EE79614F978D88E7098</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>065E32C0275FFD8ADEEDBA8E978EF99E</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>9668FD885F826EE79614F978D88E7098</string>
-				<string>2F329ADD2D97DB4966239A3DC183F4F5</string>
-				<string>2E9F150B77202CA013F602E0964D0C84</string>
-				<string>C91A47265FB8F786AC1B4CE93DEC3859</string>
-				<string>CD639C7DD50ED61FEE6F1BCF9A3B6D95</string>
-				<string>BCA413636C3C50972DB69DBE7EB3B698</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Classes</string>
-			<key>path</key>
-			<string>Classes</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>0AB60345FE24D6CD5FB2DE63C0D20478</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -90,6 +63,19 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>0EA85EB61ADF2090F2C1AE275BD032A5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UITextView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>0F8BA359E3ED59791BE870CB413DB598</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -103,6 +89,33 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>0FD4604F179AB23C1619113EEB5976A6</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D06CC0F5C424CE34C64B5E0ADFDA88D2</string>
+			<key>buildPhases</key>
+			<array>
+				<string>9315B9C6A25105AB35E4A4DFF316571E</string>
+				<string>9E52D9FB52974F7D3ECCB369906C913F</string>
+				<string>965288D49193CABFAE3FF328EF57D1F4</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>C8707C36D7970D583D6134522B5448DF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>ASTextInputAccessoryView</string>
+			<key>productName</key>
+			<string>ASTextInputAccessoryView</string>
+			<key>productReference</key>
+			<string>D7A28B800E3A3367DE97564796882246</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
 		</dict>
 		<key>1008B5CDAC750F89798FA0BA71EE64BC</key>
 		<dict>
@@ -205,69 +218,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>12068C5D47CDF42A3DF93A5E95962178</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>10189E5E952097FF50CFF84A141E553C</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/ASTextInputAccessoryView/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>ASTextInputAccessoryView</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>12A857252A0D033FF719B001FDDEF281</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2F329ADD2D97DB4966239A3DC183F4F5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>13CABED98FBDAB0DFDD4B258ACAF27FC</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -325,6 +275,32 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
+		</dict>
+		<key>16644F768A237E00F8E2219DD0201B08</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>String.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>16C29B77A95CA4C28590021EC5CE56D0</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>B852988754F38CE043A658ACF8F63CB7</string>
+			<key>remoteInfo</key>
+			<string>ASPlaceholderTextView</string>
 		</dict>
 		<key>19063E187B2F0F924CD6F451F36AC29F</key>
 		<dict>
@@ -450,13 +426,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2A5B4DCEFD5E3B904B0BF27AD9231186</key>
-		<dict>
-			<key>fileRef</key>
-			<string>461A345CF2B95375F7C9D2554ED530B7</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>2AD2B39958B16281C7D8C2F29CCD82F9</key>
 		<dict>
 			<key>containerPortal</key>
@@ -498,32 +467,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>2E9F150B77202CA013F602E0964D0C84</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>String.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2F329ADD2D97DB4966239A3DC183F4F5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>CGFloat.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>2F492AA6BA44814A93C0689CE61A69B3</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -562,6 +505,27 @@
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
 			<string>ASTextInputAccessoryView-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>34F85AD84DC3FB45D2506A1E111FE1D7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>404FE9A2E223B93E199ED71A4AE1028E</string>
+				<string>B14EDFAA10AF7E744CC12299EAB0B341</string>
+				<string>47448E2274D241E645AB28A776E83C81</string>
+				<string>16644F768A237E00F8E2219DD0201B08</string>
+				<string>0EA85EB61ADF2090F2C1AE275BD032A5</string>
+				<string>57C81A487DD69CB923D2EBA3943E5170</string>
+				<string>9852B02AE830E58F5CE96361201EFE5B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Classes</string>
+			<key>path</key>
+			<string>Classes</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -624,13 +588,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>3EB2FC9748BA44BDF4C0106B0F953688</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BCA413636C3C50972DB69DBE7EB3B698</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>3F542AA546246371822C1EE0EA2484BD</key>
 		<dict>
 			<key>children</key>
@@ -644,6 +601,26 @@
 			<string>ASPlaceholderTextView</string>
 			<key>path</key>
 			<string>ASPlaceholderTextView</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3F6182C2C446A5E4F2EF8B9F8D7E5DD3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>461A345CF2B95375F7C9D2554ED530B7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>404FE9A2E223B93E199ED71A4AE1028E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ASResizeableInputAccessoryView.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -688,63 +665,25 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>477BB6CA69DAF99C1B2509952602861D</key>
+		<key>47448E2274D241E645AB28A776E83C81</key>
 		<dict>
-			<key>baseConfigurationReference</key>
-			<string>10189E5E952097FF50CFF84A141E553C</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/ASTextInputAccessoryView/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>ASTextInputAccessoryView</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CGFloat.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>49D22F44960EA598C94823D2C283C5D8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>03423FFD99DE526B6FD538F37583D915</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>49F8325A389251D51E5202AE472A2C2D</key>
 		<dict>
@@ -758,6 +697,13 @@
 			<string>Pods-ASTextInputAccessoryView_Example-resources.sh</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4B0F5089FF9EC0085A4999A030496C2D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9852B02AE830E58F5CE96361201EFE5B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>4BFF5A77DBC527410C2527140D60E7E4</key>
 		<dict>
@@ -803,20 +749,12 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5374DD8140873BD55793B4D3BDD27C31</key>
+		<key>51BE46F1E4E98D58FAD3072700016B45</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>065E32C0275FFD8ADEEDBA8E978EF99E</string>
-			</array>
+			<key>fileRef</key>
+			<string>404FE9A2E223B93E199ED71A4AE1028E</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pod</string>
-			<key>path</key>
-			<string>Pod</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>53AA8B3D388EE366B7646AA739DE6E98</key>
 		<dict>
@@ -914,6 +852,19 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-ASTextInputAccessoryView_Example.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57C81A487DD69CB923D2EBA3943E5170</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UIView.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1028,7 +979,7 @@
 			<key>proxyType</key>
 			<string>1</string>
 			<key>remoteGlobalIDString</key>
-			<string>C1C24F8D027A8BADB0F28CD2A9A723F8</string>
+			<string>0FD4604F179AB23C1619113EEB5976A6</string>
 			<key>remoteInfo</key>
 			<string>ASTextInputAccessoryView</string>
 		</dict>
@@ -1060,51 +1011,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6E7182536609FD71062C6B5C449408CF</key>
+		<key>6D279F98DB04171809FB1C549AFECB3B</key>
 		<dict>
 			<key>fileRef</key>
-			<string>03423FFD99DE526B6FD538F37583D915</string>
+			<string>313908F1B1F26FD5C4EE855737446DC4</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>6FC7A1C9DEADD484EA879BBF539B1761</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BF4AE7AF7D7FEC464AB19278952FF736</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>706AE580CDF7ECD27DAF13EB6D95369D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>BE62AC3B1DBC2B0127F8154044F8B80F</string>
-				<string>05C851A74456D72A690D19BA37F67840</string>
-				<string>12A857252A0D033FF719B001FDDEF281</string>
-				<string>7D9544FB687EF8FEFB1D867A5BA0411C</string>
-				<string>E4A2178BEF6B87998681D03D306550F4</string>
-				<string>E26856765773F33FCDF8DFBC491F6797</string>
-				<string>3EB2FC9748BA44BDF4C0106B0F953688</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
 		</dict>
 		<key>70CA1BC77012ACE7C87D03202C7333E8</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>5374DD8140873BD55793B4D3BDD27C31</string>
+				<string>B6831882938D53C316A6BA72D9413E46</string>
 				<string>B97DFC6444480E8231E1DF831C89746F</string>
 			</array>
 			<key>isa</key>
@@ -1123,7 +1041,7 @@
 			<key>name</key>
 			<string>ASTextInputAccessoryView</string>
 			<key>target</key>
-			<string>C1C24F8D027A8BADB0F28CD2A9A723F8</string>
+			<string>0FD4604F179AB23C1619113EEB5976A6</string>
 			<key>targetProxy</key>
 			<string>E5557E8A6AB91F054502FD9C03CCAA3A</string>
 		</dict>
@@ -1185,13 +1103,6 @@
 			<string>Pods-ASTextInputAccessoryView_Tests-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7D9544FB687EF8FEFB1D867A5BA0411C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2E9F150B77202CA013F602E0964D0C84</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
@@ -1286,6 +1197,62 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>811B29CC7CFB55641617F8DEE1E96A28</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>10189E5E952097FF50CFF84A141E553C</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/ASTextInputAccessoryView/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>ASTextInputAccessoryView</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
 		<key>84109BA5ADF71E3848A3566F1FBEAAB8</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -1300,20 +1267,12 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>84BFA33A90EE4F40236A02A01373EFFB</key>
+		<key>848F9D66753509015BB44BBC2F03DF26</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>2A5B4DCEFD5E3B904B0BF27AD9231186</string>
-				<string>8EF54BA8CA4E79338C58601C2CEE9D5D</string>
-				<string>6E7182536609FD71062C6B5C449408CF</string>
-			</array>
+			<key>fileRef</key>
+			<string>57C81A487DD69CB923D2EBA3943E5170</string>
 			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>853F4E2F755DBF434C46E460A2B0BDA3</key>
 		<dict>
@@ -1374,25 +1333,25 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8BEF8C37EAF9F71A49B04FFE166C6B4B</key>
+		<key>9315B9C6A25105AB35E4A4DFF316571E</key>
 		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>51BE46F1E4E98D58FAD3072700016B45</string>
+				<string>6D279F98DB04171809FB1C549AFECB3B</string>
+				<string>C7BEDBC5F161535C442C10921153E994</string>
+				<string>98937E7B98E72F2444C3C6117E4A0820</string>
+				<string>FCBD3A934358817C7DE3CC1CBAC2D09E</string>
+				<string>AED3419880088F5CA8EE61B200D387C4</string>
+				<string>848F9D66753509015BB44BBC2F03DF26</string>
+				<string>4B0F5089FF9EC0085A4999A030496C2D</string>
+			</array>
 			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>B852988754F38CE043A658ACF8F63CB7</string>
-			<key>remoteInfo</key>
-			<string>ASPlaceholderTextView</string>
-		</dict>
-		<key>8EF54BA8CA4E79338C58601C2CEE9D5D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F9CD18817F2DA837CC0EF90A5D19056E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>94D443B3EAC621343DC730D7F6709B2E</key>
 		<dict>
@@ -1401,7 +1360,20 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>9668FD885F826EE79614F978D88E7098</key>
+		<key>965288D49193CABFAE3FF328EF57D1F4</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F4FAB3988E934CBEEFBFE14C3403BC51</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9852B02AE830E58F5CE96361201EFE5B</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1410,9 +1382,16 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>ASTextInputAccessoryView.swift</string>
+			<string>UIViewController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>98937E7B98E72F2444C3C6117E4A0820</key>
+		<dict>
+			<key>fileRef</key>
+			<string>47448E2274D241E645AB28A776E83C81</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>9A0736514DA610B0E35DED7D2E3AFC2B</key>
 		<dict>
@@ -1424,6 +1403,21 @@
 			<string>Pods-ASTextInputAccessoryView_Example.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9E52D9FB52974F7D3ECCB369906C913F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>3F6182C2C446A5E4F2EF8B9F8D7E5DD3</string>
+				<string>FE3BCA66BBC0D246E95049A4BD949B4C</string>
+				<string>49D22F44960EA598C94823D2C283C5D8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>9ED60C337EB4AE20B4EA84FFE5195BBE</key>
 		<dict>
@@ -1510,6 +1504,13 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>AED3419880088F5CA8EE61B200D387C4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0EA85EB61ADF2090F2C1AE275BD032A5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>AFDF4CFB7913A0314A9AD3E4955D185E</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1528,22 +1529,22 @@
 			<key>name</key>
 			<string>ASTextInputAccessoryView</string>
 			<key>target</key>
-			<string>C1C24F8D027A8BADB0F28CD2A9A723F8</string>
+			<string>0FD4604F179AB23C1619113EEB5976A6</string>
 			<key>targetProxy</key>
 			<string>66623B9065A1B31EED3B94F6C480B570</string>
 		</dict>
-		<key>B1780257DB37BADA486BE24086A69F5F</key>
+		<key>B14EDFAA10AF7E744CC12299EAB0B341</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>6FC7A1C9DEADD484EA879BBF539B1761</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ASTextInputAccessoryView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B2134C44C91917C9FE533C97954E9E04</key>
 		<dict>
@@ -1571,6 +1572,21 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6831882938D53C316A6BA72D9413E46</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>34F85AD84DC3FB45D2506A1E111FE1D7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pod</string>
+			<key>path</key>
+			<string>Pod</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1643,26 +1659,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>BCA413636C3C50972DB69DBE7EB3B698</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>UIViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BE62AC3B1DBC2B0127F8154044F8B80F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>313908F1B1F26FD5C4EE855737446DC4</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>BF4AE7AF7D7FEC464AB19278952FF736</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1713,33 +1709,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C1C24F8D027A8BADB0F28CD2A9A723F8</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>DA050554E6982403CDF2B0884174711B</string>
-			<key>buildPhases</key>
-			<array>
-				<string>706AE580CDF7ECD27DAF13EB6D95369D</string>
-				<string>84BFA33A90EE4F40236A02A01373EFFB</string>
-				<string>B1780257DB37BADA486BE24086A69F5F</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>F657D12C88CF00609B7ED83789E89956</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>ASTextInputAccessoryView</string>
-			<key>productName</key>
-			<string>ASTextInputAccessoryView</string>
-			<key>productReference</key>
-			<string>D7A28B800E3A3367DE97564796882246</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
 		<key>C7AA8D6B4A09F8D6E0322C45A2F66D20</key>
 		<dict>
 			<key>children</key>
@@ -1753,6 +1722,13 @@
 			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C7BEDBC5F161535C442C10921153E994</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B14EDFAA10AF7E744CC12299EAB0B341</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>C84B27EF3FA59B4D4879B24799DC0213</key>
 		<dict>
@@ -1769,31 +1745,88 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>C91A47265FB8F786AC1B4CE93DEC3859</key>
+		<key>C8707C36D7970D583D6134522B5448DF</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>UITextView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>ASPlaceholderTextView</string>
+			<key>target</key>
+			<string>B852988754F38CE043A658ACF8F63CB7</string>
+			<key>targetProxy</key>
+			<string>16C29B77A95CA4C28590021EC5CE56D0</string>
 		</dict>
-		<key>CD639C7DD50ED61FEE6F1BCF9A3B6D95</key>
+		<key>CEA476E1E005CCB8A9B3C514E14795E4</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>baseConfigurationReference</key>
+			<string>10189E5E952097FF50CFF84A141E553C</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/ASTextInputAccessoryView/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.3</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>ASTextInputAccessoryView</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>UIView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D06CC0F5C424CE34C64B5E0ADFDA88D2</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>CEA476E1E005CCB8A9B3C514E14795E4</string>
+				<string>811B29CC7CFB55641617F8DEE1E96A28</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
 		</dict>
 		<key>D0D2CFC327FF3E5ED1D63098E293802B</key>
 		<dict>
@@ -1842,7 +1875,7 @@
 			<key>targets</key>
 			<array>
 				<string>B852988754F38CE043A658ACF8F63CB7</string>
-				<string>C1C24F8D027A8BADB0F28CD2A9A723F8</string>
+				<string>0FD4604F179AB23C1619113EEB5976A6</string>
 				<string>EA8836156563008EF243E5D397C8C338</string>
 				<string>238B4B6DDE558D04D6BE8CCA6EEB05F4</string>
 			</array>
@@ -1875,20 +1908,6 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>DA050554E6982403CDF2B0884174711B</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>477BB6CA69DAF99C1B2509952602861D</string>
-				<string>12068C5D47CDF42A3DF93A5E95962178</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
 		<key>DD722D74B5DA2579F02A4CE2C9B86356</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1909,24 +1928,10 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>E26856765773F33FCDF8DFBC491F6797</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CD639C7DD50ED61FEE6F1BCF9A3B6D95</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>E29C495634B9B0C9C216BE8FB277C81C</key>
 		<dict>
 			<key>fileRef</key>
 			<string>03423FFD99DE526B6FD538F37583D915</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>E4A2178BEF6B87998681D03D306550F4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C91A47265FB8F786AC1B4CE93DEC3859</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -1939,7 +1944,7 @@
 			<key>proxyType</key>
 			<string>1</string>
 			<key>remoteGlobalIDString</key>
-			<string>C1C24F8D027A8BADB0F28CD2A9A723F8</string>
+			<string>0FD4604F179AB23C1619113EEB5976A6</string>
 			<key>remoteInfo</key>
 			<string>ASTextInputAccessoryView</string>
 		</dict>
@@ -2100,16 +2105,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F657D12C88CF00609B7ED83789E89956</key>
+		<key>F4FAB3988E934CBEEFBFE14C3403BC51</key>
 		<dict>
+			<key>fileRef</key>
+			<string>BF4AE7AF7D7FEC464AB19278952FF736</string>
 			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>ASPlaceholderTextView</string>
-			<key>target</key>
-			<string>B852988754F38CE043A658ACF8F63CB7</string>
-			<key>targetProxy</key>
-			<string>8BEF8C37EAF9F71A49B04FFE166C6B4B</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>F65902672BE343C56F749B5C7DF94F7A</key>
 		<dict>
@@ -2162,6 +2170,20 @@
 			<string>B852988754F38CE043A658ACF8F63CB7</string>
 			<key>remoteInfo</key>
 			<string>ASPlaceholderTextView</string>
+		</dict>
+		<key>FCBD3A934358817C7DE3CC1CBAC2D09E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>16644F768A237E00F8E2219DD0201B08</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>FE3BCA66BBC0D246E95049A4BD949B4C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F9CD18817F2DA837CC0EF90A5D19056E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>FE52035EA7FFCEAAC94B03A0D91824D4</key>
 		<dict>

@@ -103,7 +103,7 @@ extension ASTableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        textInputAccessoryView.refreshBarHeight()
+        textInputAccessoryView.reloadHeight()
     }
 }
 
