@@ -15,13 +15,14 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setupMessageView()
+        monitorTextViewContentSize()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupMessageView()
+        monitorTextViewContentSize()
     }
-    
     
     //MARK: Monitor textView contentSize updates
     
@@ -47,6 +48,9 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
         }
     }
     
+    
+    // MARK: Height changes
+    
     public override var contentHeight: CGFloat {
         var nextBarHeight = minimumHeight
         
@@ -70,6 +74,21 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
         return nextBarHeight
     }
     
+    override func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: () -> Void) {
+        
+        super.updateBarHeight(
+            animated,
+            options: options,
+            animateableChange:{
+                animateableChange()
+                self.textView.scrollToBottomText()
+            },
+            completion:{
+                completion()
+                self.textView.layoutIfNeeded()
+            }
+        )
+    }
     
     // MARK: Message Views
     
@@ -151,8 +170,6 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
         updateContentConstraints()
         
         addStandardSendButton()
-        
-        monitorTextViewContentSize()
     }
     
     func updateContentConstraints() {
@@ -248,22 +265,6 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
             }
         }
     }
-    
-    override func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: () -> Void) {
-        
-        super.updateBarHeight(
-            animated,
-            options: options,
-            animateableChange:{
-                animateableChange()
-                self.textView.scrollToBottomText()
-            },
-            completion:{
-                completion()
-                self.textView.layoutIfNeeded()
-            }
-        )
-    }
 }
 
 // MARK: Get / Set
@@ -285,7 +286,8 @@ public extension ASTextInputAccessoryView {
 }
 
 
-// MARK: Content Height
+// MARK: Update Send Button Enabled
+
 extension ASTextInputAccessoryView: UITextViewDelegate {
     
     public func textViewDidChange(textView: UITextView) {
@@ -302,10 +304,4 @@ extension ASTextInputAccessoryView: UIInputViewAudioFeedback {
     public var enableInputClicksWhenVisible: Bool {
         return true
     }
-}
-
-
-public extension ASTextInputAccessoryView {
-    
-    
 }
