@@ -84,7 +84,10 @@ public class ASResizeableInputAccessoryView: UIView {
     }
     
     /**
-     Sets height to the current content height
+     Sets height to the current content height. Will animate if animateBarHeightOnReload is true.
+     
+     - parameters:
+        - options: Optional animation options. Defaults to animationOptions.
      */
     
     public func reloadHeight(options: ASAnimationOptions? = nil) {
