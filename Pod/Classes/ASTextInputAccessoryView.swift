@@ -98,11 +98,6 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     public let messageView = UIView()
     
     /**
-     Background toolbar for standard appearance.
-     */
-    public let toolbar = UIToolbar()
-    
-    /**
      Placeholder textView.
      
      - Note: For automatic resizing, update the font var on the accessory view.
@@ -144,10 +139,6 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
         messageView.backgroundColor = UIColor.clearColor()
         leftButtonContainerView.backgroundColor = UIColor.clearColor()
         rightButtonContainerView.backgroundColor = UIColor.clearColor()
-        
-        contentView.insertSubview(toolbar, atIndex: 0)
-        toolbar.barStyle = .Default
-        toolbar.autoLayoutToSuperview()
         
         contentView.addSubview(messageView)
         messageView.autoLayoutToSuperview()

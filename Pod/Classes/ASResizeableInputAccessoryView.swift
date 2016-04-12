@@ -136,6 +136,11 @@ public class ASResizeableInputAccessoryView: UIView {
      */
     public let contentView = UIView()
     
+    /**
+     Background toolbar for standard appearance.
+     */
+    public let toolbar = UIToolbar()
+    
     public var contentViewHeight: NSLayoutConstraint!
     
     func setupContentView() {
@@ -146,6 +151,10 @@ public class ASResizeableInputAccessoryView: UIView {
         contentView.backgroundColor = UIColor.clearColor()
         contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
         contentViewHeight = contentView.addHeightConstraint(minimumHeight)
+        
+        contentView.insertSubview(toolbar, atIndex: 0)
+        toolbar.barStyle = .Default
+        toolbar.autoLayoutToSuperview()
     }
     
     /**
