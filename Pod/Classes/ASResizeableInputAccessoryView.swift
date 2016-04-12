@@ -168,7 +168,6 @@ public class ASResizeableInputAccessoryView: UIView {
             return
         }
         
-        layer.removeAllAnimations()
         UIView.animateWithDuration(
             options.duration,
             delay: options.delay,
@@ -216,6 +215,7 @@ extension ASResizeableInputAccessoryView {
         return fullHeight - keyboardHeight - maximumBarY + barHeight
     }
     
+    
     /**
      Sets the height of the view with option to animate.
      */
@@ -226,16 +226,21 @@ extension ASResizeableInputAccessoryView {
             nextBarHeight = delegatedHeight
         }
         
-        guard contentViewHeight.constant.roundToNearestHalf  != nextBarHeight.roundToNearestHalf else {
-            return
-        }
-        
         guard let heightConstraint = heightConstraint else {
             print("ASTextInputAccessoryView heightConstraint was not found.")
             if autoresizingMask != .None {
                 // If internal height constraint wasn't found the view layout mask may have been set
                 print("AutoresizingMask should be set to .None (0). Current autoresizingMask: ", autoresizingMask)
             }
+            return
+        }
+        
+        let animating = contentView.layer.animationKeys()?.count > 0
+        let equalHeight = heightConstraint.constant.roundToNearestHalf == nextBarHeight.roundToNearestHalf
+        let contentViewEqualHeight = contentViewHeight.constant.roundToNearestHalf == nextBarHeight.roundToNearestHalf
+        
+        // Sometimes a textView can fire off wrong content size height so this helps pass through updates when needed
+        guard !contentViewEqualHeight || (!animating && !equalHeight) else {
             return
         }
         
