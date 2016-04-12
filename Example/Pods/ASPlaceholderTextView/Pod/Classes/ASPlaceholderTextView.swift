@@ -11,6 +11,10 @@ import UIKit
 @IBDesignable
 public class ASPlaceholderTextView: UITextView {
     
+    public var allowImages: Bool = false
+    
+    public var maximumImageSize: CGSize = CGSizeMake(UIScreen.mainScreen().bounds.width/2, CGFloat.max)
+    
     @IBInspectable public var placeholder: String? {
         set {
             placeholderLabel.text = newValue
@@ -51,19 +55,19 @@ public class ASPlaceholderTextView: UITextView {
         
         placeholderLabel.userInteractionEnabled = false
         placeholderLabel.textColor = placeholderColor
-        placeholderLabel.text = placeholder;
+        placeholderLabel.text = placeholder
         placeholderLabel.backgroundColor = UIColor.clearColor()
         placeholderLabel.textColor = UIColor.lightGrayColor()
-        placeholderLabel.numberOfLines = 0;
-        placeholderLabel.font = font;
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.font = font
         
         refreshLabelHidden()
         
         addSubview(placeholderLabel)
         
-        let offset = textContainer.lineFragmentPadding;
+        let offset = textContainer.lineFragmentPadding
         
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false;
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         
         left = NSLayoutConstraint(
             item: placeholderLabel,
@@ -100,7 +104,7 @@ public class ASPlaceholderTextView: UITextView {
     
     func updateLabelConstraints() {
         
-        let offset = textContainer.lineFragmentPadding;
+        let offset = textContainer.lineFragmentPadding
         
         left?.constant = textContainerInset.left + offset
         width?.constant = -(textContainerInset.right + offset + textContainerInset.left + offset)
@@ -111,10 +115,10 @@ public class ASPlaceholderTextView: UITextView {
     
     func refreshLabelHidden() {
         if text == "" || text == nil {
-            placeholderLabel.hidden = false;
+            placeholderLabel.hidden = false
             return
         } else {
-            placeholderLabel.hidden = true;
+            placeholderLabel.hidden = true
         }
     }
 }
@@ -169,6 +173,14 @@ public extension ASPlaceholderTextView {
         }
     }
     
+    public override var attributedText: NSAttributedString! {
+        didSet {
+            refreshLabelHidden()
+            
+            textViewDidChange(self)
+        }
+    }
+    
     public override var textAlignment: NSTextAlignment {
         didSet {
             placeholderLabel.textAlignment = textAlignment
@@ -184,6 +196,60 @@ extension ASPlaceholderTextView: UITextViewDelegate {
         refreshLabelHidden()
         
         secondaryDelegate?.textViewDidChange?(textView)
+    }
+}
+
+// MARK: Custom paste for images
+
+public extension ASPlaceholderTextView {
+    
+    private func scaledImage(image: UIImage) -> UIImage {
+        
+        var scaleFactor: CGFloat = 1
+        
+        let heightScaleFactor = image.size.height / maximumImageSize.height
+        let widthScaleFactor = image.size.width / maximumImageSize.width
+        
+        if heightScaleFactor > widthScaleFactor {
+            scaleFactor = heightScaleFactor
+        } else {
+            scaleFactor = widthScaleFactor
+        }
+        
+        if scaleFactor < 1 {
+            scaleFactor = 1
+        }
+        
+        return UIImage(CGImage: image.CGImage!, scale: scaleFactor, orientation: .Up)
+    }
+    
+    public override func paste(sender: AnyObject?) {
+        let pasteboard = UIPasteboard.generalPasteboard()
+        
+        let mutableAttrString = attributedText.mutableCopy() as! NSMutableAttributedString
+        
+        var pasteAttrString = NSMutableAttributedString()
+        
+        if allowImages, let images = pasteboard.images {
+            
+            for image in images {
+                let textAttachment = NSTextAttachment()
+                textAttachment.image = scaledImage(image)
+                
+                pasteAttrString.appendAttributedString(NSAttributedString(attachment: textAttachment))
+                pasteAttrString.appendAttributedString(NSAttributedString(string: "\n\n"))
+            }
+        }
+        else if let string = pasteboard.string {
+            pasteAttrString = NSMutableAttributedString(string: string)
+        }
+        else {
+            return
+        }
+        
+        mutableAttrString.replaceCharactersInRange(selectedRange, withAttributedString: pasteAttrString)
+        mutableAttrString.addAttribute(NSFontAttributeName, value: font!, range: NSRange(location: 0, length: mutableAttrString.length))
+        attributedText = mutableAttrString
     }
 }
 

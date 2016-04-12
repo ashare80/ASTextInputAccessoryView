@@ -1,5 +1,5 @@
 PODS:
-  - ASPlaceholderTextView (0.1.2)
+  - ASPlaceholderTextView (0.1.4)
   - ASTextInputAccessoryView (0.1.5):
     - ASPlaceholderTextView (~> 0.1)
 
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ASPlaceholderTextView: 4f57aafcb75431967a3ce3f17366e8eabf00ae92
+  ASPlaceholderTextView: b064ec49a8e04393709410acab072be767adcf98
   ASTextInputAccessoryView: e295728677f945010a80a6409a4e3534fc5dcf0e
 
 COCOAPODS: 0.39.0

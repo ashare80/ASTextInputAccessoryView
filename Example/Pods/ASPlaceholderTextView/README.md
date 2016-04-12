@@ -1,6 +1,6 @@
 # ASPlaceholderTextView
 
-[![CI Status](http://img.shields.io/travis/Adam Share/ASPlaceholderTextView.svg?style=flat)](https://travis-ci.org/Adam Share/ASPlaceholderTextView)
+[![CI Status](http://img.shields.io/travis/ashare80/ASPlaceholderTextView.svg?style=flat)](https://travis-ci.org/Adam Share/ASPlaceholderTextView)
 [![Version](https://img.shields.io/cocoapods/v/ASPlaceholderTextView.svg?style=flat)](http://cocoapods.org/pods/ASPlaceholderTextView)
 [![License](https://img.shields.io/cocoapods/l/ASPlaceholderTextView.svg?style=flat)](http://cocoapods.org/pods/ASPlaceholderTextView)
 [![Platform](https://img.shields.io/cocoapods/p/ASPlaceholderTextView.svg?style=flat)](http://cocoapods.org/pods/ASPlaceholderTextView)

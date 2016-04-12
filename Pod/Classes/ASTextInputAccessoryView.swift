@@ -141,31 +141,31 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     }
     
     func setupMessageView() {
-        
-        contentView.addSubview(messageView)
-        
-        messageView.autoLayoutToSuperview()
         messageView.backgroundColor = UIColor.clearColor()
-        messageView.addSubview(leftButtonContainerView)
-        messageView.addSubview(rightButtonContainerView)
-        messageView.addSubview(textView)
+        leftButtonContainerView.backgroundColor = UIColor.clearColor()
+        rightButtonContainerView.backgroundColor = UIColor.clearColor()
         
         contentView.insertSubview(toolbar, atIndex: 0)
         toolbar.barStyle = .Default
         toolbar.autoLayoutToSuperview()
         
+        contentView.addSubview(messageView)
+        messageView.autoLayoutToSuperview()
+        
+        messageView.addSubview(leftButtonContainerView)
+        messageView.addSubview(rightButtonContainerView)
+        messageView.addSubview(textView)
+        
+        textView.allowImages = true
         textView.placeholder = "Text Message"
         textView.placeholderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.7)
+        textView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         textView.layer.cornerRadius = 5.0
         textView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textView.layer.borderWidth = 0.5
         textView.delegate = self
         
-        textView.font = UIFont.systemFontOfSize(17)
         resetTextContainerInset()
-        
-        leftButtonContainerView.backgroundColor = UIColor.clearColor()
-        rightButtonContainerView.backgroundColor = UIColor.clearColor()
         
         updateContentConstraints()
         
