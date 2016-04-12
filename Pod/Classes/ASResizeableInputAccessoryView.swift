@@ -156,6 +156,7 @@ public class ASResizeableInputAccessoryView: UIView {
             return
         }
         
+        layer.removeAllAnimations()
         UIView.animateWithDuration(
             options.duration,
             delay: options.delay,
@@ -166,7 +167,9 @@ public class ASResizeableInputAccessoryView: UIView {
                 animateableChange()
             },
             completion: { (finished) in
-                completion()
+                if finished {
+                    completion()
+                }
             }
         )
     }

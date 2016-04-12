@@ -1,6 +1,6 @@
 PODS:
   - ASPlaceholderTextView (0.1.2)
-  - ASTextInputAccessoryView (0.1.4):
+  - ASTextInputAccessoryView (0.1.5):
     - ASPlaceholderTextView (~> 0.1)
 
 DEPENDENCIES:
@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ASPlaceholderTextView: 4f57aafcb75431967a3ce3f17366e8eabf00ae92
-  ASTextInputAccessoryView: 6cbc9772d79189ee394f782b33f5a9e434bc1956
+  ASTextInputAccessoryView: e295728677f945010a80a6409a4e3534fc5dcf0e
 
 COCOAPODS: 0.39.0
