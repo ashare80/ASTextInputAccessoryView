@@ -18,6 +18,24 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      ````
      */
     func maximumBarY() -> CGFloat
+    
+    /**
+     On reload, asks the delegate what the next height should be.
+     
+     - parameters:
+        - nextHeight: Suggested content height based off the view's calculations.
+        - currentHeight: CurrentHeight view height.
+     
+     - returns: Desired height. Defaults to nextHeight.
+     */
+    func nextHeight(nextHeight: CGFloat, currentHeight: CGFloat) -> CGFloat
+}
+
+extension ASResizeableInputAccessoryViewDelegate {
+    
+    func nextHeight(nextHeight: CGFloat, currentHeight: CGFloat) -> CGFloat {
+        return nextHeight
+    }
 }
 
 extension ASResizeableInputAccessoryViewDelegate where Self: UIViewController {
@@ -31,6 +49,8 @@ extension ASResizeableInputAccessoryViewDelegate where Self: UIViewController {
 public class ASResizeableInputAccessoryView: UIView {
     
     public weak var delegate: ASResizeableInputAccessoryViewDelegate?
+    
+    public var animationOptions: ASAnimationOptions! = ASAnimationOptions()
     
     /**
      Animates changes to the contentView height before height change of self
@@ -67,8 +87,8 @@ public class ASResizeableInputAccessoryView: UIView {
      Sets height to the current content height
      */
     
-    public func reloadHeight() {
-        self.setHeight(contentHeight, animated: animateBarHeightOnReload)
+    public func reloadHeight(options: ASAnimationOptions? = nil) {
+        self.setHeight(contentHeight, animated: animateBarHeightOnReload, options: options)
     }
     
     /**
@@ -124,6 +144,32 @@ public class ASResizeableInputAccessoryView: UIView {
         contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
         contentViewHeight = contentView.addHeightConstraint(minimumHeight)
     }
+    
+    /**
+     Executes animation with completion. Override to insert animateable changes.
+     */
+    func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange:() -> Void, completion:() -> Void) {
+        
+        if !animated {
+            animateableChange()
+            completion()
+            return
+        }
+        
+        UIView.animateWithDuration(
+            options.duration,
+            delay: options.delay,
+            usingSpringWithDamping: options.damping,
+            initialSpringVelocity: options.velocity,
+            options: options.options,
+            animations: {
+                animateableChange()
+            },
+            completion: { (finished) in
+                completion()
+            }
+        )
+    }
 }
 
 
@@ -158,7 +204,13 @@ extension ASResizeableInputAccessoryView {
     /**
      Sets the height of the view with option to animate.
      */
-    public func setHeight(nextBarHeight: CGFloat, animated: Bool) {
+    public func setHeight(height: CGFloat, animated: Bool, options: ASAnimationOptions? = nil) {
+        
+        var nextBarHeight = height
+        if let delegatedHeight = delegate?.nextHeight(nextBarHeight, currentHeight: contentViewHeight.constant) {
+            nextBarHeight = delegatedHeight
+        }
+        
         guard contentViewHeight.constant.roundToNearestHalf  != nextBarHeight.roundToNearestHalf else {
             return
         }
@@ -167,45 +219,24 @@ extension ASResizeableInputAccessoryView {
             print("ASTextInputAccessoryView heightConstraint was not found.")
             if autoresizingMask != .None {
                 // If internal height constraint wasn't found the view layout mask may have been set
-                print("AutoresizingMask should be set to .None: ", autoresizingMask)
+                print("AutoresizingMask should be set to .None (0). Current autoresizingMask: ", autoresizingMask)
             }
             return
         }
         
+        var options = options
+        if options == nil {
+            options = self.animationOptions
+        }
+        
         updateBarHeight(
             animated,
+            options: options!,
             animateableChange: {
                 self.contentViewHeight.constant = nextBarHeight
                 self.contentView.layoutIfNeeded()
             }, completion: {
                 heightConstraint.constant = nextBarHeight
-            }
-        )
-    }
-    
-    
-    /**
-     Executes animation with completion. Override to insert animateable changes.
-     */
-    func updateBarHeight(animated: Bool, animateableChange:() -> Void, completion:() -> Void) {
-        
-        if !animated {
-            animateableChange()
-            completion()
-            return
-        }
-        
-        UIView.animateWithDuration(
-            0.2,
-            delay: 0.0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.8,
-            options: .BeginFromCurrentState,
-            animations: {
-                animateableChange()
-            },
-            completion: { (finished) in
-                completion()
             }
         )
     }

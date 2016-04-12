@@ -248,6 +248,22 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
             }
         }
     }
+    
+    override func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: () -> Void) {
+        
+        super.updateBarHeight(
+            animated,
+            options: options,
+            animateableChange:{
+                animateableChange()
+                self.textView.scrollToBottomText()
+            },
+            completion:{
+                completion()
+                self.textView.layoutIfNeeded()
+            }
+        )
+    }
 }
 
 // MARK: Get / Set
@@ -289,19 +305,7 @@ extension ASTextInputAccessoryView: UIInputViewAudioFeedback {
 }
 
 
-extension ASTextInputAccessoryView {
+public extension ASTextInputAccessoryView {
     
-    override func updateBarHeight(animated: Bool, animateableChange: () -> Void, completion: () -> Void) {
-        super.updateBarHeight(
-            animated,
-            animateableChange:{
-                animateableChange()
-                self.textView.scrollToBottomText()
-            },
-            completion:{
-                completion()
-                self.textView.layoutIfNeeded()
-            }
-        )
-    }
+    
 }
