@@ -68,6 +68,16 @@ public class ASResizeableInputAccessoryView: UIView {
         super.addConstraint(constraint)
     }
     
+    public override func removeConstraint(constraint: NSLayoutConstraint) {
+        super.removeConstraint(constraint)
+        print(constraint)
+    }
+    
+    public override func removeConstraints(constraints: [NSLayoutConstraint]) {
+        super.removeConstraints(constraints)
+        print(constraints)
+    }
+    
     public convenience init(minimumHeight: CGFloat = 44) {
         self.init(frame: CGRect(
             x: 0,
@@ -128,7 +138,7 @@ public class ASResizeableInputAccessoryView: UIView {
         addSubview(contentView)
         contentView.backgroundColor = UIColor.clearColor()
         contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
-        contentViewHeightConstraint = contentView.addHeightConstraint(minimumHeight)
+        contentViewHeightConstraint = contentView.addHeightConstraint(minimumHeight, priority: UILayoutPriorityRequired)
         
         contentView.insertSubview(toolbar, atIndex: 0)
         toolbar.barStyle = .Default
