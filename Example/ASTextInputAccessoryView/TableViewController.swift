@@ -126,22 +126,33 @@ extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
      */
     override func viewWillAppear(animated: Bool) { }
     
+    func updateInsets(keyboardHeight: CGFloat) {
+        var contentInset = tableView.contentInset
+        contentInset.bottom = keyboardHeight
+        tableView.contentInset = contentInset
+        tableView.scrollIndicatorInsets = contentInset
+    }
+    
     func inputAccessoryViewWillAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? {
         
         return { [weak self] in
-            guard let tableView = self?.tableView else {
-                return
-            }
-            var contentInset = tableView.contentInset
-            contentInset.bottom = keyboardHeight
-            tableView.contentInset = contentInset
-            tableView.scrollToBottomContent(false)
+            self?.updateInsets(keyboardHeight)
+            self?.tableView.scrollToBottomContent(false)
         }
     }
     
     func inputAccessoryViewKeyboardWillPresent(view: UIView, notification: NSNotification) -> (() -> Void)? {
         return { [weak self] in
+            self?.updateInsets(notification.keyboardFrameEnd.height)
             self?.tableView.scrollToBottomContent(false)
+        }
+    }
+    
+    func inputAccessoryViewKeyboardDidChangeFrame(view: UIView, notification: NSNotification) {
+        let shouldScroll = tableView.isScrolledToBottom
+        updateInsets(notification.keyboardFrameEnd.height)
+        if shouldScroll {
+            self.tableView.scrollToBottomContent(false)
         }
     }
 }

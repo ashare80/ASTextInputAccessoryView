@@ -266,6 +266,15 @@ public extension ASResizeableInputAccessoryView {
         keyboardAnimation(notification, block: animation)
     }
     
+    public override func keyboardDidChangeFrame(notification: NSNotification) {
+        
+        let isAnimating = contentView.layer.animationKeys()?.count > 0
+        print(isAnimating, notification.keyboardFrameEnd)
+        if !isAnimating {
+            delegate?.inputAccessoryViewKeyboardDidChangeFrame(self, notification: notification)
+        }
+    }
+    
     private func keyboardAnimation(notification: NSNotification, block: (() -> Void)?) {
         guard let animationBlock = block else {
             return
