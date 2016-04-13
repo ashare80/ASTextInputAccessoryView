@@ -139,7 +139,7 @@ public class ASResizeableInputAccessoryView: UIView {
     /**
      Executes animation with completion. Override to insert animateable changes.
      */
-    func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange:() -> Void, completion:(Bool) -> Void) {
+    public func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange:() -> Void, completion:(Bool) -> Void) {
         
         if !animated {
             animateableChange()

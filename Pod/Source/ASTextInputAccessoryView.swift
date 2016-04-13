@@ -104,7 +104,7 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
         return nextBarHeight
     }
     
-    override func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: (Bool) -> Void) {
+    override public func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: (Bool) -> Void) {
         
         super.updateBarHeight(
             animated,
