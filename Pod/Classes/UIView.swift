@@ -72,21 +72,3 @@ public extension UIView {
         return constraint
     }
 }
-
-
-// MARK: + ASAnimationOptions
-extension UIView {
-    
-    class func animateWithOptions(options: ASAnimationOptions, animations: () -> Void, completion: ((Bool) -> Void)?) {
-        
-        UIView.animateWithDuration(
-            options.duration,
-            delay: options.delay,
-            usingSpringWithDamping: options.damping,
-            initialSpringVelocity: options.velocity,
-            options: options.options,
-            animations: animations,
-            completion: completion
-        )
-    }
-}

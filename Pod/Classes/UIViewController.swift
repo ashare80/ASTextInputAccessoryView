@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Layout Guides
+
 public extension UIViewController {
     
     public var topBarHeight: CGFloat {

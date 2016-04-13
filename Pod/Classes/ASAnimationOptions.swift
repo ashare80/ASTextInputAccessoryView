@@ -18,3 +18,20 @@ public struct ASAnimationOptions {
     
     public init() { }
 }
+
+
+public extension ASAnimationOptions {
+    
+    func animate(animations: () -> Void, completion: ((Bool) -> Void)?) {
+        
+        UIView.animateWithDuration(
+            duration,
+            delay: delay,
+            usingSpringWithDamping: damping,
+            initialSpringVelocity: velocity,
+            options: options,
+            animations: animations,
+            completion: completion
+        )
+    }
+}
