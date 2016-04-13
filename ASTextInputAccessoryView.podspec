@@ -8,12 +8,14 @@
 
 Pod::Spec.new do |s|
     s.name             = "ASTextInputAccessoryView"
-    s.version          = "0.1.9"
+    s.version          = "1.0.0"
     s.summary          = "Messages app input view recreated in Swift."
     s.description      = <<-DESC
 Messages app input accessory view recreated in Swift.
 
 Set as your chat ViewController's inputAccessoryView for a customizable and auto-resizing text input bar.
+
+Powered by ASPlaceholderTextView. For a full chat view controller implementation check out ASTextViewController.
                        DESC
 
     s.homepage         = "https://github.com/ashare80/ASTextInputAccessoryView"
