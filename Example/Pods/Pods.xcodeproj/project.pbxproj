@@ -7,35 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		111982E08900559B397A452944B71FB6 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB8438BD7ED74C6ECDD1D38EF3E8E95 /* UITextView.swift */; };
+		01E5681EA368851A45FF2F878A7ADD11 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593122BC3C38A886CE0097CA3DCAAEC /* UIView.swift */; };
+		098933A8AD0188F992F43F0BC9DD4320 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
 		1136DE9E2070153262377B59C93CE6F5 /* ASPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FDE29DC10368B5D02F7D4BE56C5838 /* ASPlaceholderTextView.swift */; };
+		1668F691A4D6107A224570D98A4451C7 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C459CFF72EE199856783AC857DA55D29 /* UITextView.swift */; };
 		2D1827DE203577F2500CC2798A3213C7 /* ASPlaceholderTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 02A63D789666218019AA23DD68A0BEBB /* ASPlaceholderTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3208700510B55FD1C54C22B50D35A651 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86EAA6854F1BB91F2E215BE976E5658 /* String.swift */; };
-		44819476D813AD8599C62A8E0B3C6763 /* ASTextInputAccessoryView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4AE7AF7D7FEC464AB19278952FF736 /* ASTextInputAccessoryView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C5D5635FAB5F72BE9DF403BA117E4F6 /* ASResizeableInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211E425B4768D5A3DE556CC8708AB27 /* ASResizeableInputAccessoryView.swift */; };
-		4D953B0B02336224A12166C4B9B82CCA /* ASTextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA80E8E83CF79B2960F0E4C4A08E0A5E /* ASTextInputAccessoryView.swift */; };
+		2DCE5D6317C01FADA51F5FBE112213BF /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267CF29BD0FDF501D26E4D5A1CAE4E9 /* NSObject.swift */; };
+		31EA5E4DA0B7719F8F97D375FACAE2C1 /* ASAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5FE640E86F4815B0C52B113F524EF3 /* ASAnimationOptions.swift */; };
 		4F10D2A4EDF491CB6860964C56475605 /* ASPlaceholderTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AA8B3D388EE366B7646AA739DE6E98 /* ASPlaceholderTextView-dummy.m */; };
-		5D7A39C2B519E9DB936D7388C04445E0 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CEE261D2A4D6877DE3D33CBDE63F4F /* UIViewController.swift */; };
+		643BAEFE2DC2586FB018CA92D78A0262 /* ASPlaceholderTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461A345CF2B95375F7C9D2554ED530B7 /* ASPlaceholderTextView.framework */; };
 		7902DE2AA432D99551EC372B4A83ACE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
-		7952E8FDC9B9F2CDFD5B3F947DEE470D /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CF0BF1892AADB1BD8E2072BCADFCE7 /* CGFloat.swift */; };
+		7D6E4854E4AF1E180E3E36E59CB5EE2C /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B4CBE3332552CAC726CC0DB9DB3A5 /* NSNotification.swift */; };
+		8481F715AB6A9197FEB652960F9442B2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D633957410F11717706F4F7C8139 /* UIViewController.swift */; };
+		8A57B8673600E1BA7D528286A606D8F6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6681786272E2EBA6B3835CC2CB1E90 /* String.swift */; };
 		94D443B3EAC621343DC730D7F6709B2E /* Pods-ASTextInputAccessoryView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F109E5B8BE3A5B90054A8E148C0E9345 /* Pods-ASTextInputAccessoryView_Example-dummy.m */; };
-		95E28BC3615E6C091E569C838AB9BADD /* ASTextInputAccessoryView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 313908F1B1F26FD5C4EE855737446DC4 /* ASTextInputAccessoryView-dummy.m */; };
-		9B26658F47882235182A5B4FCC7BF145 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB6A52E2094913B211C1244686913DC /* UIView.swift */; };
 		9ED60C337EB4AE20B4EA84FFE5195BBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
-		B4A06F79AB65DE73231A067494B0A7B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
+		ACD6CE4D28DBCE080BB243AA4C0E05EA /* ASTextInputAccessoryView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4AE7AF7D7FEC464AB19278952FF736 /* ASTextInputAccessoryView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B74B966948E4A26881A444DE32DE93EF /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA871CEBC8CCD8E2FE91C4A046E47DD /* CGFloat.swift */; };
 		BB98C2455EF3EFF9E9E7BA5D5BDCE746 /* Pods-ASTextInputAccessoryView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1008B5CDAC750F89798FA0BA71EE64BC /* Pods-ASTextInputAccessoryView_Tests-dummy.m */; };
-		C5261B6F1CBDB0E2007845AB /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5261B6E1CBDB0E2007845AB /* NSNotification.swift */; };
-		C5261B711CBDCBE2007845AB /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5261B701CBDCBE2007845AB /* NSObject.swift */; };
+		BF3B30C816EE943C8E3F97D5D96FFD4C /* ASTextInputAccessoryView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 313908F1B1F26FD5C4EE855737446DC4 /* ASTextInputAccessoryView-dummy.m */; };
 		E065F1EBE325979E7C81079E1654DB49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
-		E0DE6453502751D396FA3DB21BC6ED27 /* ASPlaceholderTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461A345CF2B95375F7C9D2554ED530B7 /* ASPlaceholderTextView.framework */; };
 		E29C495634B9B0C9C216BE8FB277C81C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03423FFD99DE526B6FD538F37583D915 /* UIKit.framework */; };
-		E98E6BACC59F7D03A29ECA37DB5B784A /* ASAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF42A6A8C4E771F0D16B1AE36BAF3A /* ASAnimationOptions.swift */; };
+		E6E483FB5484311A8DC00F7DB652D590 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03423FFD99DE526B6FD538F37583D915 /* UIKit.framework */; };
+		E87766445F854B3D67D15E64DBB6CDDB /* ASResizeableInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6E09C97D4F6E40A16EBB979F4761CF /* ASResizeableInputAccessoryView.swift */; };
 		EBC231037A6F51CC7891DE657345E162 /* Pods-ASTextInputAccessoryView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F492AA6BA44814A93C0689CE61A69B3 /* Pods-ASTextInputAccessoryView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F30567F6DAAD5B6A7250B0A21D53AE86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03423FFD99DE526B6FD538F37583D915 /* UIKit.framework */; };
+		FD431E060FFF5CF36930B2C89602CEF4 /* ASTextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B9495B0D095B55E10421C1CFCDD9C1 /* ASTextInputAccessoryView.swift */; };
 		FE52035EA7FFCEAAC94B03A0D91824D4 /* Pods-ASTextInputAccessoryView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C232B25AB1A57BD7D4B9B988A3B2AF9 /* Pods-ASTextInputAccessoryView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2798579BB36AAF693EF8A2E95F61D0C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B852988754F38CE043A658ACF8F63CB7;
+			remoteInfo = ASPlaceholderTextView;
+		};
 		2AD2B39958B16281C7D8C2F29CCD82F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -47,21 +54,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 94C1938BB7409E255D7060C5CDA6840C;
+			remoteGlobalIDString = 7EE2651FC727AE9D04712E1E02997830;
 			remoteInfo = ASTextInputAccessoryView;
-		};
-		BC54468640A70A8E3B9E198E74AFD2E6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B852988754F38CE043A658ACF8F63CB7;
-			remoteInfo = ASPlaceholderTextView;
 		};
 		E5557E8A6AB91F054502FD9C03CCAA3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 94C1938BB7409E255D7060C5CDA6840C;
+			remoteGlobalIDString = 7EE2651FC727AE9D04712E1E02997830;
 			remoteInfo = ASTextInputAccessoryView;
 		};
 		FABA43D4F4209F680F0A927D54524233 /* PBXContainerItemProxy */ = {
@@ -77,12 +77,15 @@
 		02A63D789666218019AA23DD68A0BEBB /* ASPlaceholderTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASPlaceholderTextView-umbrella.h"; sourceTree = "<group>"; };
 		033F98109D9CD20E5A086089083C570E /* Pods-ASTextInputAccessoryView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ASTextInputAccessoryView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		03423FFD99DE526B6FD538F37583D915 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		0E6681786272E2EBA6B3835CC2CB1E90 /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		1008B5CDAC750F89798FA0BA71EE64BC /* Pods-ASTextInputAccessoryView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ASTextInputAccessoryView_Tests-dummy.m"; sourceTree = "<group>"; };
 		10189E5E952097FF50CFF84A141E553C /* ASTextInputAccessoryView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ASTextInputAccessoryView.xcconfig; sourceTree = "<group>"; };
 		204FEEB088EEA64B9FED9AE55BB4D931 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2211E425B4768D5A3DE556CC8708AB27 /* ASResizeableInputAccessoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASResizeableInputAccessoryView.swift; sourceTree = "<group>"; };
-		28CF42A6A8C4E771F0D16B1AE36BAF3A /* ASAnimationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASAnimationOptions.swift; sourceTree = "<group>"; };
+		2267CF29BD0FDF501D26E4D5A1CAE4E9 /* NSObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
+		2593122BC3C38A886CE0097CA3DCAAEC /* UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		2870D633957410F11717706F4F7C8139 /* UIViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		296BD6B7B7FE1FFA73819E7ED2108713 /* Pods-ASTextInputAccessoryView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2EA871CEBC8CCD8E2FE91C4A046E47DD /* CGFloat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		2F492AA6BA44814A93C0689CE61A69B3 /* Pods-ASTextInputAccessoryView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ASTextInputAccessoryView_Example-umbrella.h"; sourceTree = "<group>"; };
 		3026844F15FA59EAA66608063A74E983 /* ASPlaceholderTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASPlaceholderTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		313908F1B1F26FD5C4EE855737446DC4 /* ASTextInputAccessoryView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ASTextInputAccessoryView-dummy.m"; sourceTree = "<group>"; };
@@ -98,29 +101,26 @@
 		591D3666882C2877CB93E43B0ED9A4EB /* Pods-ASTextInputAccessoryView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ASTextInputAccessoryView_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		66DD16C06B819EA597EBF7A965B55B3D /* ASTextInputAccessoryView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASTextInputAccessoryView-prefix.pch"; sourceTree = "<group>"; };
 		69FDE29DC10368B5D02F7D4BE56C5838 /* ASPlaceholderTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ASPlaceholderTextView.swift; path = Pod/Classes/ASPlaceholderTextView.swift; sourceTree = "<group>"; };
+		6A5FE640E86F4815B0C52B113F524EF3 /* ASAnimationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASAnimationOptions.swift; sourceTree = "<group>"; };
 		7726FCFC3F1803FF2FE49B0D4C0839F6 /* Pods-ASTextInputAccessoryView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ASTextInputAccessoryView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		77A27307950F7AC50B10687B47869729 /* Pods-ASTextInputAccessoryView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ASTextInputAccessoryView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7A4390FEBEFABA4F42F0380CB817A2C3 /* Pods-ASTextInputAccessoryView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ASTextInputAccessoryView_Example-frameworks.sh"; sourceTree = "<group>"; };
 		7C232B25AB1A57BD7D4B9B988A3B2AF9 /* Pods-ASTextInputAccessoryView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ASTextInputAccessoryView_Tests-umbrella.h"; sourceTree = "<group>"; };
 		7DE4A3237A79CF305A933120C13162DA /* Pods-ASTextInputAccessoryView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ASTextInputAccessoryView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7FB6A52E2094913B211C1244686913DC /* UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		853F4E2F755DBF434C46E460A2B0BDA3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BB6A51DBE3A524E88DF6DBA408C2C97 /* Pods-ASTextInputAccessoryView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ASTextInputAccessoryView_Tests-resources.sh"; sourceTree = "<group>"; };
 		9A0736514DA610B0E35DED7D2E3AFC2B /* Pods-ASTextInputAccessoryView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ASTextInputAccessoryView_Example.modulemap"; sourceTree = "<group>"; };
-		9DB8438BD7ED74C6ECDD1D38EF3E8E95 /* UITextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		9F6E09C97D4F6E40A16EBB979F4761CF /* ASResizeableInputAccessoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASResizeableInputAccessoryView.swift; sourceTree = "<group>"; };
 		AFDF4CFB7913A0314A9AD3E4955D185E /* ASTextInputAccessoryView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ASTextInputAccessoryView.modulemap; sourceTree = "<group>"; };
 		B2134C44C91917C9FE533C97954E9E04 /* ASPlaceholderTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ASPlaceholderTextView.xcconfig; sourceTree = "<group>"; };
-		B3CF0BF1892AADB1BD8E2072BCADFCE7 /* CGFloat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BF4AE7AF7D7FEC464AB19278952FF736 /* ASTextInputAccessoryView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASTextInputAccessoryView-umbrella.h"; sourceTree = "<group>"; };
-		C5261B6E1CBDB0E2007845AB /* NSNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
-		C5261B701CBDCBE2007845AB /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
+		C08B4CBE3332552CAC726CC0DB9DB3A5 /* NSNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		C459CFF72EE199856783AC857DA55D29 /* UITextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		C84B27EF3FA59B4D4879B24799DC0213 /* Pods_ASTextInputAccessoryView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C86EAA6854F1BB91F2E215BE976E5658 /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D7A28B800E3A3367DE97564796882246 /* ASTextInputAccessoryView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASTextInputAccessoryView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA80E8E83CF79B2960F0E4C4A08E0A5E /* ASTextInputAccessoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASTextInputAccessoryView.swift; sourceTree = "<group>"; };
 		DD722D74B5DA2579F02A4CE2C9B86356 /* ASPlaceholderTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASPlaceholderTextView-prefix.pch"; sourceTree = "<group>"; };
-		E8CEE261D2A4D6877DE3D33CBDE63F4F /* UIViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		E3B9495B0D095B55E10421C1CFCDD9C1 /* ASTextInputAccessoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASTextInputAccessoryView.swift; sourceTree = "<group>"; };
 		F0D5EF1C11EE877FCBCCAA7ED99537DC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F109E5B8BE3A5B90054A8E148C0E9345 /* Pods-ASTextInputAccessoryView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ASTextInputAccessoryView_Example-dummy.m"; sourceTree = "<group>"; };
 		F65902672BE343C56F749B5C7DF94F7A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,22 +128,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7F013F91F161B245FF97627A4659E382 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0DE6453502751D396FA3DB21BC6ED27 /* ASPlaceholderTextView.framework in Frameworks */,
-				B4A06F79AB65DE73231A067494B0A7B1 /* Foundation.framework in Frameworks */,
-				F30567F6DAAD5B6A7250B0A21D53AE86 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		84109BA5ADF71E3848A3566F1FBEAAB8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7902DE2AA432D99551EC372B4A83ACE4 /* Foundation.framework in Frameworks */,
 				E29C495634B9B0C9C216BE8FB277C81C /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		933A06160542245173E12821719E6E9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				643BAEFE2DC2586FB018CA92D78A0262 /* ASPlaceholderTextView.framework in Frameworks */,
+				098933A8AD0188F992F43F0BC9DD4320 /* Foundation.framework in Frameworks */,
+				E6E483FB5484311A8DC00F7DB652D590 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21A20B95DFFC501D553DEB6B0EE053D1 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				E722EBD81FE69DD5FB31DB4B4E895328 /* Classes */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
 		26C46DE099CEDE76DE764969015D8201 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,28 +221,11 @@
 		70CA1BC77012ACE7C87D03202C7333E8 /* ASTextInputAccessoryView */ = {
 			isa = PBXGroup;
 			children = (
-				A5A742D3378A60F3F0F9D06E93720C0D /* Pod */,
+				21A20B95DFFC501D553DEB6B0EE053D1 /* Pod */,
 				B97DFC6444480E8231E1DF831C89746F /* Support Files */,
 			);
 			name = ASTextInputAccessoryView;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		797C562FF0B377AB4729D6D7DBE4B907 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				28CF42A6A8C4E771F0D16B1AE36BAF3A /* ASAnimationOptions.swift */,
-				2211E425B4768D5A3DE556CC8708AB27 /* ASResizeableInputAccessoryView.swift */,
-				DA80E8E83CF79B2960F0E4C4A08E0A5E /* ASTextInputAccessoryView.swift */,
-				B3CF0BF1892AADB1BD8E2072BCADFCE7 /* CGFloat.swift */,
-				C86EAA6854F1BB91F2E215BE976E5658 /* String.swift */,
-				9DB8438BD7ED74C6ECDD1D38EF3E8E95 /* UITextView.swift */,
-				C5261B6E1CBDB0E2007845AB /* NSNotification.swift */,
-				7FB6A52E2094913B211C1244686913DC /* UIView.swift */,
-				E8CEE261D2A4D6877DE3D33CBDE63F4F /* UIViewController.swift */,
-				C5261B701CBDCBE2007845AB /* NSObject.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -261,14 +252,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ASPlaceholderTextView";
-			sourceTree = "<group>";
-		};
-		A5A742D3378A60F3F0F9D06E93720C0D /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				797C562FF0B377AB4729D6D7DBE4B907 /* Classes */,
-			);
-			path = Pod;
 			sourceTree = "<group>";
 		};
 		ABDFCC5E0AF3C22954F58A59C580EFE3 /* Targets Support Files */ = {
@@ -332,6 +315,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E722EBD81FE69DD5FB31DB4B4E895328 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6A5FE640E86F4815B0C52B113F524EF3 /* ASAnimationOptions.swift */,
+				9F6E09C97D4F6E40A16EBB979F4761CF /* ASResizeableInputAccessoryView.swift */,
+				E3B9495B0D095B55E10421C1CFCDD9C1 /* ASTextInputAccessoryView.swift */,
+				2EA871CEBC8CCD8E2FE91C4A046E47DD /* CGFloat.swift */,
+				C08B4CBE3332552CAC726CC0DB9DB3A5 /* NSNotification.swift */,
+				2267CF29BD0FDF501D26E4D5A1CAE4E9 /* NSObject.swift */,
+				0E6681786272E2EBA6B3835CC2CB1E90 /* String.swift */,
+				C459CFF72EE199856783AC857DA55D29 /* UITextView.swift */,
+				2593122BC3C38A886CE0097CA3DCAAEC /* UIView.swift */,
+				2870D633957410F11717706F4F7C8139 /* UIViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		FFFEFB3F1D74CEBBD47F338BA73020DF /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,11 +343,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		729170E4B1185AC36A13E8B8D2A4F4B9 /* Headers */ = {
+		037F44CCEE20137EF39452416DB555CF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44819476D813AD8599C62A8E0B3C6763 /* ASTextInputAccessoryView-umbrella.h in Headers */,
+				ACD6CE4D28DBCE080BB243AA4C0E05EA /* ASTextInputAccessoryView-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,18 +397,18 @@
 			productReference = C84B27EF3FA59B4D4879B24799DC0213 /* Pods_ASTextInputAccessoryView_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		94C1938BB7409E255D7060C5CDA6840C /* ASTextInputAccessoryView */ = {
+		7EE2651FC727AE9D04712E1E02997830 /* ASTextInputAccessoryView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1FB013BD81ECD71AE6E4667BBA0FB9C2 /* Build configuration list for PBXNativeTarget "ASTextInputAccessoryView" */;
+			buildConfigurationList = 3B411E8923944156B6D8D11677768203 /* Build configuration list for PBXNativeTarget "ASTextInputAccessoryView" */;
 			buildPhases = (
-				B06C3823A43E770CFEEB778D14BE3669 /* Sources */,
-				7F013F91F161B245FF97627A4659E382 /* Frameworks */,
-				729170E4B1185AC36A13E8B8D2A4F4B9 /* Headers */,
+				F10997B94BE1EBD5635D5C4331DA65FC /* Sources */,
+				933A06160542245173E12821719E6E9A /* Frameworks */,
+				037F44CCEE20137EF39452416DB555CF /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9192C60EC194C60E453662AE17CB6277 /* PBXTargetDependency */,
+				A01FBEC0BB8BA9182AB79C65C3936D77 /* PBXTargetDependency */,
 			);
 			name = ASTextInputAccessoryView;
 			productName = ASTextInputAccessoryView;
@@ -473,7 +473,7 @@
 			projectRoot = "";
 			targets = (
 				B852988754F38CE043A658ACF8F63CB7 /* ASPlaceholderTextView */,
-				94C1938BB7409E255D7060C5CDA6840C /* ASTextInputAccessoryView */,
+				7EE2651FC727AE9D04712E1E02997830 /* ASTextInputAccessoryView */,
 				EA8836156563008EF243E5D397C8C338 /* Pods-ASTextInputAccessoryView_Example */,
 				238B4B6DDE558D04D6BE8CCA6EEB05F4 /* Pods-ASTextInputAccessoryView_Tests */,
 			);
@@ -486,9 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F10D2A4EDF491CB6860964C56475605 /* ASPlaceholderTextView-dummy.m in Sources */,
-				C5261B711CBDCBE2007845AB /* NSObject.swift in Sources */,
 				1136DE9E2070153262377B59C93CE6F5 /* ASPlaceholderTextView.swift in Sources */,
-				C5261B6F1CBDB0E2007845AB /* NSNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,19 +506,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B06C3823A43E770CFEEB778D14BE3669 /* Sources */ = {
+		F10997B94BE1EBD5635D5C4331DA65FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E98E6BACC59F7D03A29ECA37DB5B784A /* ASAnimationOptions.swift in Sources */,
-				4C5D5635FAB5F72BE9DF403BA117E4F6 /* ASResizeableInputAccessoryView.swift in Sources */,
-				95E28BC3615E6C091E569C838AB9BADD /* ASTextInputAccessoryView-dummy.m in Sources */,
-				4D953B0B02336224A12166C4B9B82CCA /* ASTextInputAccessoryView.swift in Sources */,
-				7952E8FDC9B9F2CDFD5B3F947DEE470D /* CGFloat.swift in Sources */,
-				3208700510B55FD1C54C22B50D35A651 /* String.swift in Sources */,
-				111982E08900559B397A452944B71FB6 /* UITextView.swift in Sources */,
-				9B26658F47882235182A5B4FCC7BF145 /* UIView.swift in Sources */,
-				5D7A39C2B519E9DB936D7388C04445E0 /* UIViewController.swift in Sources */,
+				31EA5E4DA0B7719F8F97D375FACAE2C1 /* ASAnimationOptions.swift in Sources */,
+				E87766445F854B3D67D15E64DBB6CDDB /* ASResizeableInputAccessoryView.swift in Sources */,
+				BF3B30C816EE943C8E3F97D5D96FFD4C /* ASTextInputAccessoryView-dummy.m in Sources */,
+				FD431E060FFF5CF36930B2C89602CEF4 /* ASTextInputAccessoryView.swift in Sources */,
+				B74B966948E4A26881A444DE32DE93EF /* CGFloat.swift in Sources */,
+				7D6E4854E4AF1E180E3E36E59CB5EE2C /* NSNotification.swift in Sources */,
+				2DCE5D6317C01FADA51F5FBE112213BF /* NSObject.swift in Sources */,
+				8A57B8673600E1BA7D528286A606D8F6 /* String.swift in Sources */,
+				1668F691A4D6107A224570D98A4451C7 /* UITextView.swift in Sources */,
+				01E5681EA368851A45FF2F878A7ADD11 /* UIView.swift in Sources */,
+				8481F715AB6A9197FEB652960F9442B2 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,19 +536,19 @@
 		7424BFE7F8365D48646B35E837C75E72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ASTextInputAccessoryView;
-			target = 94C1938BB7409E255D7060C5CDA6840C /* ASTextInputAccessoryView */;
+			target = 7EE2651FC727AE9D04712E1E02997830 /* ASTextInputAccessoryView */;
 			targetProxy = E5557E8A6AB91F054502FD9C03CCAA3A /* PBXContainerItemProxy */;
 		};
-		9192C60EC194C60E453662AE17CB6277 /* PBXTargetDependency */ = {
+		A01FBEC0BB8BA9182AB79C65C3936D77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ASPlaceholderTextView;
 			target = B852988754F38CE043A658ACF8F63CB7 /* ASPlaceholderTextView */;
-			targetProxy = BC54468640A70A8E3B9E198E74AFD2E6 /* PBXContainerItemProxy */;
+			targetProxy = 2798579BB36AAF693EF8A2E95F61D0C2 /* PBXContainerItemProxy */;
 		};
 		B078B8B7B0A1F6A523433CCA4AFABA7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ASTextInputAccessoryView;
-			target = 94C1938BB7409E255D7060C5CDA6840C /* ASTextInputAccessoryView */;
+			target = 7EE2651FC727AE9D04712E1E02997830 /* ASTextInputAccessoryView */;
 			targetProxy = 66623B9065A1B31EED3B94F6C480B570 /* PBXContainerItemProxy */;
 		};
 		D0D2CFC327FF3E5ED1D63098E293802B /* PBXTargetDependency */ = {
@@ -623,6 +623,34 @@
 			};
 			name = Debug;
 		};
+		16626535A766BDE8F49F6DB46959F370 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10189E5E952097FF50CFF84A141E553C /* ASTextInputAccessoryView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ASTextInputAccessoryView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = ASTextInputAccessoryView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		19063E187B2F0F924CD6F451F36AC29F /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2134C44C91917C9FE533C97954E9E04 /* ASPlaceholderTextView.xcconfig */;
@@ -643,63 +671,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ASPlaceholderTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		335F1E6534D991113D007810AA5106BA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10189E5E952097FF50CFF84A141E553C /* ASTextInputAccessoryView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ASTextInputAccessoryView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = ASTextInputAccessoryView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3532162522542C6A0F3143C1830FDFB5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10189E5E952097FF50CFF84A141E553C /* ASTextInputAccessoryView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ASTextInputAccessoryView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = ASTextInputAccessoryView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -811,6 +782,35 @@
 			};
 			name = Debug;
 		};
+		A414375FF344E9D231FF583BB5CFDFEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10189E5E952097FF50CFF84A141E553C /* ASTextInputAccessoryView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ASTextInputAccessoryView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = ASTextInputAccessoryView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		AD49A186EE55EC00981556545AB7784F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7726FCFC3F1803FF2FE49B0D4C0839F6 /* Pods-ASTextInputAccessoryView_Example.debug.xcconfig */;
@@ -886,20 +886,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FB013BD81ECD71AE6E4667BBA0FB9C2 /* Build configuration list for PBXNativeTarget "ASTextInputAccessoryView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				335F1E6534D991113D007810AA5106BA /* Debug */,
-				3532162522542C6A0F3143C1830FDFB5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				552D02D5BA751AC2E8790D2811D496CA /* Debug */,
 				10DE1947DAC0ED28F6C0A9F9BD75D546 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B411E8923944156B6D8D11677768203 /* Build configuration list for PBXNativeTarget "ASTextInputAccessoryView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A414375FF344E9D231FF583BB5CFDFEA /* Debug */,
+				16626535A766BDE8F49F6DB46959F370 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

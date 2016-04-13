@@ -296,7 +296,7 @@ extension ASResizeableInputAccessoryView {
             options = self.animationOptions
         }
         
-        var fullHeight = superview?.frame.size.height != nil ? superview!.frame.size.height : 0
+        let fullHeight = superview?.frame.size.height != nil ? superview!.frame.size.height : 0
         var keyboardHeight = fullHeight - frame.size.height + nextBarHeight
         keyboardHeight = keyboardHeight < 0 ? nextBarHeight : keyboardHeight
         

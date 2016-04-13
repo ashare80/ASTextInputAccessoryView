@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "94C1938BB7409E255D7060C5CDA6840C"
+               BlueprintIdentifier = "7EE2651FC727AE9D04712E1E02997830"
                BuildableName = "ASTextInputAccessoryView.framework"
                BlueprintName = "ASTextInputAccessoryView"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "94C1938BB7409E255D7060C5CDA6840C"
+            BlueprintIdentifier = "7EE2651FC727AE9D04712E1E02997830"
             BuildableName = "ASTextInputAccessoryView.framework"
             BlueprintName = "ASTextInputAccessoryView"
             ReferencedContainer = "container:Pods.xcodeproj">
