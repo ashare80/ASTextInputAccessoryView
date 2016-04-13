@@ -38,7 +38,13 @@
                             <outlet property="delegate" destination="WBX-3d-iRX" id="1cw-QN-PYd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="A Share" id="yWH-yI-bQn"/>
+                    <navigationItem key="navigationItem" title="A Share" id="yWH-yI-bQn">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="bWr-Pw-DFk">
+                            <connections>
+                                <action selector="dismissKeyboard:" destination="WBX-3d-iRX" id="X8k-fA-fMI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WSP-SF-cCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

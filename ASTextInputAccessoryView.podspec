@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = "ASTextInputAccessoryView"
-    s.version          = "0.1.8"
+    s.version          = "0.1.9"
     s.summary          = "Messages app input view recreated in Swift."
     s.description      = <<-DESC
 Messages app input accessory view recreated in Swift.

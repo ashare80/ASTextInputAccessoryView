@@ -78,13 +78,13 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
     func inputAccessoryViewKeyboardWillDismiss(view: UIView, notification: NSNotification) -> (() -> Void)?
     
     /**
-     Keyboard did change size.
+     Keyboard frame did change height.
      
      - parameters:
         - view: Input accessory view.
         - notification: The received notification with keyboard related userInfo.
      */
-    func inputAccessoryViewKeyboardDidChangeFrame(view: UIView, notification: NSNotification)
+    func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification)
 }
 
 public extension ASResizeableInputAccessoryViewDelegate {
@@ -94,7 +94,7 @@ public extension ASResizeableInputAccessoryViewDelegate {
     func inputAccessoryViewDidAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) {}
     func inputAccessoryViewKeyboardWillPresent(view: UIView, notification: NSNotification) -> (() -> Void)? { return nil }
     func inputAccessoryViewKeyboardWillDismiss(view: UIView, notification: NSNotification) -> (() -> Void)? { return nil }
-    func inputAccessoryViewKeyboardDidChangeFrame(view: UIView, notification: NSNotification) { }
+    func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification) { }
 }
 
 public extension ASResizeableInputAccessoryViewDelegate where Self: UIViewController {

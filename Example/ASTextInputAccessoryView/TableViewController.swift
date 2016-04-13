@@ -148,8 +148,16 @@ extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
         }
     }
     
-    func inputAccessoryViewKeyboardDidChangeFrame(view: UIView, notification: NSNotification) {
+    func inputAccessoryViewKeyboardWillDismiss(view: UIView, notification: NSNotification) -> (() -> Void)? {
+        return { [weak self] in
+            self?.updateInsets(view.frame.size.height)
+        }
+    }
+    
+    func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification) {
         let shouldScroll = tableView.isScrolledToBottom
+        
+        print(tableView.contentInset.bottom, notification.keyboardFrameEnd.height)
         updateInsets(notification.keyboardFrameEnd.height)
         if shouldScroll {
             self.tableView.scrollToBottomContent(false)
@@ -177,5 +185,15 @@ extension ASTableViewController {
         
         return cell
     }
+}
+
+
+// MARK: Actions
+extension ASTableViewController {
+    
+    @IBAction func dismissKeyboard(sender: AnyObject) {
+        textInputAccessoryView.textView.resignFirstResponder()
+    }
+    
 }
 
