@@ -15,7 +15,8 @@ public class ASResizeableInputAccessoryView: UIView {
     public var animationOptions: ASAnimationOptions! = ASAnimationOptions()
     
     /**
-     Animates changes to the contentView height before height change of self
+     Animates changes to the contentView height before height change of self. 
+     - default: `true`
      */
     public var animateBarHeightOnReload: Bool = true
     
@@ -30,7 +31,7 @@ public class ASResizeableInputAccessoryView: UIView {
     }
     
     /**
-     Standard height of bar without text.
+     Standard height of bar without content.
      */
     public var minimumHeight: CGFloat = 44 {
         didSet {
@@ -66,16 +67,6 @@ public class ASResizeableInputAccessoryView: UIView {
             heightConstraint = constraint
         }
         super.addConstraint(constraint)
-    }
-    
-    public override func removeConstraint(constraint: NSLayoutConstraint) {
-        super.removeConstraint(constraint)
-        print(constraint)
-    }
-    
-    public override func removeConstraints(constraints: [NSLayoutConstraint]) {
-        super.removeConstraints(constraints)
-        print(constraints)
     }
     
     public convenience init(minimumHeight: CGFloat = 44) {
