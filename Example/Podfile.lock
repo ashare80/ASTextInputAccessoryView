@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ASPlaceholderTextView: b064ec49a8e04393709410acab072be767adcf98
-  ASTextInputAccessoryView: 0c54a27c8486623cde6ae38c3ed3513b3b22995f
+  ASTextInputAccessoryView: c6636f9e65b7dcf3889f4bda0f66da67ca566ad3
 
 COCOAPODS: 0.39.0

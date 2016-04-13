@@ -240,7 +240,7 @@ extension ASResizeableInputAccessoryView {
 public extension ASResizeableInputAccessoryView {
     
     /**
-    Interactive dismiss causes confusion with notifications so to try and regulate we'll keep track of when it was already shown and when it's being dismissed. We can compare the FrameEnd height to the view height and FrameBegin height to filter out willShow notes based on keyboard dismissing but view sticking around.
+    Interactive dismiss causes confusion with notifications so to try and regulate we'll keep track of when it was already shown and when it's being dismissed. We can compare the FrameEnd height to the view height and FrameBegin height to filter out willShow notes based on keyboard dismissing but the view sticking around.
     */
     
     public override func keyboardWillShow(notification: NSNotification) {
