@@ -62,8 +62,8 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     /**
      Compare width to ensure no rotations
      */
-    private var previousWidth: CGFloat = 0
-    private var widthChange: Bool { return previousWidth != textView.frame.size.width}
+    private var previousContentWidth: CGFloat = 0
+    private var widthChange: Bool { return previousContentWidth != textView.frame.size.width}
     
     /**
      This will allow overrides to revert back to the super contentHeight calculation
@@ -77,7 +77,7 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
             return cachedHeightCalculation
         }
         previousAttributedText = textView.attributedText
-        previousWidth = textView.frame.width
+        previousContentWidth = textView.contentSize.width
         
         var nextBarHeight = minimumHeight
         
