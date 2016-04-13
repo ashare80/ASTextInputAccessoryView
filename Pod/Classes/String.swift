@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: + Size
+
 public extension String {
     
     func sizeWithFont(font: UIFont, maxWidth: CGFloat = CGFloat.max, maxHeight: CGFloat = CGFloat.max) -> CGSize {

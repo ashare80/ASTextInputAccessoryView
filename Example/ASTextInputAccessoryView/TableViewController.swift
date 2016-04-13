@@ -19,6 +19,7 @@ class ASTableViewController: UITableViewController {
         super.viewDidLoad()
         
         textInputAccessoryView = ASTextInputAccessoryView(minimumHeight: 44)
+        textInputAccessoryView.delegate = self
         
         // Add a target to the standard send button or optionally set your own custom button
         textInputAccessoryView.defaultSendButton.addTarget(
@@ -29,12 +30,6 @@ class ASTableViewController: UITableViewController {
         
         // Add a left button such as a camera icon
         addCameraButton()
-        
-        addKeyboardNotifications()
-    }
-    
-    deinit {
-        removeKeyboardNotifications()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -111,24 +106,45 @@ extension ASTableViewController {
 //MARK: Keyboard notifications
 extension ASTableViewController {
     
-    override func keyboardWillShow(keyboardFrame: CGRect, animated: Bool) {
-        scrollToBottomIfNeeded(keyboardFrame, animated: !animated)
-    }
-    
-    override func keyboardDidShow(keyboardFrame: CGRect) {
-        scrollToBottomIfNeeded(keyboardFrame)
-    }
-    
     func scrollToBottomIfNeeded(keyboardFrame: CGRect, animated: Bool = true) {
         // In case of weird results from interactive dismiss
         if keyboardFrame.origin.y + textInputAccessoryView.frame.size.height < view.frame.size.height {
             var contentInset = tableView.contentInset
             contentInset.bottom = keyboardFrame.height
-            tableView.scrollToBottomContent(contentInset, animated: animated)
+            tableView.scrollToBottomContent(animated)
         }
     }
 }
 
+// MARK: ASResizeableInputAccessoryViewDelegate
+extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
+    
+    /** 
+     - IMPORTANT: Remove auto content inset functionality by overriding viewWillAppear
+     
+     We are going to want to handle setting the keyboard inset ourselves for animation of the tableView to scroll along with changes to the inputAccessoryView height. Otherwise super.viewWillAppear(animated) will start internal changes to the tableView content that causes problems.
+     */
+    override func viewWillAppear(animated: Bool) { }
+    
+    func inputAccessoryViewWillAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? {
+        
+        return { [weak self] in
+            guard let tableView = self?.tableView else {
+                return
+            }
+            var contentInset = tableView.contentInset
+            contentInset.bottom = keyboardHeight
+            tableView.contentInset = contentInset
+            tableView.scrollToBottomContent(false)
+        }
+    }
+    
+    func inputAccessoryViewKeyboardWillPresent(view: UIView, notification: NSNotification) -> (() -> Void)? {
+        return { [weak self] in
+            self?.tableView.scrollToBottomContent(false)
+        }
+    }
+}
 
 
 

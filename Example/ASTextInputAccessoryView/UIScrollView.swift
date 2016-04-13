@@ -11,13 +11,13 @@ import UIKit
 
 public extension UIScrollView {
     
-    func scrollToBottomContent(inset: UIEdgeInsets = UIEdgeInsetsZero, animated: Bool = true) {
+    func scrollToBottomContent(animated: Bool = true) {
         let contentHeight = contentSize.height
         
         var offset = contentOffset
         
-        let bottom = inset.bottom
-        let top = inset.top
+        let bottom = contentInset.bottom
+        let top = contentInset.top
         
         let availableHeight = frame.size.height - bottom
         

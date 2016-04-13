@@ -10,11 +10,11 @@ import Foundation
 
 public struct ASAnimationOptions {
     
-    public var duration: NSTimeInterval = 0.2
+    public var duration: NSTimeInterval = 0.25
     public var delay: NSTimeInterval = 0.0
     public var damping: CGFloat = 0.8
-    public var velocity: CGFloat = 0.8
-    public var options: UIViewAnimationOptions = .BeginFromCurrentState
+    public var velocity: CGFloat = 0.0
+    public var options: UIViewAnimationOptions = [.BeginFromCurrentState]
     
     public init() { }
 }

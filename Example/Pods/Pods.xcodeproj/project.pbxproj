@@ -24,6 +24,8 @@
 		9ED60C337EB4AE20B4EA84FFE5195BBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
 		B4A06F79AB65DE73231A067494B0A7B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
 		BB98C2455EF3EFF9E9E7BA5D5BDCE746 /* Pods-ASTextInputAccessoryView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1008B5CDAC750F89798FA0BA71EE64BC /* Pods-ASTextInputAccessoryView_Tests-dummy.m */; };
+		C5261B6F1CBDB0E2007845AB /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5261B6E1CBDB0E2007845AB /* NSNotification.swift */; };
+		C5261B711CBDCBE2007845AB /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5261B701CBDCBE2007845AB /* NSObject.swift */; };
 		E065F1EBE325979E7C81079E1654DB49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CD18817F2DA837CC0EF90A5D19056E /* Foundation.framework */; };
 		E0DE6453502751D396FA3DB21BC6ED27 /* ASPlaceholderTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461A345CF2B95375F7C9D2554ED530B7 /* ASPlaceholderTextView.framework */; };
 		E29C495634B9B0C9C216BE8FB277C81C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03423FFD99DE526B6FD538F37583D915 /* UIKit.framework */; };
@@ -111,6 +113,8 @@
 		B3CF0BF1892AADB1BD8E2072BCADFCE7 /* CGFloat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BF4AE7AF7D7FEC464AB19278952FF736 /* ASTextInputAccessoryView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASTextInputAccessoryView-umbrella.h"; sourceTree = "<group>"; };
+		C5261B6E1CBDB0E2007845AB /* NSNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		C5261B701CBDCBE2007845AB /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		C84B27EF3FA59B4D4879B24799DC0213 /* Pods_ASTextInputAccessoryView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86EAA6854F1BB91F2E215BE976E5658 /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D7A28B800E3A3367DE97564796882246 /* ASTextInputAccessoryView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASTextInputAccessoryView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,8 +229,10 @@
 				B3CF0BF1892AADB1BD8E2072BCADFCE7 /* CGFloat.swift */,
 				C86EAA6854F1BB91F2E215BE976E5658 /* String.swift */,
 				9DB8438BD7ED74C6ECDD1D38EF3E8E95 /* UITextView.swift */,
+				C5261B6E1CBDB0E2007845AB /* NSNotification.swift */,
 				7FB6A52E2094913B211C1244686913DC /* UIView.swift */,
 				E8CEE261D2A4D6877DE3D33CBDE63F4F /* UIViewController.swift */,
+				C5261B701CBDCBE2007845AB /* NSObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -480,7 +486,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F10D2A4EDF491CB6860964C56475605 /* ASPlaceholderTextView-dummy.m in Sources */,
+				C5261B711CBDCBE2007845AB /* NSObject.swift in Sources */,
 				1136DE9E2070153262377B59C93CE6F5 /* ASPlaceholderTextView.swift in Sources */,
+				C5261B6F1CBDB0E2007845AB /* NSNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

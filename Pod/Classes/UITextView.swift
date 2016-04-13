@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: + Content control
+
 public extension UITextView {
     
     func scrollToBottomText() {
@@ -29,6 +31,6 @@ public extension UITextView {
     }
     
     public var numberOfRows: Int {
-        return Int(textContentHeight / lineHeight)
+        return Int(round(textContentHeight / lineHeight))
     }
 }

@@ -51,9 +51,23 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     
     // MARK: Height changes
     
+    private var previousAttributedText: NSAttributedString?
+    
+    private var textChanged: Bool {
+        return previousAttributedText?.isEqualToAttributedString(textView.attributedText) != true
+    }
+    
     public override var contentHeight: CGFloat {
+        
+        // No changes
+        if !textChanged {
+            return contentViewHeightConstraint.constant
+        }
+        previousAttributedText = textView.attributedText
+        
         var nextBarHeight = minimumHeight
         
+        // Nothing to calculate
         if textView.text.characters.count == 0 {
             return nextBarHeight
         }
@@ -74,7 +88,7 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
         return nextBarHeight
     }
     
-    override func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: () -> Void) {
+    override func updateBarHeight(animated: Bool, options: ASAnimationOptions, animateableChange: () -> Void, completion: (Bool) -> Void) {
         
         super.updateBarHeight(
             animated,
@@ -83,8 +97,8 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
                 animateableChange()
                 self.textView.scrollToBottomText()
             },
-            completion:{
-                completion()
+            completion: { (finished) in
+                completion(finished)
                 self.textView.layoutIfNeeded()
             }
         )
@@ -131,11 +145,12 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
      Resets textContainerInset based off the text line height and margin.
      */
     public func resetTextContainerInset() {
-        let inset = (contentViewHeight.constant - margin * 2 - textView.lineHeight)/2
+        let inset = (contentViewHeightConstraint.constant - margin * 2 - textView.lineHeight)/2
         textView.textContainerInset = UIEdgeInsets(top: inset, left: 3, bottom: inset, right: 3)
     }
     
     func setupMessageView() {
+        
         messageView.backgroundColor = UIColor.clearColor()
         leftButtonContainerView.backgroundColor = UIColor.clearColor()
         rightButtonContainerView.backgroundColor = UIColor.clearColor()

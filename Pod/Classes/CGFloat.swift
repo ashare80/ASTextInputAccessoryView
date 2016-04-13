@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: + Rounding
+
 public extension CGFloat {
     
     var roundToNearestHalf: CGFloat {

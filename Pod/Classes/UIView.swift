@@ -9,6 +9,8 @@
 import Foundation
 
 
+// MARK: + Layout
+
 public extension UIView {
     
     func autoLayoutToSuperview(attributes: [NSLayoutAttribute] = [.Left, .Right, .Top, .Bottom], inset: CGFloat = 0) -> [NSLayoutConstraint] {
@@ -68,5 +70,23 @@ public extension UIView {
         constraint.priority = priority
         superview?.addConstraint(constraint)
         return constraint
+    }
+}
+
+
+// MARK: + ASAnimationOptions
+extension UIView {
+    
+    class func animateWithOptions(options: ASAnimationOptions, animations: () -> Void, completion: ((Bool) -> Void)?) {
+        
+        UIView.animateWithDuration(
+            options.duration,
+            delay: options.delay,
+            usingSpringWithDamping: options.damping,
+            initialSpringVelocity: options.velocity,
+            options: options.options,
+            animations: animations,
+            completion: completion
+        )
     }
 }
