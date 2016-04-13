@@ -71,6 +71,7 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     private var cachedHeightCalculation: CGFloat = 0
     
     public override var contentHeight: CGFloat {
+        textView.layoutIfNeeded()
         
         // No changes
         if !textChanged && !widthChange {
