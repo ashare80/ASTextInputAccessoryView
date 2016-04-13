@@ -103,19 +103,6 @@ extension ASTableViewController {
 }
 
 
-//MARK: Keyboard notifications
-extension ASTableViewController {
-    
-    func scrollToBottomIfNeeded(keyboardFrame: CGRect, animated: Bool = true) {
-        // In case of weird results from interactive dismiss
-        if keyboardFrame.origin.y + textInputAccessoryView.frame.size.height < view.frame.size.height {
-            var contentInset = tableView.contentInset
-            contentInset.bottom = keyboardFrame.height
-            tableView.scrollToBottomContent(animated)
-        }
-    }
-}
-
 // MARK: ASResizeableInputAccessoryViewDelegate
 extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
     
@@ -157,7 +144,6 @@ extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
     func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification) {
         let shouldScroll = tableView.isScrolledToBottom
         
-        print(tableView.contentInset.bottom, notification.keyboardFrameEnd.height)
         updateInsets(notification.keyboardFrameEnd.height)
         if shouldScroll {
             self.tableView.scrollToBottomContent(false)
