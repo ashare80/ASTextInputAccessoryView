@@ -51,24 +51,39 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     
     // MARK: Height changes
     
+    /**
+     Compare text for quick returns and possible content height
+     */
     private var previousAttributedText: NSAttributedString?
-    
     private var textChanged: Bool {
         return previousAttributedText?.isEqualToAttributedString(textView.attributedText) != true
     }
     
+    /**
+     Compare width to ensure no rotations
+     */
+    private var previousWidth: CGFloat = 0
+    private var widthChange: Bool { return previousWidth != textView.frame.size.width}
+    
+    /**
+     This will allow overrides to revert back to the super contentHeight calculation
+     */
+    private var cachedHeightCalculation: CGFloat = 0
+    
     public override var contentHeight: CGFloat {
         
         // No changes
-        if !textChanged {
-            return contentViewHeightConstraint.constant
+        if !textChanged && !widthChange {
+            return cachedHeightCalculation
         }
         previousAttributedText = textView.attributedText
+        previousWidth = textView.frame.width
         
         var nextBarHeight = minimumHeight
         
         // Nothing to calculate
-        if textView.text.characters.count == 0 {
+        if textView.attributedText.length == 0 {
+            cachedHeightCalculation = nextBarHeight
             return nextBarHeight
         }
         
@@ -85,6 +100,7 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
             nextBarHeight = minimumHeight
         }
         
+        cachedHeightCalculation = nextBarHeight
         return nextBarHeight
     }
     
