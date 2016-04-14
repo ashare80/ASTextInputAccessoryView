@@ -25,6 +25,7 @@
 		B7105BA19AF95F7F74A434A21FC82BF1 /* ASTextInputAccessoryView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 313908F1B1F26FD5C4EE855737446DC4 /* ASTextInputAccessoryView-dummy.m */; };
 		BB98C2455EF3EFF9E9E7BA5D5BDCE746 /* Pods-ASTextInputAccessoryView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1008B5CDAC750F89798FA0BA71EE64BC /* Pods-ASTextInputAccessoryView_Tests-dummy.m */; };
 		C02F964A02815C31FE0AF68400A72EF4 /* ASTextInputAccessoryView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF4AE7AF7D7FEC464AB19278952FF736 /* ASTextInputAccessoryView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5D64E911CC0604A009322B6 /* ASResizeableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D64E901CC0604A009322B6 /* ASResizeableContentView.swift */; };
 		D1D54B7E87DD194739597AFE8BA1E33C /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44C5D05784DB3954635CB17B90A559 /* NSNotification.swift */; };
 		D915F873E517852428CAEB16D65B05C7 /* ASResizeableInputAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C12A866648B5FA8CADECD1C1718136D /* ASResizeableInputAccessoryViewDelegate.swift */; };
 		DE4BEC34BFEB535FC7980AC25058D785 /* ASTextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07D6B55D2CDFD734394E65547924B10 /* ASTextInputAccessoryView.swift */; };
@@ -118,6 +119,7 @@
 		B2134C44C91917C9FE533C97954E9E04 /* ASPlaceholderTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ASPlaceholderTextView.xcconfig; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BF4AE7AF7D7FEC464AB19278952FF736 /* ASTextInputAccessoryView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ASTextInputAccessoryView-umbrella.h"; sourceTree = "<group>"; };
+		C5D64E901CC0604A009322B6 /* ASResizeableContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASResizeableContentView.swift; sourceTree = "<group>"; };
 		C84B27EF3FA59B4D4879B24799DC0213 /* Pods_ASTextInputAccessoryView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D07D6B55D2CDFD734394E65547924B10 /* ASTextInputAccessoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASTextInputAccessoryView.swift; sourceTree = "<group>"; };
 		D08CEEAF6D88A95AFFCA63AFB71359E6 /* UITextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				0828499DA83FDF159C4F5C6C758FEC9D /* ASAnimationOptions.swift */,
 				1C202304AC583D28050ED93D6E404D4A /* ASResizeableInputAccessoryView.swift */,
+				C5D64E901CC0604A009322B6 /* ASResizeableContentView.swift */,
 				8C12A866648B5FA8CADECD1C1718136D /* ASResizeableInputAccessoryViewDelegate.swift */,
 				D07D6B55D2CDFD734394E65547924B10 /* ASTextInputAccessoryView.swift */,
 				02660EB84BEB97E570FC8590EB484138 /* Extensions */,
@@ -469,7 +472,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -525,6 +528,7 @@
 				963B385D28BFA52A45B0611F45E5DC0B /* ASResizeableInputAccessoryView.swift in Sources */,
 				D915F873E517852428CAEB16D65B05C7 /* ASResizeableInputAccessoryViewDelegate.swift in Sources */,
 				B7105BA19AF95F7F74A434A21FC82BF1 /* ASTextInputAccessoryView-dummy.m in Sources */,
+				C5D64E911CC0604A009322B6 /* ASResizeableContentView.swift in Sources */,
 				DE4BEC34BFEB535FC7980AC25058D785 /* ASTextInputAccessoryView.swift in Sources */,
 				072BC36A60E95E804D5C31B045751069 /* CGFloat.swift in Sources */,
 				D1D54B7E87DD194739597AFE8BA1E33C /* NSNotification.swift in Sources */,
@@ -590,7 +594,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ASTextInputAccessoryView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -652,7 +655,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ASPlaceholderTextView/ASPlaceholderTextView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ASPlaceholderTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -681,7 +683,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ASPlaceholderTextView/ASPlaceholderTextView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ASPlaceholderTextView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -709,7 +710,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -752,7 +752,6 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_ASTextInputAccessoryView_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -783,7 +782,6 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_ASTextInputAccessoryView_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -815,7 +813,6 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_ASTextInputAccessoryView_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -847,7 +844,6 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_ASTextInputAccessoryView_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -875,7 +871,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ASTextInputAccessoryView/ASTextInputAccessoryView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ASTextInputAccessoryView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
