@@ -51,48 +51,20 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
     
     // MARK: Height changes
     
-    /**
-     Compare text for quick returns and possible content height
-     */
-    private var previousAttributedText: NSAttributedString?
-    private var textChanged: Bool {
-        return previousAttributedText?.isEqualToAttributedString(textView.attributedText) != true
-    }
-    
-    /**
-     Compare width to ensure no rotations
-     */
-    private var previousContentWidth: CGFloat = 0
-    private var widthChange: Bool { return previousContentWidth != textView.contentSize.width}
-    
-    /**
-     This will allow overrides to revert back to the super contentHeight calculation
-     */
-    private var cachedHeightCalculation: CGFloat = 0
-    
     public override var contentHeight: CGFloat {
-        textView.layoutIfNeeded()
-        
-        // No changes
-        if !textChanged && !widthChange {
-            return cachedHeightCalculation
-        }
-        previousAttributedText = textView.attributedText
-        previousContentWidth = textView.contentSize.width
         
         var nextBarHeight = minimumHeight
         
         // Nothing to calculate
         if textView.attributedText.length == 0 {
-            cachedHeightCalculation = nextBarHeight
             return nextBarHeight
         }
         
-        let lineHeight = textView.lineHeight
-        let rows = textView.numberOfRows
+        let attributedHeight = textView.attributedTextHeight
         let maxBarHeight = maxHeight
         
-        nextBarHeight = (CGFloat(rows) * lineHeight) + (minimumHeight - lineHeight)
+        let textViewMargins = textView.frame.origin.y + (textView.superview!.frame.size.height - textView.frame.size.height - textView.frame.origin.y)
+        nextBarHeight = attributedHeight + textViewMargins + textView.textContainerInset.top + textView.textContainerInset.bottom
         
         if nextBarHeight > maxBarHeight {
             nextBarHeight = maxBarHeight
@@ -101,7 +73,6 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
             nextBarHeight = minimumHeight
         }
         
-        cachedHeightCalculation = nextBarHeight
         return nextBarHeight
     }
     

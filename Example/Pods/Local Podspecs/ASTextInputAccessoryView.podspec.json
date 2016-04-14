@@ -1,6 +1,6 @@
 {
   "name": "ASTextInputAccessoryView",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "summary": "Messages app input view recreated in Swift.",
   "description": "Messages app input accessory view recreated in Swift.\n\nSet as your chat ViewController's inputAccessoryView for a customizable and auto-resizing text input bar.\n\nPowered by ASPlaceholderTextView. For a full chat view controller implementation check out ASTextViewController.",
   "homepage": "https://github.com/ashare80/ASTextInputAccessoryView",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/ashare80/ASTextInputAccessoryView.git",
-    "tag": "1.0.2"
+    "tag": "1.0.3"
   },
   "social_media_url": "https://twitter.com/adamshare",
   "platforms": {

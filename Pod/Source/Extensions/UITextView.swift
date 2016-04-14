@@ -19,8 +19,8 @@ public extension UITextView {
         }
     }
     
-    public var textContentHeight: CGFloat {
-        return contentSize.height - textContainerInset.top - textContainerInset.bottom
+    public var attributedTextHeight: CGFloat {
+        return attributedText.boundingRectWithSize(CGSizeMake(frame.size.width - textContainerInset.left - textContainerInset.right, CGFloat.max), options:[.UsesLineFragmentOrigin, .UsesFontLeading], context:nil).height
     }
     
     public var lineHeight: CGFloat {
@@ -31,6 +31,6 @@ public extension UITextView {
     }
     
     public var numberOfRows: Int {
-        return Int(round(textContentHeight / lineHeight))
+        return Int(round(attributedTextHeight / lineHeight))
     }
 }
