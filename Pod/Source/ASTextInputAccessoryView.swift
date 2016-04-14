@@ -63,7 +63,7 @@ public class ASTextInputAccessoryView: ASResizeableInputAccessoryView {
      Compare width to ensure no rotations
      */
     private var previousContentWidth: CGFloat = 0
-    private var widthChange: Bool { return previousContentWidth != textView.frame.size.width}
+    private var widthChange: Bool { return previousContentWidth != textView.contentSize.width}
     
     /**
      This will allow overrides to revert back to the super contentHeight calculation
