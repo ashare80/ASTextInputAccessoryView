@@ -14,7 +14,7 @@ class ASTableViewController: UITableViewController {
     var messages: [String] = []
     
     var iaView: ASResizeableInputAccessoryView!
-    let messageView = ASTextInputAccessoryView()
+    let messageView = ASTextInputAccessoryView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
     
     override func viewDidLoad() {
         super.viewDidLoad()

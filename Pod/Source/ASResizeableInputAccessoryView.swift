@@ -75,12 +75,7 @@ public class ASResizeableInputAccessoryView: UIView {
             }
         }
         didSet {
-            if let view = selectedContentView as? UIView {
-                view.removeFromSuperview()
-                containerView.addSubview(view)
-                view.autoLayoutToSuperview()
-            }
-            reloadHeight()
+            updateSelectedView()
         }
     }
     
@@ -96,6 +91,16 @@ public class ASResizeableInputAccessoryView: UIView {
         )
         self.contentViews = contentViews
         selectedContentView = contentViews.first
+        updateSelectedView()
+    }
+    
+    private func updateSelectedView() {
+        if let view = selectedContentView as? UIView {
+            view.removeFromSuperview()
+            containerView.addSubview(view)
+            view.autoLayoutToSuperview()
+        }
+        reloadHeight()
     }
     
     

@@ -218,6 +218,8 @@ public class ASTextInputAccessoryView: UIView {
     }
 }
 
+// MARK: ASResizeableContentView
+
 extension ASTextInputAccessoryView: ASResizeableContentView {
     
     public var contentHeight: CGFloat {
@@ -282,6 +284,7 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
 
 
 // MARK: UIInputViewAudioFeedback
+
 extension ASTextInputAccessoryView: UIInputViewAudioFeedback {
     
     public var enableInputClicksWhenVisible: Bool {
