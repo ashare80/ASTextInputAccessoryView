@@ -15,3 +15,10 @@ public protocol ASResizeableContentView {
     func animatedLayout(newheight: CGFloat)
     func postAnimationLayout(newheight: CGFloat)
 }
+
+extension ASResizeableContentView where Self: UIView {
+    
+    var parentView: ASResizeableInputAccessoryView? {
+        return superview?.superview as? ASResizeableInputAccessoryView
+    }
+}

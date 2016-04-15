@@ -15,7 +15,7 @@ public class ASResizeableInputAccessoryView: UIView {
     public var animationOptions: ASAnimationOptions! = ASAnimationOptions()
     
     /**
-     Animates changes to the contentView height before height change of self. 
+     Animates changes to the containerView height before height change of self. 
      - default: `true`
      */
     public var animateBarHeightOnReload: Bool = true
@@ -31,19 +31,13 @@ public class ASResizeableInputAccessoryView: UIView {
     }
     
     /**
-     Standard height of bar without content.
-     */
-    public var minimumHeight: CGFloat = 44 {
-        didSet {
-            reloadHeight()
-        }
-    }
-    
-    /**
-     Subclasses should override this var to return a desired height for content.
+     Height of the selected content.
      */
     public var contentHeight: CGFloat {
-        return minimumHeight
+        if let height = selectedContentView?.contentHeight {
+            return height
+        }
+        return 0
     }
     
     /**
@@ -69,28 +63,51 @@ public class ASResizeableInputAccessoryView: UIView {
         super.addConstraint(constraint)
     }
     
-    public convenience init(minimumHeight: CGFloat = 44) {
+    public var contentViews: [ASResizeableContentView] = [] {
+        didSet {
+            selectedContentView = contentViews.first
+        }
+    }
+    public var selectedContentView: ASResizeableContentView? {
+        willSet {
+            if let view = selectedContentView as? UIView {
+                view.removeFromSuperview()
+            }
+        }
+        didSet {
+            if let view = selectedContentView as? UIView {
+                view.removeFromSuperview()
+                containerView.addSubview(view)
+                view.autoLayoutToSuperview()
+            }
+            reloadHeight()
+        }
+    }
+    
+    public convenience init(contentViews: [ASResizeableContentView]) {
+        let containerView = contentViews.first!
+        
         self.init(frame: CGRect(
             x: 0,
             y: 0,
             width: UIScreen.mainScreen().bounds.width,
-            height: minimumHeight
+            height: containerView.contentHeight
             )
         )
+        self.contentViews = contentViews
+        selectedContentView = contentViews.first
     }
     
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        minimumHeight = frame.size.height
-        setupContentView()
+        setupcontainerView()
         addKeyboardNotificationsAll()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        minimumHeight = frame.size.height
-        setupContentView()
+        setupcontainerView()
         addKeyboardNotificationsAll()
     }
     
@@ -107,9 +124,9 @@ public class ASResizeableInputAccessoryView: UIView {
     // MARK: Main Content Views
     
     /**
-     Any custom views should be added to the contentView subview hierarchy.
+     Any custom views should be added to the containerView subview hierarchy.
      */
-    public let contentView = UIView()
+    public let containerView = UIView()
     
     /**
      Background toolbar for standard appearance.
@@ -118,20 +135,25 @@ public class ASResizeableInputAccessoryView: UIView {
     
     
     /**
-     Height constraint of the contentView. Is used to animate height and therefore can be used to find the most up to date height set.
+     Height constraint of the containerView. Is used to animate height and therefore can be used to find the most up to date height set.
      */
-    public var contentViewHeightConstraint: NSLayoutConstraint!
+    public var containerViewHeightConstraint: NSLayoutConstraint!
     
-    func setupContentView() {
+    func setupcontainerView() {
         
         backgroundColor = UIColor.clearColor()
         
-        addSubview(contentView)
-        contentView.backgroundColor = UIColor.clearColor()
-        contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
-        contentViewHeightConstraint = contentView.addHeightConstraint(minimumHeight, priority: UILayoutPriorityRequired)
+        addSubview(containerView)
+        containerView.backgroundColor = UIColor.clearColor()
+        containerView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
         
-        contentView.insertSubview(toolbar, atIndex: 0)
+        var constant: CGFloat = 0
+        if let height = selectedContentView?.contentHeight {
+            constant = height
+        }
+        containerViewHeightConstraint = containerView.addHeightConstraint(constant, priority: UILayoutPriorityRequired)
+        
+        containerView.insertSubview(toolbar, atIndex: 0)
         toolbar.barStyle = .Default
         toolbar.autoLayoutToSuperview()
     }
@@ -162,14 +184,14 @@ extension ASResizeableInputAccessoryView {
             setHeight(newValue, animated: false)
         }
         get {
-            return contentViewHeightConstraint.constant
+            return containerViewHeightConstraint.constant
         }
     }
     
     /**
      Max height of the view in relation to the keyboard height and maximumBarY value.
      */
-    var maxHeight: CGFloat {
+    var maximumHeight: CGFloat {
         var keyboardHeight:CGFloat = 0
         if let superview = superview {
             keyboardHeight = superview.frame.size.height
@@ -187,8 +209,13 @@ extension ASResizeableInputAccessoryView {
     public func setHeight(height: CGFloat, animated: Bool, options: ASAnimationOptions? = nil) {
         
         var nextBarHeight = height
+        
+        if nextBarHeight > maximumHeight {
+            nextBarHeight = maximumHeight
+        }
+        
         if let delegatedHeight = delegate?
-            .inputAccessoryViewNextHeight(self, suggestedHeight: nextBarHeight, currentHeight: contentViewHeightConstraint.constant) {
+            .inputAccessoryViewNextHeight(self, suggestedHeight: nextBarHeight, currentHeight: containerViewHeightConstraint.constant) {
             nextBarHeight = delegatedHeight
         }
         
@@ -201,9 +228,9 @@ extension ASResizeableInputAccessoryView {
             return
         }
         
-        let contentViewEqualHeight = contentViewHeightConstraint.constant.roundToNearestHalf == nextBarHeight.roundToNearestHalf
+        let containerViewEqualHeight = containerViewHeightConstraint.constant.roundToNearestHalf == nextBarHeight.roundToNearestHalf
         
-        guard !contentViewEqualHeight else {
+        guard !containerViewEqualHeight else {
             return
         }
         
@@ -222,8 +249,8 @@ extension ASResizeableInputAccessoryView {
             animated,
             options: options!,
             animateableChange: {
-                self.contentViewHeightConstraint.constant = nextBarHeight
-                self.contentView.layoutIfNeeded()
+                self.containerViewHeightConstraint.constant = nextBarHeight
+                self.containerView.layoutIfNeeded()
                 delegateChange?()
             },
             completion: { (finished) in
@@ -269,7 +296,7 @@ public extension ASResizeableInputAccessoryView {
     
     public override func keyboardDidChangeFrame(notification: NSNotification) {
         
-        let isAnimating = contentView.layer.animationKeys()?.count > 0
+        let isAnimating = containerView.layer.animationKeys()?.count > 0
         if !isAnimating && keyboardPresented {
             delegate?.inputAccessoryViewKeyboardDidChangeHeight(self, notification: notification)
         }

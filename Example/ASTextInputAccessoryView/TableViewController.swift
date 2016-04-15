@@ -13,16 +13,18 @@ class ASTableViewController: UITableViewController {
     
     var messages: [String] = []
     
-    var textInputAccessoryView: ASTextInputAccessoryView!
+    var iaView: ASResizeableInputAccessoryView!
+    let messageView = ASTextInputAccessoryView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textInputAccessoryView = ASTextInputAccessoryView(minimumHeight: 44)
-        textInputAccessoryView.delegate = self
+        
+        iaView = ASResizeableInputAccessoryView(contentViews: [messageView])
+        iaView.delegate = self
         
         // Add a target to the standard send button or optionally set your own custom button
-        textInputAccessoryView.defaultSendButton.addTarget(
+        messageView.defaultSendButton.addTarget(
             self,
             action: #selector(self.sendMessage),
             forControlEvents: .TouchUpInside
@@ -45,7 +47,7 @@ class ASTableViewController: UITableViewController {
         cameraButton.setImage(image, forState: .Normal)
         cameraButton.tintColor = UIColor.grayColor()
         
-        textInputAccessoryView.leftButton = cameraButton
+        messageView.leftButton = cameraButton
         
         let width = NSLayoutConstraint(
             item: cameraButton,
@@ -60,10 +62,10 @@ class ASTableViewController: UITableViewController {
     }
     
     func sendMessage() {
-        if let text = textInputAccessoryView.textView.text {
+        if let text = messageView.textView.text {
             messages.append(text)
         }
-        textInputAccessoryView.textView.text = nil
+        messageView.textView.text = nil
         
         if let last = tableView.lastIndexPath {
             
@@ -77,16 +79,16 @@ class ASTableViewController: UITableViewController {
     }
     
     func changeAppearance() {
-        textInputAccessoryView.minimumHeight = 60
-        textInputAccessoryView.margin = 3
-        textInputAccessoryView.font = UIFont.boldSystemFontOfSize(30)
+        messageView.minimumHeight = 60
+        messageView.margin = 3
+        messageView.font = UIFont.boldSystemFontOfSize(30)
     }
 }
 
 //MARK: Input Accessory View
 extension ASTableViewController {
     override var inputAccessoryView: UIView? {
-        return textInputAccessoryView
+        return iaView
     }
     
     // IMPORTANT Allows input view to stay visible
@@ -98,7 +100,7 @@ extension ASTableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        textInputAccessoryView.reloadHeight()
+        iaView.reloadHeight()
     }
 }
 
@@ -178,7 +180,7 @@ extension ASTableViewController {
 extension ASTableViewController {
     
     @IBAction func dismissKeyboard(sender: AnyObject) {
-        textInputAccessoryView.textView.resignFirstResponder()
+        messageView.textView.resignFirstResponder()
     }
     
 }
