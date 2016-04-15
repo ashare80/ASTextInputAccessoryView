@@ -75,34 +75,31 @@ public class ASResizeableInputAccessoryView: UIView {
             }
         }
         didSet {
-            updateSelectedView()
+            if let view = selectedContentView as? UIView {
+                containerView.addSubview(view)
+                view.autoLayoutToSuperview()
+            }
+            reloadHeight()
         }
     }
     
     public convenience init(contentViews: [ASResizeableContentView]) {
-        let containerView = contentViews.first!
+        let contentView = contentViews.first!
         
         self.init(frame: CGRect(
             x: 0,
             y: 0,
             width: UIScreen.mainScreen().bounds.width,
-            height: containerView.contentHeight
+            height: contentView.contentHeight
             )
         )
         self.contentViews = contentViews
-        selectedContentView = contentViews.first
-        updateSelectedView()
-    }
-    
-    private func updateSelectedView() {
+        selectedContentView = contentView
         if let view = selectedContentView as? UIView {
-            view.removeFromSuperview()
             containerView.addSubview(view)
             view.autoLayoutToSuperview()
         }
-        reloadHeight()
     }
-    
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -152,7 +149,7 @@ public class ASResizeableInputAccessoryView: UIView {
         containerView.backgroundColor = UIColor.clearColor()
         containerView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
         
-        var constant: CGFloat = 0
+        var constant: CGFloat = frame.size.height
         if let height = selectedContentView?.contentHeight {
             constant = height
         }
