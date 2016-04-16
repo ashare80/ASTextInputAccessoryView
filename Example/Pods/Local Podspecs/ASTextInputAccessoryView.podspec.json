@@ -22,6 +22,9 @@
   "dependencies": {
     "ASPlaceholderTextView": [
       "~> 0.1"
+    ],
+    "PMKVObserver": [
+      "~> 1.0"
     ]
   }
 }

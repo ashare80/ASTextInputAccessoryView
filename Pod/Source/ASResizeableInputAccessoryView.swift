@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PMKVObserver
 
 public class ASResizeableInputAccessoryView: UIView {
     
@@ -128,7 +129,6 @@ public class ASResizeableInputAccessoryView: UIView {
     // MARK: Keyboard monitoring
     deinit {
         removeKeyboardNotificationsAll()
-        stopMonitoringScrollView()
     }
     
     /**
@@ -164,7 +164,7 @@ public class ASResizeableInputAccessoryView: UIView {
         backgroundColor = UIColor.clearColor()
         
         addSubview(contentView)
-        contentView.backgroundColor = UIColor.clearColor()
+        contentView.backgroundColor = UIColor.whiteColor()
         contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
         
         var constant: CGFloat = frame.size.height
@@ -348,31 +348,20 @@ extension ASResizeableInputAccessoryView {
     }
     
     private func stopMonitoringScrollView() {
-        interactiveScrollView?.removeObserver(self, forKeyPath: contentOffset)
-        interactiveScrollView?.panGestureRecognizer.removeObserver(self, forKeyPath: state)
-    }
-    private func monitorScrollView() {
-        interactiveScrollView?.addObserver(self, forKeyPath: contentOffset, options: .New, context: nil)
-        interactiveScrollView?.panGestureRecognizer.addObserver(self, forKeyPath: state, options: .New, context: nil)
+        
     }
     
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    private func monitorScrollView() {
         
-        if let scrollView = object as? UIScrollView where scrollView == interactiveScrollView, let keyPath = keyPath {
-            switch keyPath {
-            case contentOffset:
-                scrollViewDidScroll(scrollView)
-            default:
-                break
-            }
+        guard let interactiveScrollView = interactiveScrollView else {
+            return
         }
-        else if let panGestureRecognizer = object as? UIPanGestureRecognizer where panGestureRecognizer == interactiveScrollView?.panGestureRecognizer, let keyPath = keyPath {
-            switch keyPath {
-            case state:
-                panGestureStateChanged(panGestureRecognizer)
-            default:
-                break
-            }
+        KVObserver(object: interactiveScrollView, keyPath: "contentOffset") {[weak self] object, _, _ in
+            self?.scrollViewDidScroll(object as! UIScrollView)
+        }
+        
+        KVObserver(object: interactiveScrollView.panGestureRecognizer, keyPath: "state") {[weak self] object, _, _ in
+            self?.panGestureStateChanged(object as! UIPanGestureRecognizer)
         }
     }
     

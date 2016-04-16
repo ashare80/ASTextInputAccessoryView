@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PMKVObserver
 import ASPlaceholderTextView
 
 
@@ -35,25 +36,9 @@ public class ASTextInputAccessoryView: UIView {
     
     //MARK: Monitor textView contentSize updates
     
-    private let contentSizeKey = "contentSize"
-    
-    deinit {
-        textView.removeObserver(self, forKeyPath: contentSizeKey)
-    }
-    
     func monitorTextViewContentSize() {
-        textView.addObserver(self, forKeyPath: contentSizeKey, options: .New, context: nil)
-    }
-    
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        
-        if let object = object as? UITextView where object == textView, let keyPath = keyPath {
-            switch keyPath {
-            case contentSizeKey:
-                parentView?.reloadHeight()
-            default:
-                break
-            }
+        KVObserver(object: textView, keyPath: "contentSize") {[weak self] object, _, _ in
+            self?.parentView?.reloadHeight()
         }
     }
     

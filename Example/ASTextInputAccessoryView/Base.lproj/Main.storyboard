@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fHd-zV-MRd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SOm-uc-oQd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -39,7 +39,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="A Share" id="yWH-yI-bQn">
-                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="bWr-Pw-DFk">
+                        <barButtonItem key="rightBarButtonItem" title="Dismiss" id="bWr-Pw-DFk">
                             <connections>
                                 <action selector="dismissKeyboard:" destination="WBX-3d-iRX" id="X8k-fA-fMI"/>
                             </connections>
@@ -48,25 +48,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WSP-SF-cCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="453" y="226"/>
+            <point key="canvasLocation" x="643" y="706"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vMi-Oh-XeJ">
-            <objects>
-                <navigationController id="fHd-zV-MRd" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ajp-3H-vZ9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="WBX-3d-iRX" kind="relationship" relationship="rootViewController" id="zcR-M4-Z9k"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vcI-aS-e1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-368" y="225"/>
-        </scene>
-        <!--Root View Controller-->
+        <!--Samples-->
         <scene sceneID="KoZ-2C-PRQ">
             <objects>
                 <tableViewController id="avU-WT-K3O" sceneMemberID="viewController">
@@ -93,6 +77,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="WBX-3d-iRX" kind="show" id="QlV-wI-otk"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="BSj-Jd-s3p" style="IBUITableViewCellStyleDefault" id="MDN-8m-Qrc">
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
@@ -119,7 +106,7 @@
                             <outlet property="delegate" destination="avU-WT-K3O" id="zE9-h9-kEk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="CTX-Cf-2oO"/>
+                    <navigationItem key="navigationItem" title="Samples" id="CTX-Cf-2oO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wi9-TY-9Tz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
