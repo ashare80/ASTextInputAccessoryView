@@ -38,6 +38,6 @@ public extension UIScrollView {
     }
     
     var isScrolledToBottom: Bool {
-        return CGPointEqualToPoint(bottomOffset, contentOffset)
+        return bottomOffset.y <= contentOffset.y
     }
 }

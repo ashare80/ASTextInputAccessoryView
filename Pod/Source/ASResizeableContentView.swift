@@ -12,13 +12,18 @@ import Foundation
 public protocol ASResizeableContentView {
     
     var contentHeight: CGFloat { get }
+    var textInputView: UITextInput? { get }
     func animatedLayout(newheight: CGFloat)
     func postAnimationLayout(newheight: CGFloat)
 }
 
 extension ASResizeableContentView where Self: UIView {
     
-    var parentView: ASResizeableInputAccessoryView? {
+    public var parentView: ASResizeableInputAccessoryView? {
         return superview?.superview as? ASResizeableInputAccessoryView
+    }
+    
+    public var textInputView: UITextInput? {
+        return nil
     }
 }

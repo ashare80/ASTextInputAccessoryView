@@ -244,11 +244,15 @@ extension ASTextInputAccessoryView: ASResizeableContentView {
     }
     
     public func animatedLayout(newheight: CGFloat) {
-        self.textView.scrollToBottomText()
+        textView.scrollToBottomText()
     }
     
     public func postAnimationLayout(newheight: CGFloat) {
-        self.textView.layoutIfNeeded()
+        textView.layoutIfNeeded()
+    }
+    
+    public var textInputView: UITextInput? {
+        return textView
     }
 }
 

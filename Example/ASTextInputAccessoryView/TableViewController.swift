@@ -19,8 +19,12 @@ class ASTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for _ in 0..<20 {
+            messages.append("Some text")
+        }
         
-        iaView = ASResizeableInputAccessoryView(contentViews: [messageView])
+        iaView = ASResizeableInputAccessoryView(components: [messageView])
+        iaView.interactiveEngage(tableView)
         iaView.delegate = self
         
         // Add a target to the standard send button or optionally set your own custom button
@@ -32,13 +36,17 @@ class ASTableViewController: UITableViewController {
         
         // Add a left button such as a camera icon
         addCameraButton()
+        
+        updateInsets(iaView.contentViewHeightConstraint.constant)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 //        Test layout of changed parameters after setup
-//        changeAppearance()
+        //        changeAppearance()
+        tableView.scrollToBottomContent(false)
     }
+    
     
     func addCameraButton() {
         
@@ -115,14 +123,14 @@ extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
      */
     override func viewWillAppear(animated: Bool) { }
     
-    func updateInsets(keyboardHeight: CGFloat) {
+    func updateInsets(bottom: CGFloat) {
         var contentInset = tableView.contentInset
-        contentInset.bottom = keyboardHeight
+        contentInset.bottom = bottom
         tableView.contentInset = contentInset
         tableView.scrollIndicatorInsets = contentInset
     }
     
-    func inputAccessoryViewWillAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? {
+    func inputAccessoryViewWillAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? {
         
         return { [weak self] in
             self?.updateInsets(keyboardHeight)
@@ -130,23 +138,22 @@ extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
         }
     }
     
-    func inputAccessoryViewKeyboardWillPresent(view: UIView, notification: NSNotification) -> (() -> Void)? {
+    func inputAccessoryViewKeyboardWillPresent(view: ASResizeableInputAccessoryView, height: CGFloat) -> (() -> Void)? {
         return { [weak self] in
-            self?.updateInsets(notification.keyboardFrameEnd.height)
+            self?.updateInsets(height)
             self?.tableView.scrollToBottomContent(false)
         }
     }
     
-    func inputAccessoryViewKeyboardWillDismiss(view: UIView, notification: NSNotification) -> (() -> Void)? {
+    func inputAccessoryViewKeyboardWillDismiss(view: ASResizeableInputAccessoryView, notification: NSNotification) -> (() -> Void)? {
         return { [weak self] in
             self?.updateInsets(view.frame.size.height)
         }
     }
     
-    func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification) {
+    func inputAccessoryViewKeyboardDidChangeHeight(view: ASResizeableInputAccessoryView, height: CGFloat) {
         let shouldScroll = tableView.isScrolledToBottom
-        
-        updateInsets(notification.keyboardFrameEnd.height)
+        updateInsets(height)
         if shouldScroll {
             self.tableView.scrollToBottomContent(false)
         }
@@ -180,7 +187,7 @@ extension ASTableViewController {
 extension ASTableViewController {
     
     @IBAction func dismissKeyboard(sender: AnyObject) {
-        messageView.textView.resignFirstResponder()
+        self.messageView.textView.resignFirstResponder()
     }
     
 }

@@ -15,7 +15,6 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		C57085F11CBB123000E21B79 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57085F01CBB123000E21B79 /* UITableView.swift */; };
-		C57085F31CBB123800E21B79 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57085F21CBB123800E21B79 /* UIScrollView.swift */; };
 		DBA751CD88DDF4C9F1E5E938 /* Pods_ASTextInputAccessoryView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB125981492C923606D4BBBF /* Pods_ASTextInputAccessoryView_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +46,6 @@
 		B2CF6E4F2F93586BF4F1AE03 /* Pods_ASTextInputAccessoryView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D47C47ACC558A1B63B6AA8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C57085F01CBB123000E21B79 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
-		C57085F21CBB123800E21B79 /* UIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		D769EDCDB45824E0AC6A1935 /* Pods-ASTextInputAccessoryView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASTextInputAccessoryView_Tests/Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDB4AE64D31A1ECD479F7433 /* Pods-ASTextInputAccessoryView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASTextInputAccessoryView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASTextInputAccessoryView_Tests/Pods-ASTextInputAccessoryView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FB125981492C923606D4BBBF /* Pods_ASTextInputAccessoryView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +107,6 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* TableViewController.swift */,
 				C57085F01CBB123000E21B79 /* UITableView.swift */,
-				C57085F21CBB123800E21B79 /* UIScrollView.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -366,7 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* TableViewController.swift in Sources */,
-				C57085F31CBB123800E21B79 /* UIScrollView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C57085F11CBB123000E21B79 /* UITableView.swift in Sources */,
 			);
