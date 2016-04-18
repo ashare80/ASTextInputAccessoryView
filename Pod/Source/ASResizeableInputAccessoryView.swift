@@ -16,6 +16,9 @@ public class ASResizeableInputAccessoryView: UIView {
     private var isDragging = false
     private var isInteractiveEnabling = false
     
+    private var contentOffsetObserver: KVObserver?
+    private var stateObserver: KVObserver?
+    
     private weak var interactiveScrollView: UIScrollView? {
         willSet {
             stopMonitoringScrollView()
@@ -28,7 +31,7 @@ public class ASResizeableInputAccessoryView: UIView {
     public var animationOptions: ASAnimationOptions! = ASAnimationOptions()
     
     /**
-     Animates changes to the contentView height before height change of self. 
+     Animates changes to the contentView height before height change of self.
      - default: `true`
      */
     public var animateBarHeightOnReload: Bool = true
@@ -57,11 +60,11 @@ public class ASResizeableInputAccessoryView: UIView {
      Sets height to the current content height. Will animate if animateBarHeightOnReload is true.
      
      - parameters:
-        - options: Optional animation options. Defaults to animationOptions.
+     - options: Optional animation options. Defaults to animationOptions.
      */
     
     public func reloadHeight(options: ASAnimationOptions? = nil) {
-        self.setHeight(contentHeight, animated: animateBarHeightOnReload, options: options)
+        setHeight(contentHeight, animated: animateBarHeightOnReload, options: options)
     }
     
     /**
@@ -256,7 +259,7 @@ extension ASResizeableInputAccessoryView {
         
         var options = options
         if options == nil {
-            options = self.animationOptions
+            options = animationOptions
         }
         
         let fullHeight = superview?.frame.size.height != nil ? superview!.frame.size.height : 0
@@ -288,17 +291,17 @@ extension ASResizeableInputAccessoryView {
 public extension ASResizeableInputAccessoryView {
     
     /**
-    Interactive dismiss causes confusion with notifications so to try and regulate we'll keep track of when it was already shown and when it's being dismissed. We can compare the FrameEnd height to the view height and FrameBegin height to filter out willShow notes based on keyboard dismissing but the view sticking around.
-    */
+     Interactive dismiss causes confusion with notifications so to try and regulate we'll keep track of when it was already shown and when it's being dismissed. We can compare the FrameEnd height to the view height and FrameBegin height to filter out willShow notes based on keyboard dismissing but the view sticking around.
+     */
     
     public override func keyboardWillShow(notification: NSNotification) {
         
         guard
             !keyboardPresented &&
-            notification.keyboardFrameEnd.height != frame.size.height &&
-            notification.keyboardFrameBegin.height == notification.keyboardFrameEnd.height
+                notification.keyboardFrameEnd.height != frame.size.height &&
+                notification.keyboardFrameBegin.height == notification.keyboardFrameEnd.height
             else {
-            return
+                return
         }
         
         keyboardPresented = true
@@ -348,7 +351,8 @@ extension ASResizeableInputAccessoryView {
     }
     
     private func stopMonitoringScrollView() {
-        
+        stateObserver?.cancel()
+        contentOffsetObserver?.cancel()
     }
     
     private func monitorScrollView() {
@@ -356,11 +360,12 @@ extension ASResizeableInputAccessoryView {
         guard let interactiveScrollView = interactiveScrollView else {
             return
         }
-        KVObserver(object: interactiveScrollView, keyPath: "contentOffset") {[weak self] object, _, _ in
+        stopMonitoringScrollView()
+        contentOffsetObserver = KVObserver(object: interactiveScrollView, keyPath: "contentOffset") {[weak self] object, _, _ in
             self?.scrollViewDidScroll(object as! UIScrollView)
         }
         
-        KVObserver(object: interactiveScrollView.panGestureRecognizer, keyPath: "state") {[weak self] object, _, _ in
+        stateObserver = KVObserver(object: interactiveScrollView.panGestureRecognizer, keyPath: "state") {[weak self] object, _, _ in
             self?.panGestureStateChanged(object as! UIPanGestureRecognizer)
         }
     }
@@ -394,7 +399,7 @@ extension ASResizeableInputAccessoryView {
                 delegate?.inputAccessoryViewKeyboardDidChangeHeight(self, height: visibleHeight)
             }
             else {
-//                print("KeyboardExtended")
+                //                print("KeyboardExtended")
             }
         }
     }
@@ -408,14 +413,12 @@ extension ASResizeableInputAccessoryView {
         
         isInteractiveEnabling = true
         
-        NSOperationQueue.mainQueue().addOperationWithBlock { 
-            let locationInputView = scrollView.panGestureRecognizer.locationInView(self.contentView)
-            self.heightConstraint?.constant = self.contentViewHeightConstraint.constant + abs(locationInputView.y)
-            
-            UIView.performWithoutAnimation({
-                (self.selectedComponent?.textInputView as? UIView)?.becomeFirstResponder()
-            })
-        }
+        let locationInputView = scrollView.panGestureRecognizer.locationInView(contentView)
+        heightConstraint?.constant = contentViewHeightConstraint.constant + abs(locationInputView.y)
+        
+        UIView.performWithoutAnimation({
+            (self.selectedComponent?.textInputView as? UIView)?.becomeFirstResponder()
+        })
     }
     
     private func stopInteractiveEnable() {
@@ -423,7 +426,7 @@ extension ASResizeableInputAccessoryView {
             return
         }
         
-        self.heightConstraint?.constant = self.contentViewHeightConstraint.constant
+        heightConstraint?.constant = contentViewHeightConstraint.constant
         addKeyboardNotificationsAll()
         isInteractiveEnabling = false
     }

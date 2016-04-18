@@ -38,6 +38,7 @@ class ASTableViewController: UITableViewController {
         addCameraButton()
         
         updateInsets(iaView.contentViewHeightConstraint.constant)
+        tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
