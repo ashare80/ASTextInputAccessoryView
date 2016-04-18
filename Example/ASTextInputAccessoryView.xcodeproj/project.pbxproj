@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8001CC477140038BC73 /* MessagesViewController.swift */; };
+		C53FD8031CC477340038BC73 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8021CC477340038BC73 /* MessageTableViewCell.swift */; };
 		C57085F11CBB123000E21B79 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57085F01CBB123000E21B79 /* UITableView.swift */; };
 		DBA751CD88DDF4C9F1E5E938 /* Pods_ASTextInputAccessoryView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB125981492C923606D4BBBF /* Pods_ASTextInputAccessoryView_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		B2CF6E4F2F93586BF4F1AE03 /* Pods_ASTextInputAccessoryView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D47C47ACC558A1B63B6AA8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C53FD8001CC477140038BC73 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		C53FD8021CC477340038BC73 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		C57085F01CBB123000E21B79 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D769EDCDB45824E0AC6A1935 /* Pods-ASTextInputAccessoryView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASTextInputAccessoryView_Tests/Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDB4AE64D31A1ECD479F7433 /* Pods-ASTextInputAccessoryView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASTextInputAccessoryView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASTextInputAccessoryView_Tests/Pods-ASTextInputAccessoryView_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* TableViewController.swift */,
+				C53FD8001CC477140038BC73 /* MessagesViewController.swift */,
+				C53FD8021CC477340038BC73 /* MessageTableViewCell.swift */,
 				C57085F01CBB123000E21B79 /* UITableView.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -364,6 +370,8 @@
 			files = (
 				607FACD81AFB9204008FA782 /* TableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */,
+				C53FD8031CC477340038BC73 /* MessageTableViewCell.swift in Sources */,
 				C57085F11CBB123000E21B79 /* UITableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -338,6 +338,35 @@ public extension ASResizeableInputAccessoryView {
             completion: nil
         )
     }
+    
+    /**
+     Keyboard plus view height that is visible on screen.
+     */
+    public var visibleHeight: CGFloat {
+        var keyboardHeight: CGFloat = 0
+        var keyboardY: CGFloat = 0
+        if let superview = superview {
+            keyboardHeight = superview.frame.size.height
+            keyboardY = superview.frame.origin.y
+        }
+        let fullHeight = UIScreen.mainScreen().bounds.size.height
+        
+        keyboardY = keyboardY + heightConstraint!.constant - contentViewHeightConstraint.constant
+        let visibleHeight = fullHeight - keyboardY
+        return visibleHeight
+    }
+    
+    /**
+     Keyboard plus view height.
+     */
+    public var presentedHeight: CGFloat {
+        var keyboardHeight: CGFloat = 0
+        if let superview = superview {
+            keyboardHeight = superview.frame.size.height
+        }
+        
+        return keyboardHeight - frame.size.height + contentViewHeightConstraint.constant
+    }
 }
 
 //MARK: Interactive Engage
@@ -346,6 +375,9 @@ extension ASResizeableInputAccessoryView {
     private var contentOffset: String { return "contentOffset"}
     private var state: String { return "state"}
     
+    /**
+     - Experimental: Attempts to recreate Facebook Messenger's pull up to engage the textView.
+     */
     public func interactiveEngage(scrollView: UIScrollView) {
         interactiveScrollView = scrollView
     }
@@ -429,35 +461,6 @@ extension ASResizeableInputAccessoryView {
         heightConstraint?.constant = contentViewHeightConstraint.constant
         addKeyboardNotificationsAll()
         isInteractiveEnabling = false
-    }
-    
-    /**
-     Keyboard plus view height that is visible on screen.
-     */
-    public var visibleHeight: CGFloat {
-        var keyboardHeight: CGFloat = 0
-        var keyboardY: CGFloat = 0
-        if let superview = superview {
-            keyboardHeight = superview.frame.size.height
-            keyboardY = superview.frame.origin.y
-        }
-        let fullHeight = UIScreen.mainScreen().bounds.size.height
-        
-        keyboardY = keyboardY + heightConstraint!.constant - contentViewHeightConstraint.constant
-        let visibleHeight = fullHeight - keyboardY
-        return visibleHeight
-    }
-    
-    /**
-     Keyboard plus view height.
-     */
-    public var presentedHeight: CGFloat {
-        var keyboardHeight: CGFloat = 0
-        if let superview = superview {
-            keyboardHeight = superview.frame.size.height
-        }
-        
-        return keyboardHeight - frame.size.height + contentViewHeightConstraint.constant
     }
     
     private var keyboardFullyExtended: Bool {

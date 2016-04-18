@@ -1,16 +1,15 @@
 //
-//  ViewController.swift
+//  MessagesViewController.swift
 //  ASTextInputAccessoryView
 //
-//  Created by Adam Share on 04/10/2016.
-//  Copyright (c) 2016 Adam Share. All rights reserved.
+//  Created by Adam J Share on 4/17/16.
+//  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
 import UIKit
-import ASTextInputAccessoryView
 
-class ASTableViewController: UITableViewController {
-    
+class MessagesViewController: UIViewController {
+
     var messages: [String] = []
     
     var iaView: ASResizeableInputAccessoryView!
@@ -45,7 +44,7 @@ class ASTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-//        Test layout of changed parameters after setup
+        //        Test layout of changed parameters after setup
         //        changeAppearance()
     }
     
@@ -96,7 +95,7 @@ class ASTableViewController: UITableViewController {
 }
 
 //MARK: Input Accessory View
-extension ASTableViewController {
+extension MessagesViewController {
     override var inputAccessoryView: UIView? {
         return iaView
     }
@@ -116,9 +115,9 @@ extension ASTableViewController {
 
 
 // MARK: ASResizeableInputAccessoryViewDelegate
-extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
+extension MessagesViewController: ASResizeableInputAccessoryViewDelegate {
     
-    /** 
+    /**
      - IMPORTANT: Remove auto content inset functionality by overriding viewWillAppear
      
      We are going to want to handle setting the keyboard inset ourselves for animation of the tableView to scroll along with changes to the inputAccessoryView height. Otherwise super.viewWillAppear(animated) will start internal changes to the tableView content that causes problems.
@@ -165,7 +164,7 @@ extension ASTableViewController: ASResizeableInputAccessoryViewDelegate {
 
 
 //MARK: DataSource
-extension ASTableViewController {
+extension MessagesViewController: UITableViewDataSource {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -186,11 +185,12 @@ extension ASTableViewController {
 
 
 // MARK: Actions
-extension ASTableViewController {
+extension MessagesViewController {
     
     @IBAction func dismissKeyboard(sender: AnyObject) {
         self.messageView.textView.resignFirstResponder()
     }
     
 }
+
 
