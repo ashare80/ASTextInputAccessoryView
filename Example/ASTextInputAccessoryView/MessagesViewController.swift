@@ -15,11 +15,14 @@ class MessagesViewController: UIViewController {
 
     var messages: [String] = []
     
-    var font: UIFont = UIFont.systemFontOfSize(16)
-    var textInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    
     var iaView: ASResizeableInputAccessoryView!
     let messageView = ASTextInputAccessoryView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
+    
+    let sizingLabel: UILabel = UILabel()
+    var messageInsideMargin: CGFloat = 16
+    var messageOppositeMargin: CGFloat = 60
+    var font: UIFont = UIFont.systemFontOfSize(16)
+    var textInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,9 +187,8 @@ extension MessagesViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("RightCell", forIndexPath: indexPath) as! MessageCell
-        cell.textView.text = messages[indexPath.item]
-        cell.textView.textContainerInset = textInsets
-        cell.textView.font = font
+        cell.label.text = messages[indexPath.item]
+        cell.label.font = font
         
         return cell
     }
@@ -210,16 +212,19 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
         let text = messages[indexPath.item]
         
-        let maxTextWidth = view.frame.size.width - textInsets.left - textInsets.right - 60 - 16
+        let cellWidth = collectionView.frame.width - messageInsideMargin - messageOppositeMargin
+        let maxTextWidth = cellWidth - textInsets.left - textInsets.right
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .ByWordWrapping
-        let attributedString = NSAttributedString(string: text, attributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle])
-        let size = attributedString.boundingRectWithSize(CGSizeMake(maxTextWidth-1, CGFloat.max), options:[.UsesLineFragmentOrigin, .UsesFontLeading], context:nil)
+        sizingLabel.text = text
+        sizingLabel.font = font
+        sizingLabel.numberOfLines = 0
         
-        var cellSize = CGSize(width: collectionView.frame.width - 60 - 16, height: size.height)
+        let size = sizingLabel.sizeThatFits(CGSize(width: maxTextWidth, height: CGFloat.max))
+        
+        var cellSize = CGSize(width: cellWidth, height: size.height)
         
         cellSize.height += textInsets.top + textInsets.bottom
         

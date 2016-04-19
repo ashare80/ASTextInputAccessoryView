@@ -11,10 +11,10 @@ import ASTextInputAccessoryView
 
 class MessageCell: UICollectionViewCell {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var bubbleView: UIView!
     
-    class var minimumHeight: CGFloat { return 40 }
+    class var minimumHeight: CGFloat { return 34 }
     
     override func awakeFromNib() {
         super.awakeFromNib()

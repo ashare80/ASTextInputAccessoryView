@@ -15,33 +15,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-jH-uk6">
-                        <rect key="frame" x="261" y="0.0" width="75.5" height="80"/>
+                        <rect key="frame" x="271" y="0.0" width="66" height="80"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="800" verticalCompressionResistancePriority="250" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Some text" translatesAutoresizingMaskIntoConstraints="NO" id="5fz-97-WO5">
-                                <rect key="frame" x="0.0" y="23" width="75.5" height="33"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuP-Fs-xaf">
+                                <rect key="frame" x="12" y="29" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                            </textView>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5fz-97-WO5" secondAttribute="bottom" priority="750" constant="8" id="2Xq-oN-xoj"/>
-                            <constraint firstItem="5fz-97-WO5" firstAttribute="leading" secondItem="JBM-jH-uk6" secondAttribute="leading" id="47V-4I-o60"/>
+                            <constraint firstItem="SuP-Fs-xaf" firstAttribute="centerY" secondItem="JBM-jH-uk6" secondAttribute="centerY" id="5Vo-1D-yxm"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="SXN-iz-qi3"/>
-                            <constraint firstAttribute="trailing" secondItem="5fz-97-WO5" secondAttribute="trailing" id="buP-Sn-IPj"/>
-                            <constraint firstItem="5fz-97-WO5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JBM-jH-uk6" secondAttribute="top" priority="750" constant="8" id="ia3-nb-RAd"/>
-                            <constraint firstItem="5fz-97-WO5" firstAttribute="centerY" secondItem="JBM-jH-uk6" secondAttribute="centerY" id="lsb-WZ-Tbe"/>
+                            <constraint firstItem="SuP-Fs-xaf" firstAttribute="leading" secondItem="JBM-jH-uk6" secondAttribute="leading" constant="12" id="gbf-tu-uWL"/>
+                            <constraint firstAttribute="trailing" secondItem="SuP-Fs-xaf" secondAttribute="trailing" constant="12" id="iCl-Az-i3G"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="2Xq-oN-xoj"/>
-                                <exclude reference="ia3-nb-RAd"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -55,7 +44,7 @@
             <size key="customSize" width="337" height="80"/>
             <connections>
                 <outlet property="bubbleView" destination="JBM-jH-uk6" id="Tct-C7-Hn9"/>
-                <outlet property="textView" destination="5fz-97-WO5" id="HsH-Pe-DgL"/>
+                <outlet property="label" destination="SuP-Fs-xaf" id="yRc-EA-6rj"/>
             </connections>
             <point key="canvasLocation" x="92.5" y="-280"/>
         </collectionViewCell>
