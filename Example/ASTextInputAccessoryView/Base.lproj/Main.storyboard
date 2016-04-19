@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="677" y="360"/>
         </scene>
-        <!--View Controller-->
+        <!--Messages View Controller-->
         <scene sceneID="VAY-BG-55U">
             <objects>
-                <viewController id="CQ9-Gy-zX0" sceneMemberID="viewController">
+                <viewController id="CQ9-Gy-zX0" customClass="MessagesViewController" customModule="ASTextInputAccessoryView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B78-fz-6IS"/>
                         <viewControllerLayoutGuide type="bottom" id="37Q-Bf-3GG"/>
@@ -62,19 +62,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8iZ-C1-af2">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Xe-6M-Rbz">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fhg-4p-Jva">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5VF-7N-teX">
+                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="CQ9-Gy-zX0" id="Hrr-kR-8mI"/>
+                                    <outlet property="delegate" destination="CQ9-Gy-zX0" id="FW7-Zd-muZ"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8iZ-C1-af2" firstAttribute="top" secondItem="B78-fz-6IS" secondAttribute="bottom" id="4IW-xj-5UY"/>
-                            <constraint firstItem="8iZ-C1-af2" firstAttribute="leading" secondItem="WNd-ZW-c0x" secondAttribute="leading" id="Alc-dI-izR"/>
-                            <constraint firstItem="37Q-Bf-3GG" firstAttribute="top" secondItem="8iZ-C1-af2" secondAttribute="bottom" id="QK9-jh-AgB"/>
-                            <constraint firstAttribute="trailing" secondItem="8iZ-C1-af2" secondAttribute="trailing" id="oF2-3A-bxs"/>
+                            <constraint firstItem="3Xe-6M-Rbz" firstAttribute="leading" secondItem="WNd-ZW-c0x" secondAttribute="leading" id="EtQ-JK-pkf"/>
+                            <constraint firstItem="37Q-Bf-3GG" firstAttribute="top" secondItem="3Xe-6M-Rbz" secondAttribute="bottom" id="LHN-Dw-X8q"/>
+                            <constraint firstAttribute="trailing" secondItem="3Xe-6M-Rbz" secondAttribute="trailing" id="gpu-Yz-ZHo"/>
+                            <constraint firstItem="3Xe-6M-Rbz" firstAttribute="top" secondItem="WNd-ZW-c0x" secondAttribute="top" id="iy4-9s-AYP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="3Xe-6M-Rbz" id="dmm-ca-Wc3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbA-hC-N3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

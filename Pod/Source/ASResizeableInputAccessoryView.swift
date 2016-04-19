@@ -231,6 +231,10 @@ extension ASResizeableInputAccessoryView {
      */
     public func setHeight(height: CGFloat, animated: Bool, options: ASAnimationOptions? = nil) {
         
+        if superview == nil {
+            return
+        }
+        
         var nextBarHeight = height
         
         if nextBarHeight > maximumHeight {
@@ -275,11 +279,13 @@ extension ASResizeableInputAccessoryView {
                 self.contentViewHeightConstraint.constant = nextBarHeight
                 self.contentView.layoutIfNeeded()
                 delegateChange?()
+                self.selectedComponent?.animatedLayout(nextBarHeight)
             },
             completion: { (finished) in
                 heightConstraint.constant = nextBarHeight
                 self.layoutIfNeeded()
                 self.delegate?.inputAccessoryViewDidAnimateToHeight(self, height: nextBarHeight, keyboardHeight: keyboardHeight)
+                self.selectedComponent?.postAnimationLayout(nextBarHeight)
             }
         )
     }

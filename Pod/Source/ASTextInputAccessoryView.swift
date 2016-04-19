@@ -38,7 +38,11 @@ public class ASTextInputAccessoryView: UIView {
     
     func monitorTextViewContentSize() {
         KVObserver(object: textView, keyPath: "contentSize") {[weak self] object, _, _ in
-            self?.parentView?.reloadHeight()
+            // Awaits changes to textView otherwise will show error:
+            // requesting caretRectForPosition: while the NSTextStorage has oustanding changes {x, y}
+            NSOperationQueue.mainQueue().addOperationWithBlock({ 
+                self?.parentView?.reloadHeight()
+            })
         }
     }
     
@@ -102,9 +106,7 @@ public class ASTextInputAccessoryView: UIView {
         textView.delegate = self
         
         resetTextContainerInset()
-        
         updateContentConstraints()
-        
         addStandardSendButton()
     }
     
@@ -216,10 +218,9 @@ extension ASTextInputAccessoryView: ASResizeableContentView {
             return nextBarHeight
         }
         
-        let attributedHeight = textView.attributedTextHeight
-        
+        let textViewSize = textView.sizeThatFits(CGSizeMake(textView.frame.size.width, CGFloat.max))
         let textViewMargins = textView.frame.origin.y + (textView.superview!.frame.size.height - textView.frame.size.height - textView.frame.origin.y)
-        nextBarHeight = attributedHeight + textViewMargins + textView.textContainerInset.top + textView.textContainerInset.bottom
+        nextBarHeight = textViewSize.height + textViewMargins
         
         if nextBarHeight < minimumHeight {
             nextBarHeight = minimumHeight

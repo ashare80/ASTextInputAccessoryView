@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import ASTextInputAccessoryView
 
 class MessagesViewController: UIViewController {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
 
     var messages: [String] = []
+    
+    var font: UIFont = UIFont.systemFontOfSize(16)
+    var textInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     var iaView: ASResizeableInputAccessoryView!
     let messageView = ASTextInputAccessoryView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
@@ -18,13 +24,18 @@ class MessagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for _ in 0..<20 {
-            messages.append("Some text")
-        }
+        collectionView.registerNib(UINib(nibName: "RightCell", bundle: nil), forCellWithReuseIdentifier: "RightCell")
+        collectionView.keyboardDismissMode = .Interactive
+        collectionView.collectionViewLayout = MessagesFlowLayout()
+        
+        messages.append("This is a UIViewController that contains a UICollectionView with a contentInset that is managed in the controller from callbacks by the inputAccessoryView's delegate.")
+        messages.append("If you use a UITableViewController, you will need to override 'viewWillAppear:' without calling 'super.viewWillAppear()' to remove the automatic keyboard contentInset adjustments made by the controller in order to manage contentInset from the delegate. Or you can add a UITableView to a UIViewController instead.")
         
         iaView = ASResizeableInputAccessoryView(components: [messageView])
-        iaView.interactiveEngage(tableView)
         iaView.delegate = self
+        
+//        Experimental feature
+//        iaView.interactiveEngage(collectionView)
         
         // Add a target to the standard send button or optionally set your own custom button
         messageView.defaultSendButton.addTarget(
@@ -37,9 +48,13 @@ class MessagesViewController: UIViewController {
         addCameraButton()
         
         updateInsets(iaView.contentViewHeightConstraint.constant)
-        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        messageView.textView.placeholder = "Text Message"
+        collectionView.reloadData()
+        collectionView.scrollToBottomContent(false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -76,14 +91,13 @@ class MessagesViewController: UIViewController {
         }
         messageView.textView.text = nil
         
-        if let last = tableView.lastIndexPath {
+        if let last = collectionView.lastIndexPath {
             
-            CATransaction.begin()
-            CATransaction.setCompletionBlock({
-                self.tableView.scrollToLastCell()
+            collectionView.performBatchUpdates({
+                self.collectionView.insertItemsAtIndexPaths([last])
+                }, completion: { (finished) in
+                    self.collectionView.scrollToBottomContent()
             })
-            tableView.insertRowsAtIndexPaths([last], withRowAnimation: .Right)
-            CATransaction.commit()
         }
     }
     
@@ -117,32 +131,25 @@ extension MessagesViewController {
 // MARK: ASResizeableInputAccessoryViewDelegate
 extension MessagesViewController: ASResizeableInputAccessoryViewDelegate {
     
-    /**
-     - IMPORTANT: Remove auto content inset functionality by overriding viewWillAppear
-     
-     We are going to want to handle setting the keyboard inset ourselves for animation of the tableView to scroll along with changes to the inputAccessoryView height. Otherwise super.viewWillAppear(animated) will start internal changes to the tableView content that causes problems.
-     */
-    override func viewWillAppear(animated: Bool) { }
-    
     func updateInsets(bottom: CGFloat) {
-        var contentInset = tableView.contentInset
+        var contentInset = collectionView.contentInset
         contentInset.bottom = bottom
-        tableView.contentInset = contentInset
-        tableView.scrollIndicatorInsets = contentInset
+        collectionView.contentInset = contentInset
+        collectionView.scrollIndicatorInsets = contentInset
     }
     
     func inputAccessoryViewWillAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? {
         
         return { [weak self] in
             self?.updateInsets(keyboardHeight)
-            self?.tableView.scrollToBottomContent(false)
+            self?.collectionView.scrollToBottomContent(false)
         }
     }
     
     func inputAccessoryViewKeyboardWillPresent(view: ASResizeableInputAccessoryView, height: CGFloat) -> (() -> Void)? {
         return { [weak self] in
             self?.updateInsets(height)
-            self?.tableView.scrollToBottomContent(false)
+            self?.collectionView.scrollToBottomContent(false)
         }
     }
     
@@ -153,10 +160,10 @@ extension MessagesViewController: ASResizeableInputAccessoryViewDelegate {
     }
     
     func inputAccessoryViewKeyboardDidChangeHeight(view: ASResizeableInputAccessoryView, height: CGFloat) {
-        let shouldScroll = tableView.isScrolledToBottom
+        let shouldScroll = collectionView.isScrolledToBottom
         updateInsets(height)
         if shouldScroll {
-            self.tableView.scrollToBottomContent(false)
+            self.collectionView.scrollToBottomContent(false)
         }
     }
 }
@@ -164,22 +171,75 @@ extension MessagesViewController: ASResizeableInputAccessoryViewDelegate {
 
 
 //MARK: DataSource
-extension MessagesViewController: UITableViewDataSource {
+extension MessagesViewController: UICollectionViewDataSource {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath)
-        cell.textLabel?.text = messages[indexPath.row]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("RightCell", forIndexPath: indexPath) as! MessageCell
+        cell.textView.text = messages[indexPath.item]
+        cell.textView.textContainerInset = textInsets
+        cell.textView.font = font
         
         return cell
+    }
+}
+
+
+extension MessagesViewController: UICollectionViewDelegate {
+    
+    
+}
+
+extension MessagesViewController: UICollectionViewDelegateFlowLayout {
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animateAlongsideTransition({ (context) in
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            }) { (context) in
+                self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let text = messages[indexPath.item]
+        
+        let maxTextWidth = view.frame.size.width - textInsets.left - textInsets.right - 60 - 16
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .ByWordWrapping
+        let attributedString = NSAttributedString(string: text, attributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle])
+        let size = attributedString.boundingRectWithSize(CGSizeMake(maxTextWidth-1, CGFloat.max), options:[.UsesLineFragmentOrigin, .UsesFontLeading], context:nil)
+        
+        var cellSize = CGSize(width: collectionView.frame.width - 60 - 16, height: size.height)
+        
+        cellSize.height += textInsets.top + textInsets.bottom
+        
+        if cellSize.height < MessageCell.minimumHeight {
+            cellSize.height = MessageCell.minimumHeight
+        }
+        
+        return cellSize
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 4
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 60
     }
 }
 
