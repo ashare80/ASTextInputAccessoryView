@@ -9,11 +9,31 @@
 import UIKit
 import ASTextInputAccessoryView
 
+
+extension Dictionary where Key : NSDate, Value: _ArrayType, Value.Generator.Element: Message {
+    
+    var sortedKeys: [Key] {
+        return keys.sort({ $0.timeIntervalSince1970 < $1.timeIntervalSince1970})
+    }
+    
+    
+    func itemForIndexPath(indexPath: NSIndexPath) -> Message {
+        return self[sortedKeys[indexPath.section]]![indexPath.item]
+    }
+    
+    func arrayForIndex(section: Int) -> [Message] {
+        return self[sortedKeys[section]] as! [Message]
+    }
+}
+
 class MessagesViewController: UIViewController {
+    
+    let thisUser = User(id: 1)
+    let otherUser = User(id: 2)
     
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var messages: [String] = []
+    var messages: [NSDate: [Message]] = [:]
     
     var iaView: ASResizeableInputAccessoryView!
     let messageView = ASTextInputAccessoryView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
@@ -23,16 +43,18 @@ class MessagesViewController: UIViewController {
     var messageOppositeMargin: CGFloat = 60
     var font: UIFont = UIFont.systemFontOfSize(16)
     var textInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+    var screenSize = UIScreen.mainScreen().bounds.size
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.registerNib(UINib(nibName: "RightCell", bundle: nil), forCellWithReuseIdentifier: "RightCell")
+        collectionView.registerNib(UINib(nibName: "LeftCell", bundle: nil), forCellWithReuseIdentifier: "LeftCell")
+        collectionView.registerNib(UINib(nibName: "DateHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DateHeader")
+        
         collectionView.keyboardDismissMode = .Interactive
         collectionView.collectionViewLayout = MessagesFlowLayout()
         
-        messages.append("This is a UIViewController that contains a UICollectionView with a contentInset that is managed in the controller from callbacks by the inputAccessoryView's delegate.")
-        messages.append("If you use a UITableViewController, you will need to override 'viewWillAppear:' without calling 'super.viewWillAppear()' to remove the automatic keyboard contentInset adjustments made by the controller in order to manage contentInset from the delegate. Or you can add a UITableView to a UIViewController instead.")
         
         iaView = ASResizeableInputAccessoryView(components: [messageView])
         iaView.delegate = self
@@ -51,6 +73,8 @@ class MessagesViewController: UIViewController {
         addCameraButton()
         
         updateInsets(iaView.contentViewHeightConstraint.constant)
+        
+        addSomeMessages()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -89,14 +113,21 @@ class MessagesViewController: UIViewController {
     }
     
     func sendMessage() {
+        
+        let previousSections = numberOfSectionsInCollectionView(collectionView)
+        
         if let text = messageView.textView.text {
-            messages.append(text)
+            addNewMessage(Message(text: text, user: thisUser))
         }
+        
         messageView.textView.text = nil
         
         if let last = collectionView.lastIndexPath {
             
             collectionView.performBatchUpdates({
+                if last.section == previousSections {
+                    self.collectionView.insertSections(NSIndexSet(index: last.section))
+                }
                 self.collectionView.insertItemsAtIndexPaths([last])
                 }, completion: { (finished) in
                     self.collectionView.scrollToBottomContent()
@@ -177,20 +208,41 @@ extension MessagesViewController: ASResizeableInputAccessoryViewDelegate {
 extension MessagesViewController: UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return messages.keys.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return messages.arrayForIndex(section).count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("RightCell", forIndexPath: indexPath) as! MessageCell
-        cell.label.text = messages[indexPath.item]
+        let message = messages.itemForIndexPath(indexPath)
+        var cell: MessageCell!
+        
+        if message.user == thisUser {
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier("RightCell", forIndexPath: indexPath) as! MessageCell
+        }
+        else {
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier("LeftCell", forIndexPath: indexPath) as! MessageCell
+        }
+        
+        cell.label.text = message.text
         cell.label.font = font
         
         return cell
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "DateHeader", forIndexPath: indexPath) as! MessageGroupDateReusableView
+            view.label.text = messages.sortedKeys[indexPath.section].headerFormattedString
+            return view
+        }
+        
+        return UICollectionReusableView()
     }
 }
 
@@ -202,10 +254,18 @@ extension MessagesViewController: UICollectionViewDelegate {
 
 extension MessagesViewController: UICollectionViewDelegateFlowLayout {
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
+        return CGSize(width: screenSize.width, height: 30)
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        if size.width < view.frame.size.width {
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
+        screenSize = size
         coordinator.animateAlongsideTransition({ (context) in
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
             }) { (context) in
                 self.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -213,9 +273,9 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let text = messages[indexPath.item]
+        let text = messages.itemForIndexPath(indexPath).text
         
-        let cellWidth = collectionView.frame.width - messageInsideMargin - messageOppositeMargin
+        let cellWidth = screenSize.width - messageInsideMargin - messageOppositeMargin
         let maxTextWidth = cellWidth - textInsets.left - textInsets.right
         
         sizingLabel.text = text
@@ -236,7 +296,12 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+        
+        if section+1 == numberOfSectionsInCollectionView(collectionView) {
+            return UIEdgeInsetsMake(0, 0, 8, 0)
+        }
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -244,7 +309,21 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 60
+        return 0
+    }
+}
+
+extension MessagesViewController: LayoutAlignment {
+    
+    func insetsForIndexPath(indexPath: NSIndexPath) -> UIEdgeInsets {
+        
+        let message = messages.itemForIndexPath(indexPath)
+        
+        if message.user == thisUser {
+            return UIEdgeInsets(top: 4, left: messageOppositeMargin, bottom: 4, right: messageInsideMargin)
+        }
+        
+        return UIEdgeInsets(top: 4, left: messageInsideMargin, bottom: 4, right: messageOppositeMargin)
     }
 }
 
@@ -258,4 +337,34 @@ extension MessagesViewController {
     
 }
 
+
+extension MessagesViewController {
+    
+    func addNewMessage(message: Message) {
+        for key in messages.keys {
+            let interval = message.date.timeIntervalSinceDate(key)
+            if interval >= 0 && interval < 60 * 60  {
+                messages[key]!.append(message)
+                return
+            }
+        }
+        
+        messages[message.date] = [message]
+    }
+    
+    func addSomeMessages() {
+        let texts = [
+            "This is a UIViewController that contains a UICollectionView with a contentInset that is managed in the controller from callbacks by the inputAccessoryView's delegate.",
+            "If you use a UITableViewController, you will need to override 'viewWillAppear:' without calling 'super.viewWillAppear()' to remove the automatic keyboard contentInset adjustments made by the controller in order to manage contentInset from the delegate. Or you can add a UITableView to a UIViewController instead."
+        ]
+        
+        var multiplier: NSTimeInterval = 60
+        for text in texts {
+            let message = Message(text: text, user: otherUser)
+            message.date = NSDate().dateByAddingTimeInterval(-60*60*multiplier)
+            addNewMessage(message)
+            multiplier = multiplier/2
+        }
+    }
+}
 

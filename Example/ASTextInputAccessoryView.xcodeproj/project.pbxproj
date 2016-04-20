@@ -13,6 +13,12 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C50716671CC7282F007F1692 /* LeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50716661CC7282F007F1692 /* LeftCell.xib */; };
+		C507166A1CC72EE2007F1692 /* MessageGroupDateReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50716681CC72EE2007F1692 /* MessageGroupDateReusableView.swift */; };
+		C507166B1CC72EE2007F1692 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50716691CC72EE2007F1692 /* DateHeader.xib */; };
+		C514CB0D1CC73941008C735C /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB0C1CC73941008C735C /* NSDate.swift */; };
+		C53542C71CC70E8C0014BDBB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53542C61CC70E8C0014BDBB /* Message.swift */; };
+		C53542C91CC7111C0014BDBB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53542C81CC7111C0014BDBB /* User.swift */; };
 		C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8001CC477140038BC73 /* MessagesViewController.swift */; };
 		C53FD8031CC477340038BC73 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8021CC477340038BC73 /* MessageCell.swift */; };
 		C556BFFC1CC5A20200635CF7 /* RightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C556BFFB1CC5A20200635CF7 /* RightCell.xib */; };
@@ -48,6 +54,12 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		B2CF6E4F2F93586BF4F1AE03 /* Pods_ASTextInputAccessoryView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D47C47ACC558A1B63B6AA8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C50716661CC7282F007F1692 /* LeftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftCell.xib; sourceTree = "<group>"; };
+		C50716681CC72EE2007F1692 /* MessageGroupDateReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGroupDateReusableView.swift; sourceTree = "<group>"; };
+		C50716691CC72EE2007F1692 /* DateHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
+		C514CB0C1CC73941008C735C /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		C53542C61CC70E8C0014BDBB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		C53542C81CC7111C0014BDBB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C53FD8001CC477140038BC73 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		C53FD8021CC477340038BC73 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C556BFFB1CC5A20200635CF7 /* RightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightCell.xib; sourceTree = "<group>"; };
@@ -115,11 +127,11 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				C5C128FD1CC6EE2400BA2C75 /* MessagesExample */,
 				C5C128FC1CC6EE1500BA2C75 /* Extensions */,
-				C556BFFB1CC5A20200635CF7 /* RightCell.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				C53542CA1CC711BE0014BDBB /* Models */,
 			);
 			name = "Example for ASTextInputAccessoryView";
 			path = ASTextInputAccessoryView;
@@ -171,11 +183,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C53542CA1CC711BE0014BDBB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C53542C61CC70E8C0014BDBB /* Message.swift */,
+				C53542C81CC7111C0014BDBB /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		C5C128FC1CC6EE1500BA2C75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				C5C128F61CC5D8C800BA2C75 /* UICollectionView.swift */,
 				C57085F01CBB123000E21B79 /* UITableView.swift */,
+				C514CB0C1CC73941008C735C /* NSDate.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -186,6 +208,10 @@
 				C53FD8001CC477140038BC73 /* MessagesViewController.swift */,
 				C5C128FA1CC6A68100BA2C75 /* MessagesFlowLayout.swift */,
 				C53FD8021CC477340038BC73 /* MessageCell.swift */,
+				C50716681CC72EE2007F1692 /* MessageGroupDateReusableView.swift */,
+				C556BFFB1CC5A20200635CF7 /* RightCell.xib */,
+				C50716661CC7282F007F1692 /* LeftCell.xib */,
+				C50716691CC72EE2007F1692 /* DateHeader.xib */,
 			);
 			name = MessagesExample;
 			sourceTree = "<group>";
@@ -277,7 +303,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50716671CC7282F007F1692 /* LeftCell.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				C507166B1CC72EE2007F1692 /* DateHeader.xib in Resources */,
 				C556BFFC1CC5A20200635CF7 /* RightCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -395,8 +423,12 @@
 				C5C128FB1CC6A68100BA2C75 /* MessagesFlowLayout.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */,
+				C514CB0D1CC73941008C735C /* NSDate.swift in Sources */,
+				C53542C91CC7111C0014BDBB /* User.swift in Sources */,
 				C53FD8031CC477340038BC73 /* MessageCell.swift in Sources */,
 				C57085F11CBB123000E21B79 /* UITableView.swift in Sources */,
+				C507166A1CC72EE2007F1692 /* MessageGroupDateReusableView.swift in Sources */,
+				C53542C71CC70E8C0014BDBB /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

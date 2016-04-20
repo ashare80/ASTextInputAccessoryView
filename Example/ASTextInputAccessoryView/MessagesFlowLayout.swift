@@ -8,26 +8,19 @@
 
 import UIKit
 
-public enum MessagesCellAlignment {
-    case Left, Right
-}
-
 public extension UICollectionViewLayoutAttributes {
     
-    func rightAlignFrameOnWidth(width: CGFloat) {
+    func alignFrameWithInset(inset: UIEdgeInsets) {
         var frame = self.frame
-        frame.origin.x = width - frame.size.width - 16
+        frame.origin.x = inset.left
         self.frame = frame
     }
 }
 
-
-public extension UICollectionViewDelegateFlowLayout {
-    
-    func alignmentForItemAtIndexPath(indexPath: NSIndexPath) -> MessagesCellAlignment {
-        return .Right
-    }
+public protocol LayoutAlignment {
+    func insetsForIndexPath(indexPath: NSIndexPath) -> UIEdgeInsets
 }
+
 
 class MessagesFlowLayout: UICollectionViewFlowLayout {
     
@@ -58,8 +51,10 @@ class MessagesFlowLayout: UICollectionViewFlowLayout {
         
         let isFirstItemInSection = indexPath.item == 0
         
+        let sectionInset = evaluatedSectionInsetForItemAtIndexPath(indexPath)
+        
         if isFirstItemInSection {
-            currentItemAttributes?.rightAlignFrameOnWidth(collectionView!.frame.size.width)
+            currentItemAttributes?.alignFrameWithInset(sectionInset)
             return currentItemAttributes
         }
         
@@ -76,7 +71,7 @@ class MessagesFlowLayout: UICollectionViewFlowLayout {
         let isFirstItemInRow = !CGRectIntersectsRect(previousFrame, strecthedCurrentFrame)
         
         if isFirstItemInRow {
-            currentItemAttributes!.rightAlignFrameOnWidth(collectionView!.frame.size.width)
+            currentItemAttributes!.alignFrameWithInset(sectionInset)
             return currentItemAttributes
         }
         
@@ -89,13 +84,20 @@ class MessagesFlowLayout: UICollectionViewFlowLayout {
     }
     
     func evaluatedMinimumInteritemSpacingForItemAtIndex(index: Int) -> CGFloat {
-        let selector = #selector(UICollectionViewDelegateFlowLayout.collectionView(
-            _:layout:minimumInteritemSpacingForSectionAtIndex:))
-        if let delegate = collectionView?.delegate as? UICollectionViewDelegateFlowLayout where
-            delegate.respondsToSelector(selector) == true {
-            return delegate.collectionView!(collectionView!, layout:self, minimumInteritemSpacingForSectionAtIndex: index)
+        if let delegate = collectionView?.delegate as? UICollectionViewDelegateFlowLayout,
+            let spacing = delegate.collectionView?(collectionView!, layout:self, minimumInteritemSpacingForSectionAtIndex: index) {
+            return spacing
         }
         
         return self.minimumInteritemSpacing
+    }
+    
+    func evaluatedSectionInsetForItemAtIndexPath(indexPath: NSIndexPath) -> UIEdgeInsets {
+        
+        if let inset = (collectionView?.delegate as? LayoutAlignment)?.insetsForIndexPath(indexPath) {
+            return inset
+        }
+        
+        return UIEdgeInsetsZero
     }
 }
