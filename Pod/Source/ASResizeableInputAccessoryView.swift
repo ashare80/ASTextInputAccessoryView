@@ -237,7 +237,10 @@ extension ASResizeableInputAccessoryView {
         let fullHeight = UIScreen.mainScreen().bounds.size.height
         
         let barHeight = frame.size.height
-        let max = fullHeight - keyboardHeight - maximumBarY + barHeight
+        keyboardHeight -= barHeight
+        
+        // Space between keyboard without the bar and the top layout constraint of maximumBarY
+        let max = fullHeight - keyboardHeight - maximumBarY
         
         return max
     }
