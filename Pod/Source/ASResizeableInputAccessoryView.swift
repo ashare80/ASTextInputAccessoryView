@@ -84,18 +84,33 @@ public class ASResizeableInputAccessoryView: UIView {
             selectedComponent = components.first
         }
     }
+    
+    private var _selectedComponent: ASResizeableContentView?
     public var selectedComponent: ASResizeableContentView? {
-        willSet {
+        set {
+            var shouldSetFirstResponder = false
+            var previousView: UIView?
+            
             if let view = selectedComponent as? UIView {
-                view.removeFromSuperview()
+                shouldSetFirstResponder = (selectedComponent?.textInputView as? UIView)?.isFirstResponder() == true
+                previousView = view
             }
-        }
-        didSet {
-            if let view = selectedComponent as? UIView {
+            if let view = newValue as? UIView {
                 contentView.addSubview(view)
                 view.autoLayoutToSuperview()
+                
+                if shouldSetFirstResponder {
+                    (newValue?.textInputView as? UIView)?.becomeFirstResponder()
+                }
             }
+            _selectedComponent = newValue
+            
+            previousView?.removeFromSuperview()
+            
             reloadHeight()
+        }
+        get {
+            return _selectedComponent
         }
     }
     
@@ -220,9 +235,11 @@ extension ASResizeableInputAccessoryView {
             keyboardHeight = superview.frame.size.height
         }
         let fullHeight = UIScreen.mainScreen().bounds.size.height
-        let barHeight = frame.size.height
         
-        return fullHeight - keyboardHeight - maximumBarY + barHeight
+        let barHeight = frame.size.height
+        let max = fullHeight - keyboardHeight - maximumBarY + barHeight
+        
+        return max
     }
     
     
@@ -236,9 +253,10 @@ extension ASResizeableInputAccessoryView {
         }
         
         var nextBarHeight = height
+        let maxHeight = maximumHeight
         
-        if nextBarHeight > maximumHeight {
-            nextBarHeight = maximumHeight
+        if nextBarHeight > maxHeight {
+            nextBarHeight = maxHeight
         }
         
         if let delegatedHeight = delegate?
@@ -435,9 +453,6 @@ extension ASResizeableInputAccessoryView {
         if isInteractiveEnabling {
             if !keyboardFullyExtended {
                 delegate?.inputAccessoryViewKeyboardDidChangeHeight(self, height: visibleHeight)
-            }
-            else {
-                //                print("KeyboardExtended")
             }
         }
     }

@@ -237,7 +237,7 @@ extension ASTextInputAccessoryView: ASResizeableContentView {
         textView.layoutIfNeeded()
     }
     
-    public var textInputView: UITextInput? {
+    public var textInputView: UITextInputTraits? {
         return textView
     }
 }

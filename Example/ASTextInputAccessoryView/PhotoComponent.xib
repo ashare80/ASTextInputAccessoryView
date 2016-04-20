@@ -21,6 +21,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
                             <state key="normal" title="X"/>
+                            <connections>
+                                <action selector="close:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ww-nb-QXl"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cox-ji-fem">
                             <rect key="frame" x="326" y="0.0" width="46" height="44"/>
@@ -45,25 +48,21 @@
                                 <action selector="selectButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="rQA-kd-Cr6"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQw-rh-ltE">
-                            <rect key="frame" x="150" y="0.0" width="79.5" height="44"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Maybe you want to search?" translatesAutoresizingMaskIntoConstraints="NO" id="djJ-cU-Sp9">
+                            <rect key="frame" x="55" y="0.0" width="263" height="44"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="djJ-cU-Sp9" firstAttribute="centerY" secondItem="WSB-tl-tF6" secondAttribute="centerY" id="11t-1v-fP3"/>
+                        <constraint firstItem="djJ-cU-Sp9" firstAttribute="leading" secondItem="cYO-D9-fgD" secondAttribute="trailing" constant="8" id="4ef-vt-dn8"/>
                         <constraint firstAttribute="height" constant="44" id="8Tc-Mp-Izn"/>
                         <constraint firstItem="cYO-D9-fgD" firstAttribute="top" secondItem="WSB-tl-tF6" secondAttribute="top" id="Bgp-ar-Zso"/>
                         <constraint firstItem="cYO-D9-fgD" firstAttribute="leading" secondItem="WSB-tl-tF6" secondAttribute="leading" constant="7" id="BvL-JG-9e4"/>
-                        <constraint firstAttribute="bottom" secondItem="AQw-rh-ltE" secondAttribute="bottom" id="JhB-lW-3ZW"/>
-                        <constraint firstItem="AQw-rh-ltE" firstAttribute="centerX" secondItem="WSB-tl-tF6" secondAttribute="centerX" id="Lfm-ER-r9r"/>
                         <constraint firstAttribute="bottom" secondItem="cox-ji-fem" secondAttribute="bottom" id="O9P-Fl-4R3"/>
+                        <constraint firstItem="cox-ji-fem" firstAttribute="leading" secondItem="djJ-cU-Sp9" secondAttribute="trailing" constant="8" id="RAA-qw-yk4"/>
                         <constraint firstAttribute="bottom" secondItem="cYO-D9-fgD" secondAttribute="bottom" id="SSJ-yI-5oQ"/>
-                        <constraint firstItem="cox-ji-fem" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AQw-rh-ltE" secondAttribute="trailing" constant="7" id="c8S-x3-mYL"/>
-                        <constraint firstItem="AQw-rh-ltE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cYO-D9-fgD" secondAttribute="trailing" constant="7" id="f6U-II-hL8"/>
-                        <constraint firstItem="AQw-rh-ltE" firstAttribute="top" secondItem="WSB-tl-tF6" secondAttribute="top" id="iVq-YP-8kK"/>
                         <constraint firstItem="cox-ji-fem" firstAttribute="top" secondItem="WSB-tl-tF6" secondAttribute="top" id="uRc-SM-W7B"/>
                         <constraint firstAttribute="trailing" secondItem="cox-ji-fem" secondAttribute="trailing" constant="7" id="ywP-HI-AgK"/>
                     </constraints>
@@ -83,6 +82,11 @@
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="7" minY="0.0" maxX="7" maxY="0.0"/>
                             </collectionViewFlowLayout>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="yNf-7v-4Lt"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <outlet property="dataSource" destination="iN0-l3-epB" id="DUb-uX-6cw"/>
                                 <outlet property="delegate" destination="iN0-l3-epB" id="LTH-1o-LFM"/>
@@ -91,8 +95,9 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="SWq-aY-ofB" secondAttribute="bottom" id="PYE-MX-f53"/>
                         <constraint firstAttribute="trailing" secondItem="SWq-aY-ofB" secondAttribute="trailing" id="VWw-zB-EZh"/>
-                        <constraint firstItem="SWq-aY-ofB" firstAttribute="top" secondItem="bYf-iN-ZHW" secondAttribute="top" constant="7" id="fWz-EV-Ain"/>
+                        <constraint firstItem="SWq-aY-ofB" firstAttribute="top" secondItem="bYf-iN-ZHW" secondAttribute="top" priority="250" constant="7" id="fWz-EV-Ain"/>
                         <constraint firstItem="SWq-aY-ofB" firstAttribute="leading" secondItem="bYf-iN-ZHW" secondAttribute="leading" id="xqy-IS-356"/>
                     </constraints>
                 </view>
@@ -112,6 +117,7 @@
             <connections>
                 <outlet property="closeButton" destination="cYO-D9-fgD" id="dIj-YU-DHh"/>
                 <outlet property="collectionView" destination="SWq-aY-ofB" id="Ydy-5b-taL"/>
+                <outlet property="searchBar" destination="djJ-cU-Sp9" id="sBJ-CQ-WKJ"/>
                 <outlet property="selectButton" destination="cox-ji-fem" id="n4R-Af-mXp"/>
             </connections>
             <point key="canvasLocation" x="136.5" y="19"/>

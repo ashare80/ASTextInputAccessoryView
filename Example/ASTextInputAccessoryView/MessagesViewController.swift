@@ -33,10 +33,6 @@ class MessagesViewController: ASTextInputViewController {
         collectionView.keyboardDismissMode = .Interactive
         collectionView.collectionViewLayout = MessagesFlowLayout()
         
-        
-//        Experimental feature
-//        iaView.interactiveEngage(collectionView)
-        
         // Add a target to the standard send button or optionally set your own custom button
         messageView.defaultSendButton.addTarget(
             self,
@@ -47,30 +43,7 @@ class MessagesViewController: ASTextInputViewController {
         // Add a left button such as a camera icon
         addCameraButton()
         
-        updateInsets(iaView.contentViewHeightConstraint.constant)
-        
         addSomeMessages()
-    }
-    
-    func addCameraButton() {
-        
-        let cameraButton = UIButton(type: .Custom)
-        let image = UIImage(named: "camera")?.imageWithRenderingMode(.AlwaysTemplate)
-        cameraButton.setImage(image, forState: .Normal)
-        cameraButton.tintColor = UIColor.grayColor()
-        
-        messageView.leftButton = cameraButton
-        
-        let width = NSLayoutConstraint(
-            item: cameraButton,
-            attribute: .Width,
-            relatedBy: .Equal,
-            toItem: nil,
-            attribute: .NotAnAttribute,
-            multiplier: 1,
-            constant: 40
-        )
-        cameraButton.superview?.addConstraint(width)
     }
     
     func sendMessage() {
@@ -166,7 +139,6 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout {
             }
             }) { (context) in
                 self.collectionView.collectionViewLayout.invalidateLayout()
-                self.iaView.reloadHeight()
         }
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 
 import Photos
+import ASTextInputAccessoryView
 
 class PhotoComponent: UIView {
 
@@ -16,11 +17,11 @@ class PhotoComponent: UIView {
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func selectButton(sender: UIButton) {
         
         sender.selected = !sender.selected
     }
-    
     
     var assets: PHFetchResult?
     
@@ -29,6 +30,7 @@ class PhotoComponent: UIView {
         
         collectionView.registerClass(ImageCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         collectionView.layer.shadowOffset = CGSize(width: 0, height: 2)
         collectionView.layer.shadowColor = UIColor.blackColor().CGColor
@@ -36,6 +38,34 @@ class PhotoComponent: UIView {
         collectionView.layer.shadowRadius = 2
     }
 }
+
+extension PhotoComponent: ASResizeableContentView {
+    
+    var contentHeight: CGFloat {
+        return 200
+    }
+    
+    var textInputView: UITextInputTraits? {
+        return searchBar
+    }
+    
+    func animatedLayout(newheight: CGFloat) {
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
+    }
+    
+    func postAnimationLayout(newheight: CGFloat) {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+}
+
+extension PhotoComponent {
+    
+    @IBAction func close(sender: AnyObject) {
+        parentView?.selectedComponent = parentView?.components.first
+    }
+}
+
 
 // MARK: Photo library
 extension PhotoComponent {
@@ -50,11 +80,6 @@ extension PhotoComponent {
 
 
 extension PhotoComponent: UICollectionViewDataSource {
-    
-    
-    var cellSize: CGSize {
-        return CGSize(width: collectionView.frame.size.height, height: collectionView.frame.size.height )
-    }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -132,5 +157,49 @@ class ImageCell: UICollectionViewCell {
         imageView.contentMode = .ScaleAspectFill
         imageView.clipsToBounds = true
         imageView.backgroundColor = UIColor.whiteColor()
+    }
+}
+
+
+extension PhotoComponent: UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if selectButton.selected {
+            return
+        }
+        let asset = assets![indexPath.item]
+        let options = PHImageRequestOptions()
+        options.synchronous = true
+        options.deliveryMode = .HighQualityFormat
+        let m = PHImageManager.defaultManager()
+        m.requestImageForAsset(
+            asset as! PHAsset,
+            targetSize: UIScreen.mainScreen().bounds.size,
+            contentMode: .Default,
+            options: options
+        ) { [weak self] (image, info) in
+            guard let image = image else {
+                return
+            }
+            if let view = self?.parentView?.components.first as? ASTextInputAccessoryView {
+                view.textView.insertImages([image])
+                self?.close(self!.closeButton)
+            }
+        }
+    }
+}
+
+
+extension PhotoComponent: UICollectionViewDelegateFlowLayout {
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.height, height: collectionView.frame.size.height)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 import ASTextInputAccessoryView
 
 class ASTextInputViewController: UIViewController {
@@ -19,11 +20,18 @@ class ASTextInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iaView = ASResizeableInputAccessoryView(components: [messageView])
+        
+        let photoComponent = UINib
+            .init(nibName: "PhotoComponent", bundle: nil)
+            .instantiateWithOwner(self, options: nil)
+            .first as! PhotoComponent
+        iaView = ASResizeableInputAccessoryView(components: [messageView, photoComponent])
         iaView.delegate = self
         
         //        Experimental feature
         //        iaView.interactiveEngage(collectionView)
+        
+        updateInsets(iaView.contentViewHeightConstraint.constant)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,10 +67,14 @@ extension ASTextInputViewController {
     }
     
     // Handle Rotation
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
-        iaView.reloadHeight()
+        coordinator.animateAlongsideTransition({ (context) in
+            self.messageView.textView.layoutIfNeeded()
+            }) { (context) in
+                self.iaView.reloadHeight()
+        }
     }
 }
 
@@ -116,4 +128,38 @@ extension ASTextInputViewController {
         self.messageView.textView.resignFirstResponder()
     }
     
+    func addCameraButton() {
+        
+        let cameraButton = UIButton(type: .Custom)
+        let image = UIImage(named: "camera")?.imageWithRenderingMode(.AlwaysTemplate)
+        cameraButton.setImage(image, forState: .Normal)
+        cameraButton.tintColor = UIColor.grayColor()
+        
+        messageView.leftButton = cameraButton
+        
+        let width = NSLayoutConstraint(
+            item: cameraButton,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1,
+            constant: 40
+        )
+        cameraButton.superview?.addConstraint(width)
+        
+        cameraButton.addTarget(self, action: #selector(self.showPictures), forControlEvents: .TouchUpInside)
+    }
+    
+    func showPictures() {
+        
+        PHPhotoLibrary.requestAuthorization { (status) in
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                if let photoComponent = self.iaView.components[1] as? PhotoComponent {
+                    self.iaView.selectedComponent = photoComponent
+                    photoComponent.getPhotoLibrary()
+                }
+            })
+        }
+    }
 }
