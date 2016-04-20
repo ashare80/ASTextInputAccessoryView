@@ -17,9 +17,9 @@
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-D9-fgD">
                             <rect key="frame" x="7" y="0.0" width="40" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="cIC-qc-zL1"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="cIC-qc-zL1"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <state key="normal" title="X"/>
                             <connections>
                                 <action selector="close:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ww-nb-QXl"/>
@@ -49,19 +49,19 @@
                             </connections>
                         </button>
                         <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Maybe you want to search?" translatesAutoresizingMaskIntoConstraints="NO" id="djJ-cU-Sp9">
-                            <rect key="frame" x="55" y="0.0" width="263" height="44"/>
+                            <rect key="frame" x="47" y="0.0" width="279" height="44"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="djJ-cU-Sp9" firstAttribute="centerY" secondItem="WSB-tl-tF6" secondAttribute="centerY" id="11t-1v-fP3"/>
-                        <constraint firstItem="djJ-cU-Sp9" firstAttribute="leading" secondItem="cYO-D9-fgD" secondAttribute="trailing" constant="8" id="4ef-vt-dn8"/>
+                        <constraint firstItem="djJ-cU-Sp9" firstAttribute="leading" secondItem="cYO-D9-fgD" secondAttribute="trailing" id="4ef-vt-dn8"/>
                         <constraint firstAttribute="height" constant="44" id="8Tc-Mp-Izn"/>
                         <constraint firstItem="cYO-D9-fgD" firstAttribute="top" secondItem="WSB-tl-tF6" secondAttribute="top" id="Bgp-ar-Zso"/>
                         <constraint firstItem="cYO-D9-fgD" firstAttribute="leading" secondItem="WSB-tl-tF6" secondAttribute="leading" constant="7" id="BvL-JG-9e4"/>
                         <constraint firstAttribute="bottom" secondItem="cox-ji-fem" secondAttribute="bottom" id="O9P-Fl-4R3"/>
-                        <constraint firstItem="cox-ji-fem" firstAttribute="leading" secondItem="djJ-cU-Sp9" secondAttribute="trailing" constant="8" id="RAA-qw-yk4"/>
+                        <constraint firstItem="cox-ji-fem" firstAttribute="leading" secondItem="djJ-cU-Sp9" secondAttribute="trailing" id="RAA-qw-yk4"/>
                         <constraint firstAttribute="bottom" secondItem="cYO-D9-fgD" secondAttribute="bottom" id="SSJ-yI-5oQ"/>
                         <constraint firstItem="cox-ji-fem" firstAttribute="top" secondItem="WSB-tl-tF6" secondAttribute="top" id="uRc-SM-W7B"/>
                         <constraint firstAttribute="trailing" secondItem="cox-ji-fem" secondAttribute="trailing" constant="7" id="ywP-HI-AgK"/>

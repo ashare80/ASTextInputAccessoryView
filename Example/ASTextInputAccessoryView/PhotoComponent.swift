@@ -21,9 +21,21 @@ class PhotoComponent: UIView {
     @IBAction func selectButton(sender: UIButton) {
         
         sender.selected = !sender.selected
+        if !sender.selected {
+            reset()
+        }
+        else {
+            collectionView.allowsMultipleSelection = true
+            closeButton.setTitle("Done", forState: .Normal)
+            UIView.animateWithDuration(0.2, animations: {
+                self.layoutIfNeeded()
+            })
+        }
     }
     
     var assets: PHFetchResult?
+    
+    var selectedAssets: [PHAsset] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,8 +73,49 @@ extension PhotoComponent: ASResizeableContentView {
 
 extension PhotoComponent {
     
+    func reset() {
+        selectButton.selected = false
+        selectedAssets = []
+        collectionView.allowsMultipleSelection = false
+        closeButton.setTitle("X", forState: .Normal)
+        UIView.animateWithDuration(0.2, animations: {
+            self.layoutIfNeeded()
+        })
+    }
+    
     @IBAction func close(sender: AnyObject) {
-        parentView?.selectedComponent = parentView?.components.first
+        
+        var shouldBecomeFirstResponder = false
+        if selectedAssets.count > 0 {
+            for asset in selectedAssets {
+                let options = PHImageRequestOptions()
+                options.synchronous = true
+                options.deliveryMode = .HighQualityFormat
+                let m = PHImageManager.defaultManager()
+                m.requestImageForAsset(
+                    asset,
+                    targetSize: UIScreen.mainScreen().bounds.size,
+                    contentMode: .Default,
+                    options: options
+                ) { [weak self] (image, info) in
+                    guard let image = image else {
+                        return
+                    }
+                    if let view = self?.parentView?.components.first as? ASTextInputAccessoryView {
+                        view.textView.insertImages([image])
+                    }
+                }
+            }
+            shouldBecomeFirstResponder = true
+        }
+        
+        let component = parentView?.components.first
+        parentView?.selectedComponent = component
+        reset()
+        collectionView.contentOffset = CGPointZero
+        if shouldBecomeFirstResponder {
+            (component?.textInputView as? UIView)?.becomeFirstResponder()
+        }
     }
 }
 
@@ -99,6 +152,7 @@ extension PhotoComponent: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ImageCell
         
         cell.asset = assets?[indexPath.item] as? PHAsset
+        cell.selected = selectedAssets.contains(cell.asset!)
         
         return cell
     }
@@ -106,6 +160,18 @@ extension PhotoComponent: UICollectionViewDataSource {
 
 
 class ImageCell: UICollectionViewCell {
+    
+    override var selected: Bool {
+        didSet {
+            if selected {
+                imageView.layer.borderColor = tintColor.CGColor
+                imageView.layer.borderWidth = 4
+            }
+            else {
+                imageView.layer.borderWidth = 0
+            }
+        }
+    }
     
     var requestID: PHImageRequestID = 0
     var asset: PHAsset? {
@@ -165,16 +231,18 @@ extension PhotoComponent: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        let asset = assets![indexPath.item] as! PHAsset
+        
         if selectButton.selected {
+            selectedAssets.append(asset)
             return
         }
-        let asset = assets![indexPath.item]
         let options = PHImageRequestOptions()
         options.synchronous = true
         options.deliveryMode = .HighQualityFormat
         let m = PHImageManager.defaultManager()
         m.requestImageForAsset(
-            asset as! PHAsset,
+            asset,
             targetSize: UIScreen.mainScreen().bounds.size,
             contentMode: .Default,
             options: options
@@ -187,6 +255,12 @@ extension PhotoComponent: UICollectionViewDelegate {
                 self?.close(self!.closeButton)
             }
         }
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let asset = assets![indexPath.item] as! PHAsset
+        selectedAssets.removeAtIndex(selectedAssets.indexOf(asset)!)
     }
 }
 
