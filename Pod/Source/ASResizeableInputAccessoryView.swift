@@ -343,9 +343,7 @@ public extension ASResizeableInputAccessoryView {
         if height < 0 || height > heightConstraint?.constant {
             return
         }
-        print(visibleHeight)
         keyboardPresented = false
-        print(visibleHeight, presentedHeight)
         let animation = delegate?.inputAccessoryViewKeyboardWillDismiss(self, notification: notification)
         keyboardAnimation(notification, block: animation)
     }

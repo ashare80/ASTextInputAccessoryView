@@ -24,7 +24,6 @@ public extension UITextView {
     }
     
     public var attributedTextHeight: CGFloat {
-//        print(sizeThatFits(CGSizeMake(frame.size.width, CGFloat.max)))
         return attributedText.boundingRectWithSize(CGSizeMake(frame.size.width - textContainerInset.left - textContainerInset.right, CGFloat.max), options:[.UsesLineFragmentOrigin, .UsesFontLeading], context:nil).height
     }
     

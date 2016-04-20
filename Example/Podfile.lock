@@ -1,6 +1,6 @@
 PODS:
   - ASPlaceholderTextView (0.1.5)
-  - ASTextInputAccessoryView (1.1.0):
+  - ASTextInputAccessoryView (1.2.0):
     - ASPlaceholderTextView (~> 0.1)
     - PMKVObserver (~> 1.0)
   - PMKVObserver (1.0.4):
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ASPlaceholderTextView: 5113242b251a6408fd5b0746326edf0d5e0c5d90
-  ASTextInputAccessoryView: 0fd8d7e6281b069ec1333219927d47af0c3004c7
+  ASTextInputAccessoryView: 1c230cc7bc1fad1a0e57edca7a332d04b27b74eb
   PMKVObserver: 4cbd30edc518211aa18a927633bfe5f560cf464e
 
 COCOAPODS: 0.39.0
