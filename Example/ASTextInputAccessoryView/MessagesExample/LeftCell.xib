@@ -27,7 +27,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="RBx-Xe-Kmb" secondAttribute="trailing" constant="12" id="6jX-Wg-iD0"/>
                             <constraint firstItem="RBx-Xe-Kmb" firstAttribute="leading" secondItem="mhF-QI-ENE" secondAttribute="leading" constant="12" id="HKj-AX-g7k"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="U4G-1Q-fCE"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="40" id="U4G-1Q-fCE"/>
                             <constraint firstItem="RBx-Xe-Kmb" firstAttribute="centerY" secondItem="mhF-QI-ENE" secondAttribute="centerY" id="xSv-Ac-xoM"/>
                         </constraints>
                     </view>
