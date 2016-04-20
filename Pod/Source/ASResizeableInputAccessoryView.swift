@@ -367,10 +367,8 @@ public extension ASResizeableInputAccessoryView {
      Keyboard plus view height that is visible on screen.
      */
     public var visibleHeight: CGFloat {
-        var keyboardHeight: CGFloat = 0
         var keyboardY: CGFloat = 0
         if let superview = superview {
-            keyboardHeight = superview.frame.size.height
             keyboardY = superview.frame.origin.y
         }
         let fullHeight = UIScreen.mainScreen().bounds.size.height
@@ -418,11 +416,11 @@ extension ASResizeableInputAccessoryView {
         }
         stopMonitoringScrollView()
         contentOffsetObserver = KVObserver(object: interactiveScrollView, keyPath: "contentOffset") {[weak self] object, _, _ in
-            self?.scrollViewDidScroll(object as! UIScrollView)
+            self?.scrollViewDidScroll(object)
         }
         
         stateObserver = KVObserver(object: interactiveScrollView.panGestureRecognizer, keyPath: "state") {[weak self] object, _, _ in
-            self?.panGestureStateChanged(object as! UIPanGestureRecognizer)
+            self?.panGestureStateChanged(object)
         }
     }
     

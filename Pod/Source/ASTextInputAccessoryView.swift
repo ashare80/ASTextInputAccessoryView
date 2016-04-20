@@ -37,7 +37,7 @@ public class ASTextInputAccessoryView: UIView {
     //MARK: Monitor textView contentSize updates
     
     func monitorTextViewContentSize() {
-        KVObserver(object: textView, keyPath: "contentSize") {[weak self] object, _, _ in
+        _ = KVObserver(object: textView, keyPath: "contentSize") {[weak self] object, _, _ in
             // Awaits changes to textView otherwise will show error:
             // requesting caretRectForPosition: while the NSTextStorage has oustanding changes {x, y}
             NSOperationQueue.mainQueue().addOperationWithBlock({ 
