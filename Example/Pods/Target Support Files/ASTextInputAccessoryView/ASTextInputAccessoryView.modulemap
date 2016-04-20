@@ -1,6 +1,0 @@
-framework module ASTextInputAccessoryView {
-  umbrella header "ASTextInputAccessoryView-umbrella.h"
-
-  export *
-  module * { export * }
-}
