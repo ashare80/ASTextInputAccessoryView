@@ -129,12 +129,18 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
+        var shouldAnimate = true
+        let shouldScroll = self.collectionView.isScrolledToBottom
         if size.width < view.frame.size.width {
             collectionView.collectionViewLayout.invalidateLayout()
+            shouldAnimate = false
         }
         screenSize = size
         coordinator.animateAlongsideTransition({ (context) in
-            if self.collectionView.isScrolledToBottom {
+            if shouldAnimate {
+                self.collectionView.reloadData()
+            }
+            if shouldScroll {
                 self.collectionView.scrollToBottomContent(false)
             }
             }) { (context) in

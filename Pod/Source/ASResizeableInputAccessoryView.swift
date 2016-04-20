@@ -338,8 +338,14 @@ public extension ASResizeableInputAccessoryView {
     }
     
     public override func keyboardWillHide(notification: NSNotification) {
-        keyboardPresented = false
         
+        let height = visibleHeight
+        if height < 0 || height > heightConstraint?.constant {
+            return
+        }
+        print(visibleHeight)
+        keyboardPresented = false
+        print(visibleHeight, presentedHeight)
         let animation = delegate?.inputAccessoryViewKeyboardWillDismiss(self, notification: notification)
         keyboardAnimation(notification, block: animation)
     }
@@ -377,6 +383,7 @@ public extension ASResizeableInputAccessoryView {
         let fullHeight = UIScreen.mainScreen().bounds.size.height
         
         keyboardY = keyboardY + heightConstraint!.constant - contentViewHeightConstraint.constant
+        
         let visibleHeight = fullHeight - keyboardY
         return visibleHeight
     }
