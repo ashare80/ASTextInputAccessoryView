@@ -20,7 +20,7 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      UIApplication.sharedApplication().statusBarFrame.size.height + navigationController!.navigationBar.frame.size.height
      ````
      */
-    func inputAccessoryViewMaximumBarY(view: UIView) -> CGFloat
+    func inputAccessoryViewMaximumBarY(view: ASResizeableInputAccessoryView) -> CGFloat
     
     /**
      On reload, asks the delegate what the next height should be.
@@ -32,7 +32,7 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      
      - returns: Desired height. Defaults to nextHeight.
      */
-    func inputAccessoryViewNextHeight(view: UIView, suggestedHeight: CGFloat, currentHeight: CGFloat) -> CGFloat
+    func inputAccessoryViewNextHeight(view: ASResizeableInputAccessoryView, suggestedHeight: CGFloat, currentHeight: CGFloat) -> CGFloat
     
     
     /**
@@ -45,7 +45,7 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      
      - returns: A block of animateable changes.
      */
-    func inputAccessoryViewWillAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)?
+    func inputAccessoryViewWillAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)?
     
     /**
      Informs the receiver of a height change completion.
@@ -55,7 +55,7 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      - height: New height of the view.
      - keyboardHeight: Full height of the keyboard frame, including input accessory view.
      */
-    func inputAccessoryViewDidAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat)
+    func inputAccessoryViewDidAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat)
     
     /**
      Keyboard will present from a dismissed state.
@@ -65,7 +65,7 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      - notification: The received notification with keyboard related userInfo.
      - returns: A block of animateable changes to coincide with keyboard animation.
      */
-    func inputAccessoryViewKeyboardWillPresent(view: UIView, notification: NSNotification) -> (() -> Void)?
+    func inputAccessoryViewKeyboardWillPresent(view: ASResizeableInputAccessoryView, height: CGFloat) -> (() -> Void)?
     
     /**
      Keyboard will dismiss from a presented state.
@@ -75,7 +75,7 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
      - notification: The received notification with keyboard related userInfo.
      - returns: A block of animateable changes to coincide with keyboard animation.
      */
-    func inputAccessoryViewKeyboardWillDismiss(view: UIView, notification: NSNotification) -> (() -> Void)?
+    func inputAccessoryViewKeyboardWillDismiss(view: ASResizeableInputAccessoryView, notification: NSNotification) -> (() -> Void)?
     
     /**
      Keyboard frame did change height.
@@ -84,20 +84,20 @@ public protocol ASResizeableInputAccessoryViewDelegate: class {
         - view: Input accessory view.
         - notification: The received notification with keyboard related userInfo.
      */
-    func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification)
+    func inputAccessoryViewKeyboardDidChangeHeight(view: ASResizeableInputAccessoryView, height: CGFloat)
 }
 
 public extension ASResizeableInputAccessoryViewDelegate {
     
-    func inputAccessoryViewNextHeight(view: UIView, suggestedHeight: CGFloat, currentHeight: CGFloat) -> CGFloat { return suggestedHeight }
-    func inputAccessoryViewWillAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? { return nil }
-    func inputAccessoryViewDidAnimateToHeight(view: UIView, height: CGFloat, keyboardHeight: CGFloat) {}
-    func inputAccessoryViewKeyboardWillPresent(view: UIView, notification: NSNotification) -> (() -> Void)? { return nil }
-    func inputAccessoryViewKeyboardWillDismiss(view: UIView, notification: NSNotification) -> (() -> Void)? { return nil }
-    func inputAccessoryViewKeyboardDidChangeHeight(view: UIView, notification: NSNotification) { }
+    func inputAccessoryViewNextHeight(view: ASResizeableInputAccessoryView, suggestedHeight: CGFloat, currentHeight: CGFloat) -> CGFloat { return suggestedHeight }
+    func inputAccessoryViewWillAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? { return nil }
+    func inputAccessoryViewDidAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat) {}
+    func inputAccessoryViewKeyboardWillPresent(view: ASResizeableInputAccessoryView, height: CGFloat) -> (() -> Void)? { return nil }
+    func inputAccessoryViewKeyboardWillDismiss(view: ASResizeableInputAccessoryView, notification: NSNotification) -> (() -> Void)? { return nil }
+    func inputAccessoryViewKeyboardDidChangeHeight(view: ASResizeableInputAccessoryView, height: CGFloat) { }
 }
 
 public extension ASResizeableInputAccessoryViewDelegate where Self: UIViewController {
     
-    func inputAccessoryViewMaximumBarY(view: UIView) -> CGFloat { return topBarHeight }
+    func inputAccessoryViewMaximumBarY(view: ASResizeableInputAccessoryView) -> CGFloat { return topBarHeight }
 }

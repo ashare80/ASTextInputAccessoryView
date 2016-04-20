@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		339F6F7BD6D7A29BC875F653 /* Pods_ASTextInputAccessoryView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CF6E4F2F93586BF4F1AE03 /* Pods_ASTextInputAccessoryView_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* TableViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8001CC477140038BC73 /* MessagesViewController.swift */; };
+		C53FD8031CC477340038BC73 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8021CC477340038BC73 /* MessageCell.swift */; };
+		C556BFFC1CC5A20200635CF7 /* RightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C556BFFB1CC5A20200635CF7 /* RightCell.xib */; };
 		C57085F11CBB123000E21B79 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57085F01CBB123000E21B79 /* UITableView.swift */; };
-		C57085F31CBB123800E21B79 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57085F21CBB123800E21B79 /* UIScrollView.swift */; };
+		C5C128F71CC5D8C800BA2C75 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C128F61CC5D8C800BA2C75 /* UICollectionView.swift */; };
+		C5C128FB1CC6A68100BA2C75 /* MessagesFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C128FA1CC6A68100BA2C75 /* MessagesFlowLayout.swift */; };
 		DBA751CD88DDF4C9F1E5E938 /* Pods_ASTextInputAccessoryView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB125981492C923606D4BBBF /* Pods_ASTextInputAccessoryView_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +40,6 @@
 		607FACD01AFB9204008FA782 /* ASTextInputAccessoryView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASTextInputAccessoryView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -46,8 +48,12 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		B2CF6E4F2F93586BF4F1AE03 /* Pods_ASTextInputAccessoryView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D47C47ACC558A1B63B6AA8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C53FD8001CC477140038BC73 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		C53FD8021CC477340038BC73 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		C556BFFB1CC5A20200635CF7 /* RightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightCell.xib; sourceTree = "<group>"; };
 		C57085F01CBB123000E21B79 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
-		C57085F21CBB123800E21B79 /* UIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		C5C128F61CC5D8C800BA2C75 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		C5C128FA1CC6A68100BA2C75 /* MessagesFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesFlowLayout.swift; sourceTree = "<group>"; };
 		D769EDCDB45824E0AC6A1935 /* Pods-ASTextInputAccessoryView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASTextInputAccessoryView_Tests/Pods-ASTextInputAccessoryView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDB4AE64D31A1ECD479F7433 /* Pods-ASTextInputAccessoryView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASTextInputAccessoryView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ASTextInputAccessoryView_Tests/Pods-ASTextInputAccessoryView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FB125981492C923606D4BBBF /* Pods_ASTextInputAccessoryView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ASTextInputAccessoryView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,9 +113,9 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* TableViewController.swift */,
-				C57085F01CBB123000E21B79 /* UITableView.swift */,
-				C57085F21CBB123800E21B79 /* UIScrollView.swift */,
+				C5C128FD1CC6EE2400BA2C75 /* MessagesExample */,
+				C5C128FC1CC6EE1500BA2C75 /* Extensions */,
+				C556BFFB1CC5A20200635CF7 /* RightCell.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -163,6 +169,25 @@
 				DDB4AE64D31A1ECD479F7433 /* Pods-ASTextInputAccessoryView_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C5C128FC1CC6EE1500BA2C75 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C5C128F61CC5D8C800BA2C75 /* UICollectionView.swift */,
+				C57085F01CBB123000E21B79 /* UITableView.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		C5C128FD1CC6EE2400BA2C75 /* MessagesExample */ = {
+			isa = PBXGroup;
+			children = (
+				C53FD8001CC477140038BC73 /* MessagesViewController.swift */,
+				C5C128FA1CC6A68100BA2C75 /* MessagesFlowLayout.swift */,
+				C53FD8021CC477340038BC73 /* MessageCell.swift */,
+			);
+			name = MessagesExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				C556BFFC1CC5A20200635CF7 /* RightCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -365,9 +391,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* TableViewController.swift in Sources */,
-				C57085F31CBB123800E21B79 /* UIScrollView.swift in Sources */,
+				C5C128F71CC5D8C800BA2C75 /* UICollectionView.swift in Sources */,
+				C5C128FB1CC6A68100BA2C75 /* MessagesFlowLayout.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */,
+				C53FD8031CC477340038BC73 /* MessageCell.swift in Sources */,
 				C57085F11CBB123000E21B79 /* UITableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

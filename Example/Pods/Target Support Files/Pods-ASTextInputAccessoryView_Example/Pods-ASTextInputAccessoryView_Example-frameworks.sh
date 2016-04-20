@@ -86,8 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ASTextInputAccessoryView_Example/ASPlaceholderTextView.framework"
   install_framework "Pods-ASTextInputAccessoryView_Example/ASTextInputAccessoryView.framework"
+  install_framework "Pods-ASTextInputAccessoryView_Example/PMKVObserver.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ASTextInputAccessoryView_Example/ASPlaceholderTextView.framework"
   install_framework "Pods-ASTextInputAccessoryView_Example/ASTextInputAccessoryView.framework"
+  install_framework "Pods-ASTextInputAccessoryView_Example/PMKVObserver.framework"
 fi

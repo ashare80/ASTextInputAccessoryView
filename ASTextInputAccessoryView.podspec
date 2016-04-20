@@ -30,4 +30,5 @@ Powered by ASPlaceholderTextView. For a full chat view controller implementation
     s.source_files = 'Pod/Source/**/*'
     s.frameworks = 'UIKit'
     s.dependency 'ASPlaceholderTextView', '~> 0.1'
+    s.dependency 'PMKVObserver', '~> 1.0'
 end

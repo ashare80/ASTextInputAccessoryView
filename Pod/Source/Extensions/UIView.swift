@@ -71,4 +71,12 @@ public extension UIView {
         superview?.addConstraint(constraint)
         return constraint
     }
+    
+//    func superViewHierarchy() {
+//        print(self, bounds)
+//        
+//        print(self.constraints, "\n")
+////        print(superview?.superview?.constraints, "\n")
+//        superview?.superViewHierarchy()
+//    }
 }

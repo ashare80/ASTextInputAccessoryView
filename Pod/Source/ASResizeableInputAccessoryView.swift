@@ -7,15 +7,31 @@
 //
 
 import Foundation
+import PMKVObserver
 
 public class ASResizeableInputAccessoryView: UIView {
     
     public weak var delegate: ASResizeableInputAccessoryViewDelegate?
     
+    private var isDragging = false
+    private var isInteractiveEnabling = false
+    
+    private var contentOffsetObserver: KVObserver?
+    private var stateObserver: KVObserver?
+    
+    private weak var interactiveScrollView: UIScrollView? {
+        willSet {
+            stopMonitoringScrollView()
+        }
+        didSet {
+            monitorScrollView()
+        }
+    }
+    
     public var animationOptions: ASAnimationOptions! = ASAnimationOptions()
     
     /**
-     Animates changes to the contentView height before height change of self. 
+     Animates changes to the contentView height before height change of self.
      - default: `true`
      */
     public var animateBarHeightOnReload: Bool = true
@@ -31,36 +47,30 @@ public class ASResizeableInputAccessoryView: UIView {
     }
     
     /**
-     Standard height of bar without content.
-     */
-    public var minimumHeight: CGFloat = 44 {
-        didSet {
-            reloadHeight()
-        }
-    }
-    
-    /**
-     Subclasses should override this var to return a desired height for content.
+     Height of the selected content.
      */
     public var contentHeight: CGFloat {
-        return minimumHeight
+        if let height = selectedComponent?.contentHeight {
+            return height
+        }
+        return 0
     }
     
     /**
      Sets height to the current content height. Will animate if animateBarHeightOnReload is true.
      
      - parameters:
-        - options: Optional animation options. Defaults to animationOptions.
+     - options: Optional animation options. Defaults to animationOptions.
      */
     
     public func reloadHeight(options: ASAnimationOptions? = nil) {
-        self.setHeight(contentHeight, animated: animateBarHeightOnReload, options: options)
+        setHeight(contentHeight, animated: animateBarHeightOnReload, options: options)
     }
     
     /**
      Internal height constraint that is created when added to keyboard. This is the true height of the view. When animating this will stay at the previous height until completion of animation. Canceling animations could cause this height to be set incorrectly
      */
-    private var heightConstraint: NSLayoutConstraint?
+    public var heightConstraint: NSLayoutConstraint?
     override public func addConstraint(constraint: NSLayoutConstraint) {
         // Capture the height layout constraint
         if constraint.firstAttribute == .Height && constraint.firstItem as? NSObject == self {
@@ -69,27 +79,52 @@ public class ASResizeableInputAccessoryView: UIView {
         super.addConstraint(constraint)
     }
     
-    public convenience init(minimumHeight: CGFloat = 44) {
+    public var components: [ASResizeableContentView] = [] {
+        didSet {
+            selectedComponent = components.first
+        }
+    }
+    public var selectedComponent: ASResizeableContentView? {
+        willSet {
+            if let view = selectedComponent as? UIView {
+                view.removeFromSuperview()
+            }
+        }
+        didSet {
+            if let view = selectedComponent as? UIView {
+                contentView.addSubview(view)
+                view.autoLayoutToSuperview()
+            }
+            reloadHeight()
+        }
+    }
+    
+    public convenience init(components: [ASResizeableContentView]) {
+        let component = components.first!
+        
         self.init(frame: CGRect(
             x: 0,
             y: 0,
             width: UIScreen.mainScreen().bounds.width,
-            height: minimumHeight
+            height: component.contentHeight
             )
         )
+        self.components = components
+        selectedComponent = component
+        if let view = selectedComponent as? UIView {
+            contentView.addSubview(view)
+            view.autoLayoutToSuperview()
+        }
     }
-    
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        minimumHeight = frame.size.height
         setupContentView()
         addKeyboardNotificationsAll()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        minimumHeight = frame.size.height
         setupContentView()
         addKeyboardNotificationsAll()
     }
@@ -102,7 +137,7 @@ public class ASResizeableInputAccessoryView: UIView {
     /**
      Keeps track of keyboard presentation as an interactive dismiss that cancels can trigger an event that mimics a standard keyboard presentation
      */
-    private var keyboardPresented: Bool = false
+    public var keyboardPresented: Bool = false
     
     // MARK: Main Content Views
     
@@ -110,6 +145,11 @@ public class ASResizeableInputAccessoryView: UIView {
      Any custom views should be added to the contentView subview hierarchy.
      */
     public let contentView = UIView()
+    
+    /**
+     Any custom views should be added to the contentView subview hierarchy.
+     */
+    public let selectedComponentContainerView = UIView()
     
     /**
      Background toolbar for standard appearance.
@@ -127,9 +167,14 @@ public class ASResizeableInputAccessoryView: UIView {
         backgroundColor = UIColor.clearColor()
         
         addSubview(contentView)
-        contentView.backgroundColor = UIColor.clearColor()
+        contentView.backgroundColor = UIColor.whiteColor()
         contentView.autoLayoutToSuperview([.Bottom, .Left, .Right], inset: 0)
-        contentViewHeightConstraint = contentView.addHeightConstraint(minimumHeight, priority: UILayoutPriorityRequired)
+        
+        var constant: CGFloat = frame.size.height
+        if let height = selectedComponent?.contentHeight {
+            constant = height
+        }
+        contentViewHeightConstraint = contentView.addHeightConstraint(constant, priority: UILayoutPriorityRequired)
         
         contentView.insertSubview(toolbar, atIndex: 0)
         toolbar.barStyle = .Default
@@ -169,7 +214,7 @@ extension ASResizeableInputAccessoryView {
     /**
      Max height of the view in relation to the keyboard height and maximumBarY value.
      */
-    var maxHeight: CGFloat {
+    var maximumHeight: CGFloat {
         var keyboardHeight:CGFloat = 0
         if let superview = superview {
             keyboardHeight = superview.frame.size.height
@@ -186,7 +231,16 @@ extension ASResizeableInputAccessoryView {
      */
     public func setHeight(height: CGFloat, animated: Bool, options: ASAnimationOptions? = nil) {
         
+        if superview == nil {
+            return
+        }
+        
         var nextBarHeight = height
+        
+        if nextBarHeight > maximumHeight {
+            nextBarHeight = maximumHeight
+        }
+        
         if let delegatedHeight = delegate?
             .inputAccessoryViewNextHeight(self, suggestedHeight: nextBarHeight, currentHeight: contentViewHeightConstraint.constant) {
             nextBarHeight = delegatedHeight
@@ -209,7 +263,7 @@ extension ASResizeableInputAccessoryView {
         
         var options = options
         if options == nil {
-            options = self.animationOptions
+            options = animationOptions
         }
         
         let fullHeight = superview?.frame.size.height != nil ? superview!.frame.size.height : 0
@@ -225,11 +279,13 @@ extension ASResizeableInputAccessoryView {
                 self.contentViewHeightConstraint.constant = nextBarHeight
                 self.contentView.layoutIfNeeded()
                 delegateChange?()
+                self.selectedComponent?.animatedLayout(nextBarHeight)
             },
             completion: { (finished) in
                 heightConstraint.constant = nextBarHeight
                 self.layoutIfNeeded()
                 self.delegate?.inputAccessoryViewDidAnimateToHeight(self, height: nextBarHeight, keyboardHeight: keyboardHeight)
+                self.selectedComponent?.postAnimationLayout(nextBarHeight)
             }
         )
     }
@@ -241,22 +297,22 @@ extension ASResizeableInputAccessoryView {
 public extension ASResizeableInputAccessoryView {
     
     /**
-    Interactive dismiss causes confusion with notifications so to try and regulate we'll keep track of when it was already shown and when it's being dismissed. We can compare the FrameEnd height to the view height and FrameBegin height to filter out willShow notes based on keyboard dismissing but the view sticking around.
-    */
+     Interactive dismiss causes confusion with notifications so to try and regulate we'll keep track of when it was already shown and when it's being dismissed. We can compare the FrameEnd height to the view height and FrameBegin height to filter out willShow notes based on keyboard dismissing but the view sticking around.
+     */
     
     public override func keyboardWillShow(notification: NSNotification) {
         
         guard
             !keyboardPresented &&
-            notification.keyboardFrameEnd.height != frame.size.height &&
-            notification.keyboardFrameBegin.height == notification.keyboardFrameEnd.height
+                notification.keyboardFrameEnd.height != frame.size.height &&
+                notification.keyboardFrameBegin.height == notification.keyboardFrameEnd.height
             else {
-            return
+                return
         }
         
         keyboardPresented = true
         
-        let animation = delegate?.inputAccessoryViewKeyboardWillPresent(self, notification: notification)
+        let animation = delegate?.inputAccessoryViewKeyboardWillPresent(self, height: presentedHeight)
         keyboardAnimation(notification, block: animation)
     }
     
@@ -270,8 +326,8 @@ public extension ASResizeableInputAccessoryView {
     public override func keyboardDidChangeFrame(notification: NSNotification) {
         
         let isAnimating = contentView.layer.animationKeys()?.count > 0
-        if !isAnimating && keyboardPresented {
-            delegate?.inputAccessoryViewKeyboardDidChangeHeight(self, notification: notification)
+        if !isAnimating && keyboardPresented && interactiveScrollView == nil {
+            delegate?.inputAccessoryViewKeyboardDidChangeHeight(self, height: visibleHeight)
         }
     }
     
@@ -287,5 +343,133 @@ public extension ASResizeableInputAccessoryView {
             animations: animationBlock,
             completion: nil
         )
+    }
+    
+    /**
+     Keyboard plus view height that is visible on screen.
+     */
+    public var visibleHeight: CGFloat {
+        var keyboardHeight: CGFloat = 0
+        var keyboardY: CGFloat = 0
+        if let superview = superview {
+            keyboardHeight = superview.frame.size.height
+            keyboardY = superview.frame.origin.y
+        }
+        let fullHeight = UIScreen.mainScreen().bounds.size.height
+        
+        keyboardY = keyboardY + heightConstraint!.constant - contentViewHeightConstraint.constant
+        let visibleHeight = fullHeight - keyboardY
+        return visibleHeight
+    }
+    
+    /**
+     Keyboard plus view height.
+     */
+    public var presentedHeight: CGFloat {
+        var keyboardHeight: CGFloat = 0
+        if let superview = superview {
+            keyboardHeight = superview.frame.size.height
+        }
+        
+        return keyboardHeight - frame.size.height + contentViewHeightConstraint.constant
+    }
+}
+
+//MARK: Interactive Engage
+extension ASResizeableInputAccessoryView {
+    
+    private var contentOffset: String { return "contentOffset"}
+    private var state: String { return "state"}
+    
+    /**
+     - Experimental: Attempts to recreate Facebook Messenger's pull up to engage the textView.
+     */
+    public func interactiveEngage(scrollView: UIScrollView) {
+        interactiveScrollView = scrollView
+    }
+    
+    private func stopMonitoringScrollView() {
+        stateObserver?.cancel()
+        contentOffsetObserver?.cancel()
+    }
+    
+    private func monitorScrollView() {
+        
+        guard let interactiveScrollView = interactiveScrollView else {
+            return
+        }
+        stopMonitoringScrollView()
+        contentOffsetObserver = KVObserver(object: interactiveScrollView, keyPath: "contentOffset") {[weak self] object, _, _ in
+            self?.scrollViewDidScroll(object as! UIScrollView)
+        }
+        
+        stateObserver = KVObserver(object: interactiveScrollView.panGestureRecognizer, keyPath: "state") {[weak self] object, _, _ in
+            self?.panGestureStateChanged(object as! UIPanGestureRecognizer)
+        }
+    }
+    
+    private func panGestureStateChanged(panGestureRecognizer: UIPanGestureRecognizer) {
+        switch panGestureRecognizer.state {
+        case .Began:
+            isDragging = true
+        case .Ended, .Cancelled:
+            isDragging = false
+            stopInteractiveEnable()
+        default:
+            break
+        }
+    }
+    
+    private func scrollViewDidScroll(scrollView: UIScrollView) {
+        if !isDragging {
+            return
+        }
+        
+        if !isInteractiveEnabling &&
+            !keyboardPresented &&
+            scrollView.isScrolledToBottom &&
+            selectedComponent?.textInputView != nil {
+            startInteractiveEnable(scrollView)
+        }
+        
+        if isInteractiveEnabling {
+            if !keyboardFullyExtended {
+                delegate?.inputAccessoryViewKeyboardDidChangeHeight(self, height: visibleHeight)
+            }
+            else {
+                //                print("KeyboardExtended")
+            }
+        }
+    }
+    
+    private func startInteractiveEnable(scrollView: UIScrollView) {
+        if isInteractiveEnabling {
+            return
+        }
+        removeKeyboardNotificationsAll()
+        
+        
+        isInteractiveEnabling = true
+        
+        let locationInputView = scrollView.panGestureRecognizer.locationInView(contentView)
+        heightConstraint?.constant = contentViewHeightConstraint.constant + abs(locationInputView.y)
+        
+        UIView.performWithoutAnimation({
+            (self.selectedComponent?.textInputView as? UIView)?.becomeFirstResponder()
+        })
+    }
+    
+    private func stopInteractiveEnable() {
+        if !isInteractiveEnabling {
+            return
+        }
+        
+        heightConstraint?.constant = contentViewHeightConstraint.constant
+        addKeyboardNotificationsAll()
+        isInteractiveEnabling = false
+    }
+    
+    private var keyboardFullyExtended: Bool {
+        return presentedHeight == visibleHeight
     }
 }

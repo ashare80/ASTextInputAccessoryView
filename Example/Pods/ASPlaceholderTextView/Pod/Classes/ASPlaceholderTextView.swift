@@ -226,29 +226,42 @@ public extension ASPlaceholderTextView {
     public override func paste(sender: AnyObject?) {
         let pasteboard = UIPasteboard.generalPasteboard()
         
-        let mutableAttrString = attributedText.mutableCopy() as! NSMutableAttributedString
-        
-        var pasteAttrString = NSMutableAttributedString()
-        
         if allowImages, let images = pasteboard.images {
-            
-            for image in images {
-                let textAttachment = NSTextAttachment()
-                textAttachment.image = scaledImage(image)
-                
-                pasteAttrString.appendAttributedString(NSAttributedString(attachment: textAttachment))
-                pasteAttrString.appendAttributedString(NSAttributedString(string: "\n\n"))
-            }
+            insertImages(images)
         }
         else if let string = pasteboard.string {
-            pasteAttrString = NSMutableAttributedString(string: string)
+            insertAttributedString(NSMutableAttributedString(string: string))
         }
-        else {
-            return
+    }
+    
+    public func insertImages(images: [UIImage], range: NSRange? = nil) {
+        
+        let imageAttrString = NSMutableAttributedString()
+        for image in images {
+            let textAttachment = NSTextAttachment()
+            textAttachment.image = scaledImage(image)
+            
+            imageAttrString.appendAttributedString(NSAttributedString(attachment: textAttachment))
+            imageAttrString.appendAttributedString(NSAttributedString(string: "\n\n"))
         }
         
-        mutableAttrString.replaceCharactersInRange(selectedRange, withAttributedString: pasteAttrString)
-        mutableAttrString.addAttribute(NSFontAttributeName, value: font!, range: NSRange(location: 0, length: mutableAttrString.length))
+        insertAttributedString(imageAttrString, range: range)
+    }
+    
+    public func insertAttributedString(string: NSAttributedString, range: NSRange? = nil, overrideFont: Bool = true) {
+        
+        var range = range
+        if range == nil {
+            range = selectedRange
+        }
+        
+        let mutableAttrString = attributedText.mutableCopy() as! NSMutableAttributedString
+        mutableAttrString.replaceCharactersInRange(range!, withAttributedString: string)
+        
+        if overrideFont, let font = font {
+            mutableAttrString.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: mutableAttrString.length))
+        }
+        
         attributedText = mutableAttrString
     }
 }
