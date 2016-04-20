@@ -11,7 +11,7 @@ import PMKVObserver
 import ASPlaceholderTextView
 
 
-public class ASTextInputAccessoryView: UIView {
+public class ASTextComponentView: UIView {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -205,9 +205,9 @@ public class ASTextInputAccessoryView: UIView {
     }
 }
 
-// MARK: ASResizeableContentView
+// MARK: ASComponent
 
-extension ASTextInputAccessoryView: ASResizeableContentView {
+extension ASTextComponentView: ASComponent {
     
     public var contentHeight: CGFloat {
         
@@ -244,7 +244,7 @@ extension ASTextInputAccessoryView: ASResizeableContentView {
 
 // MARK: Get / Set
 
-public extension ASTextInputAccessoryView {
+public extension ASTextComponentView {
     /**
      Font for the textView.
      */
@@ -263,7 +263,7 @@ public extension ASTextInputAccessoryView {
 
 // MARK: Update Send Button Enabled
 
-extension ASTextInputAccessoryView: UITextViewDelegate {
+extension ASTextComponentView: UITextViewDelegate {
     
     public func textViewDidChange(textView: UITextView) {
         if textView == self.textView {
@@ -275,7 +275,7 @@ extension ASTextInputAccessoryView: UITextViewDelegate {
 
 // MARK: UIInputViewAudioFeedback
 
-extension ASTextInputAccessoryView: UIInputViewAudioFeedback {
+extension ASTextComponentView: UIInputViewAudioFeedback {
     
     public var enableInputClicksWhenVisible: Bool {
         return true

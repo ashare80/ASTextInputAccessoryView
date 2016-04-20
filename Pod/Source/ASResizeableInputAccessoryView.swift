@@ -79,14 +79,14 @@ public class ASResizeableInputAccessoryView: UIView {
         super.addConstraint(constraint)
     }
     
-    public var components: [ASResizeableContentView] = [] {
+    public var components: [ASComponent] = [] {
         didSet {
             selectedComponent = components.first
         }
     }
     
-    private var _selectedComponent: ASResizeableContentView?
-    public var selectedComponent: ASResizeableContentView? {
+    private var _selectedComponent: ASComponent?
+    public var selectedComponent: ASComponent? {
         set {
             var shouldSetFirstResponder = false
             var previousView: UIView?
@@ -114,7 +114,7 @@ public class ASResizeableInputAccessoryView: UIView {
         }
     }
     
-    public convenience init(components: [ASResizeableContentView]) {
+    public convenience init(components: [ASComponent]) {
         let component = components.first!
         
         self.init(frame: CGRect(

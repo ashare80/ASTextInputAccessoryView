@@ -15,16 +15,16 @@ class ASTextInputViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var iaView: ASResizeableInputAccessoryView!
-    let messageView = ASTextInputAccessoryView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
+    let messageView = ASTextComponentView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         let photoComponent = UINib
-            .init(nibName: "PhotoComponent", bundle: nil)
+            .init(nibName: "PhotosComponentView", bundle: nil)
             .instantiateWithOwner(self, options: nil)
-            .first as! PhotoComponent
+            .first as! PhotosComponentView
         iaView = ASResizeableInputAccessoryView(components: [messageView, photoComponent])
         iaView.delegate = self
         
@@ -155,7 +155,7 @@ extension ASTextInputViewController {
         
         PHPhotoLibrary.requestAuthorization { (status) in
             NSOperationQueue.mainQueue().addOperationWithBlock({
-                if let photoComponent = self.iaView.components[1] as? PhotoComponent {
+                if let photoComponent = self.iaView.components[1] as? PhotosComponentView {
                     self.iaView.selectedComponent = photoComponent
                     photoComponent.getPhotoLibrary()
                 }

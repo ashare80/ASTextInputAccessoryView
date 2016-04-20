@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1136DE9E2070153262377B59C93CE6F5 /* ASPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED73660F692C0255D198386DE74350B6 /* ASPlaceholderTextView.swift */; };
 		14A34DE6E768BF298C6C11D65FD93523 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7085FE0DEE308EE6202538FE59D01C02 /* Foundation.framework */; };
-		15F15FF49E695A266E888DABC483B7CE /* ASTextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F387E3611771054B58095EB943F4ED05 /* ASTextInputAccessoryView.swift */; };
+		15F15FF49E695A266E888DABC483B7CE /* ASTextComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F387E3611771054B58095EB943F4ED05 /* ASTextComponentView.swift */; };
 		188F8EDDE38AB2BAEDCA824B2C4CBC83 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5AD2C35BDBB3B3576E95B25E3764D9 /* UIViewController.swift */; };
 		19BF1C2E3CC53A695FC4617A09B8DE65 /* Pods-ASTextInputAccessoryView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1008B5CDAC750F89798FA0BA71EE64BC /* Pods-ASTextInputAccessoryView_Tests-dummy.m */; };
 		20E24103DE46B7CA364094A7B1894F1C /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0CA56E6F799FBB19F966E423D0157 /* NSNotification.swift */; };
@@ -29,7 +29,7 @@
 		84CAFF571F3639B79A12DC0C0C7A25A2 /* PMKVObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8D90EDB8B38A519732180A0B664504 /* PMKVObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86B8753B6CE0CB379BAF56F7A3747841 /* KVObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 8508E88D6C96EDCB8384D7DCD05D8548 /* KVObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		893CE57930F37BC4EB6C4A657A75CC0B /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826B6E4B58B7FE6A3251500262AF784 /* NSObject.swift */; };
-		9A3F54C2A538097438EF2A7AD2FBCC6B /* ASResizeableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F5008E96E0A004A60848B3B941E1D /* ASResizeableContentView.swift */; };
+		9A3F54C2A538097438EF2A7AD2FBCC6B /* ASComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F5008E96E0A004A60848B3B941E1D /* ASComponent.swift */; };
 		9E168797F86CCF4038F5CDF0D958E0DE /* Pods-ASTextInputAccessoryView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F492AA6BA44814A93C0689CE61A69B3 /* Pods-ASTextInputAccessoryView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A065888E82D8EF2EB0FF8B9046E527B0 /* PMKVObserver-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 52A3F0C77FA67CF4ED36877D4696FE83 /* PMKVObserver-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A2EA64939D6C22A15A786D0D4E200947 /* ASTextInputAccessoryView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 313908F1B1F26FD5C4EE855737446DC4 /* ASTextInputAccessoryView-dummy.m */; };
@@ -144,7 +144,7 @@
 		9A0736514DA610B0E35DED7D2E3AFC2B /* Pods-ASTextInputAccessoryView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ASTextInputAccessoryView_Example.modulemap"; sourceTree = "<group>"; };
 		9A72B8EEF4701E87C18E7947504BFD46 /* PMKVObserver-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PMKVObserver-dummy.m"; sourceTree = "<group>"; };
 		9CD4BAD9859B5361986641661B4C3AAA /* PMKVObserver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PMKVObserver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D6F5008E96E0A004A60848B3B941E1D /* ASResizeableContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASResizeableContentView.swift; sourceTree = "<group>"; };
+		9D6F5008E96E0A004A60848B3B941E1D /* ASComponent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASComponent.swift; sourceTree = "<group>"; };
 		A2CC9290D26E4A2225527B8DF4CB94C9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5DB4829553A3AA8582C1676A48C20FD /* KVObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KVObserver.m; path = PMKVObserver/KVObserver.m; sourceTree = "<group>"; };
 		AFDF4CFB7913A0314A9AD3E4955D185E /* ASTextInputAccessoryView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ASTextInputAccessoryView.modulemap; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		F0D5EF1C11EE877FCBCCAA7ED99537DC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F109E5B8BE3A5B90054A8E148C0E9345 /* Pods-ASTextInputAccessoryView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ASTextInputAccessoryView_Example-dummy.m"; sourceTree = "<group>"; };
 		F12D4546E9772736C0E1AFD7C4210C52 /* ASResizeableInputAccessoryViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASResizeableInputAccessoryViewDelegate.swift; sourceTree = "<group>"; };
-		F387E3611771054B58095EB943F4ED05 /* ASTextInputAccessoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASTextInputAccessoryView.swift; sourceTree = "<group>"; };
+		F387E3611771054B58095EB943F4ED05 /* ASTextComponentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ASTextComponentView.swift; sourceTree = "<group>"; };
 		F65902672BE343C56F749B5C7DF94F7A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7E2095559B6379B39B527932689FC17 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		FF5AD2C35BDBB3B3576E95B25E3764D9 /* UIViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -385,10 +385,10 @@
 			isa = PBXGroup;
 			children = (
 				C7A3C3E9AC96C69514CCC26D8447D645 /* ASAnimationOptions.swift */,
-				9D6F5008E96E0A004A60848B3B941E1D /* ASResizeableContentView.swift */,
+				9D6F5008E96E0A004A60848B3B941E1D /* ASComponent.swift */,
 				3A257CA0EE7093CC48EEE0F1E6B510F0 /* ASResizeableInputAccessoryView.swift */,
 				F12D4546E9772736C0E1AFD7C4210C52 /* ASResizeableInputAccessoryViewDelegate.swift */,
-				F387E3611771054B58095EB943F4ED05 /* ASTextInputAccessoryView.swift */,
+				F387E3611771054B58095EB943F4ED05 /* ASTextComponentView.swift */,
 				7AC35BB16010CF7050B75AD349AE590D /* Extensions */,
 			);
 			path = Source;
@@ -656,11 +656,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ED04614200FE1A5906380544DE2B815 /* ASAnimationOptions.swift in Sources */,
-				9A3F54C2A538097438EF2A7AD2FBCC6B /* ASResizeableContentView.swift in Sources */,
+				9A3F54C2A538097438EF2A7AD2FBCC6B /* ASComponent.swift in Sources */,
 				D2E5BCB911E2586383A6BCD5696A838B /* ASResizeableInputAccessoryView.swift in Sources */,
 				4499B3A38AEB2467846DB0E0E5F83A75 /* ASResizeableInputAccessoryViewDelegate.swift in Sources */,
 				A2EA64939D6C22A15A786D0D4E200947 /* ASTextInputAccessoryView-dummy.m in Sources */,
-				15F15FF49E695A266E888DABC483B7CE /* ASTextInputAccessoryView.swift in Sources */,
+				15F15FF49E695A266E888DABC483B7CE /* ASTextComponentView.swift in Sources */,
 				2809015A1BE18606CC0D7815AA540C32 /* CGFloat.swift in Sources */,
 				20E24103DE46B7CA364094A7B1894F1C /* NSNotification.swift in Sources */,
 				893CE57930F37BC4EB6C4A657A75CC0B /* NSObject.swift in Sources */,

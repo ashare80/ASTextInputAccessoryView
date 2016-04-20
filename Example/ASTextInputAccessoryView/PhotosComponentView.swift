@@ -1,5 +1,5 @@
 //
-//  PhotoComponent.swift
+//  PhotosComponentView.swift
 //  ASTextViewController
 //
 //  Created by Adam J Share on 4/13/16.
@@ -11,7 +11,7 @@ import UIKit
 import Photos
 import ASTextInputAccessoryView
 
-class PhotoComponent: UIView {
+class PhotosComponentView: UIView {
 
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
@@ -51,7 +51,7 @@ class PhotoComponent: UIView {
     }
 }
 
-extension PhotoComponent: ASResizeableContentView {
+extension PhotosComponentView: ASComponent {
     
     var contentHeight: CGFloat {
         return 200
@@ -71,7 +71,7 @@ extension PhotoComponent: ASResizeableContentView {
     }
 }
 
-extension PhotoComponent {
+extension PhotosComponentView {
     
     func reset() {
         selectButton.selected = false
@@ -101,7 +101,7 @@ extension PhotoComponent {
                     guard let image = image else {
                         return
                     }
-                    if let view = self?.parentView?.components.first as? ASTextInputAccessoryView {
+                    if let view = self?.parentView?.components.first as? ASTextComponentView {
                         view.textView.insertImages([image])
                     }
                 }
@@ -121,7 +121,7 @@ extension PhotoComponent {
 
 
 // MARK: Photo library
-extension PhotoComponent {
+extension PhotosComponentView {
     
     func getPhotoLibrary() {
         let fetchOptions = PHFetchOptions()
@@ -132,7 +132,7 @@ extension PhotoComponent {
 }
 
 
-extension PhotoComponent: UICollectionViewDataSource {
+extension PhotosComponentView: UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -227,7 +227,7 @@ class ImageCell: UICollectionViewCell {
 }
 
 
-extension PhotoComponent: UICollectionViewDelegate {
+extension PhotosComponentView: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
@@ -250,7 +250,7 @@ extension PhotoComponent: UICollectionViewDelegate {
             guard let image = image else {
                 return
             }
-            if let view = self?.parentView?.components.first as? ASTextInputAccessoryView {
+            if let view = self?.parentView?.components.first as? ASTextComponentView {
                 view.textView.insertImages([image])
                 self?.close(self!.closeButton)
             }
@@ -267,7 +267,7 @@ extension PhotoComponent: UICollectionViewDelegate {
 }
 
 
-extension PhotoComponent: UICollectionViewDelegateFlowLayout {
+extension PhotosComponentView: UICollectionViewDelegateFlowLayout {
     
     override func layoutSubviews() {
         super.layoutSubviews()
