@@ -259,8 +259,10 @@ extension PhotoComponent: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let asset = assets![indexPath.item] as! PHAsset
-        selectedAssets.removeAtIndex(selectedAssets.indexOf(asset)!)
+        if let asset = assets![indexPath.item] as? PHAsset,
+            let index = selectedAssets.indexOf(asset) {
+            selectedAssets.removeAtIndex(index)
+        }
     }
 }
 
