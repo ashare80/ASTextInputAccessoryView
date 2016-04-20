@@ -19,6 +19,9 @@
 		C514CB0D1CC73941008C735C /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB0C1CC73941008C735C /* NSDate.swift */; };
 		C514CB0F1CC74C7D008C735C /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB0E1CC74C7D008C735C /* Dictionary.swift */; };
 		C514CB111CC74CE8008C735C /* ASTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB101CC74CE8008C735C /* ASTextInputViewController.swift */; };
+		C514CB151CC74F4E008C735C /* PhotoComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C514CB121CC74F4E008C735C /* PhotoComponent.xib */; };
+		C514CB161CC74F4E008C735C /* PhotoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB131CC74F4E008C735C /* PhotoComponent.swift */; };
+		C514CB171CC74F4E008C735C /* TextPhotoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB141CC74F4E008C735C /* TextPhotoInputView.swift */; };
 		C53542C71CC70E8C0014BDBB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53542C61CC70E8C0014BDBB /* Message.swift */; };
 		C53542C91CC7111C0014BDBB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53542C81CC7111C0014BDBB /* User.swift */; };
 		C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8001CC477140038BC73 /* MessagesViewController.swift */; };
@@ -62,6 +65,9 @@
 		C514CB0C1CC73941008C735C /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		C514CB0E1CC74C7D008C735C /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		C514CB101CC74CE8008C735C /* ASTextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASTextInputViewController.swift; sourceTree = "<group>"; };
+		C514CB121CC74F4E008C735C /* PhotoComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoComponent.xib; sourceTree = "<group>"; };
+		C514CB131CC74F4E008C735C /* PhotoComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoComponent.swift; sourceTree = "<group>"; };
+		C514CB141CC74F4E008C735C /* TextPhotoInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextPhotoInputView.swift; sourceTree = "<group>"; };
 		C53542C61CC70E8C0014BDBB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C53542C81CC7111C0014BDBB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C53FD8001CC477140038BC73 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				C514CB101CC74CE8008C735C /* ASTextInputViewController.swift */,
+				C514CB181CC74F55008C735C /* CustomComponent */,
 				C5C128FD1CC6EE2400BA2C75 /* MessagesExample */,
 				C5C128FC1CC6EE1500BA2C75 /* Extensions */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -186,6 +193,16 @@
 				DDB4AE64D31A1ECD479F7433 /* Pods-ASTextInputAccessoryView_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C514CB181CC74F55008C735C /* CustomComponent */ = {
+			isa = PBXGroup;
+			children = (
+				C514CB121CC74F4E008C735C /* PhotoComponent.xib */,
+				C514CB131CC74F4E008C735C /* PhotoComponent.swift */,
+				C514CB141CC74F4E008C735C /* TextPhotoInputView.swift */,
+			);
+			name = CustomComponent;
 			sourceTree = "<group>";
 		};
 		C53542CA1CC711BE0014BDBB /* Models */ = {
@@ -314,6 +331,7 @@
 				C507166B1CC72EE2007F1692 /* DateHeader.xib in Resources */,
 				C556BFFC1CC5A20200635CF7 /* RightCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				C514CB151CC74F4E008C735C /* PhotoComponent.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,7 +446,9 @@
 				C5C128F71CC5D8C800BA2C75 /* UICollectionView.swift in Sources */,
 				C5C128FB1CC6A68100BA2C75 /* MessagesFlowLayout.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				C514CB171CC74F4E008C735C /* TextPhotoInputView.swift in Sources */,
 				C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */,
+				C514CB161CC74F4E008C735C /* PhotoComponent.swift in Sources */,
 				C514CB0F1CC74C7D008C735C /* Dictionary.swift in Sources */,
 				C514CB0D1CC73941008C735C /* NSDate.swift in Sources */,
 				C53542C91CC7111C0014BDBB /* User.swift in Sources */,
