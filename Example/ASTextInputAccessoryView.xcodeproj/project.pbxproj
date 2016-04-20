@@ -17,6 +17,8 @@
 		C507166A1CC72EE2007F1692 /* MessageGroupDateReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50716681CC72EE2007F1692 /* MessageGroupDateReusableView.swift */; };
 		C507166B1CC72EE2007F1692 /* DateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50716691CC72EE2007F1692 /* DateHeader.xib */; };
 		C514CB0D1CC73941008C735C /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB0C1CC73941008C735C /* NSDate.swift */; };
+		C514CB0F1CC74C7D008C735C /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB0E1CC74C7D008C735C /* Dictionary.swift */; };
+		C514CB111CC74CE8008C735C /* ASTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C514CB101CC74CE8008C735C /* ASTextInputViewController.swift */; };
 		C53542C71CC70E8C0014BDBB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53542C61CC70E8C0014BDBB /* Message.swift */; };
 		C53542C91CC7111C0014BDBB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53542C81CC7111C0014BDBB /* User.swift */; };
 		C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FD8001CC477140038BC73 /* MessagesViewController.swift */; };
@@ -58,6 +60,8 @@
 		C50716681CC72EE2007F1692 /* MessageGroupDateReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageGroupDateReusableView.swift; sourceTree = "<group>"; };
 		C50716691CC72EE2007F1692 /* DateHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeader.xib; sourceTree = "<group>"; };
 		C514CB0C1CC73941008C735C /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		C514CB0E1CC74C7D008C735C /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		C514CB101CC74CE8008C735C /* ASTextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASTextInputViewController.swift; sourceTree = "<group>"; };
 		C53542C61CC70E8C0014BDBB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C53542C81CC7111C0014BDBB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C53FD8001CC477140038BC73 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				C514CB101CC74CE8008C735C /* ASTextInputViewController.swift */,
 				C5C128FD1CC6EE2400BA2C75 /* MessagesExample */,
 				C5C128FC1CC6EE1500BA2C75 /* Extensions */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -198,6 +203,7 @@
 				C5C128F61CC5D8C800BA2C75 /* UICollectionView.swift */,
 				C57085F01CBB123000E21B79 /* UITableView.swift */,
 				C514CB0C1CC73941008C735C /* NSDate.swift */,
+				C514CB0E1CC74C7D008C735C /* Dictionary.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -423,11 +429,13 @@
 				C5C128FB1CC6A68100BA2C75 /* MessagesFlowLayout.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C53FD8011CC477140038BC73 /* MessagesViewController.swift in Sources */,
+				C514CB0F1CC74C7D008C735C /* Dictionary.swift in Sources */,
 				C514CB0D1CC73941008C735C /* NSDate.swift in Sources */,
 				C53542C91CC7111C0014BDBB /* User.swift in Sources */,
 				C53FD8031CC477340038BC73 /* MessageCell.swift in Sources */,
 				C57085F11CBB123000E21B79 /* UITableView.swift in Sources */,
 				C507166A1CC72EE2007F1692 /* MessageGroupDateReusableView.swift in Sources */,
+				C514CB111CC74CE8008C735C /* ASTextInputViewController.swift in Sources */,
 				C53542C71CC70E8C0014BDBB /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

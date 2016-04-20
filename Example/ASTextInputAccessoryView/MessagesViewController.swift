@@ -9,34 +9,12 @@
 import UIKit
 import ASTextInputAccessoryView
 
-
-extension Dictionary where Key : NSDate, Value: _ArrayType, Value.Generator.Element: Message {
-    
-    var sortedKeys: [Key] {
-        return keys.sort({ $0.timeIntervalSince1970 < $1.timeIntervalSince1970})
-    }
-    
-    
-    func itemForIndexPath(indexPath: NSIndexPath) -> Message {
-        return self[sortedKeys[indexPath.section]]![indexPath.item]
-    }
-    
-    func arrayForIndex(section: Int) -> [Message] {
-        return self[sortedKeys[section]] as! [Message]
-    }
-}
-
-class MessagesViewController: UIViewController {
+class MessagesViewController: ASTextInputViewController {
     
     let thisUser = User(id: 1)
     let otherUser = User(id: 2)
-    
-    @IBOutlet weak var collectionView: UICollectionView!
 
     var messages: [NSDate: [Message]] = [:]
-    
-    var iaView: ASResizeableInputAccessoryView!
-    let messageView = ASTextInputAccessoryView(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
     
     let sizingLabel: UILabel = UILabel()
     var messageInsideMargin: CGFloat = 16
@@ -56,9 +34,6 @@ class MessagesViewController: UIViewController {
         collectionView.collectionViewLayout = MessagesFlowLayout()
         
         
-        iaView = ASResizeableInputAccessoryView(components: [messageView])
-        iaView.delegate = self
-        
 //        Experimental feature
 //        iaView.interactiveEngage(collectionView)
         
@@ -76,20 +51,6 @@ class MessagesViewController: UIViewController {
         
         addSomeMessages()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        collectionView.reloadData()
-        collectionView.scrollToBottomContent(false)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        //        Test layout of changed parameters after setup
-        //        changeAppearance()
-    }
-    
     
     func addCameraButton() {
         
@@ -134,74 +95,7 @@ class MessagesViewController: UIViewController {
             })
         }
     }
-    
-    func changeAppearance() {
-        messageView.minimumHeight = 60
-        messageView.margin = 3
-        messageView.font = UIFont.boldSystemFontOfSize(30)
-    }
 }
-
-//MARK: Input Accessory View
-extension MessagesViewController {
-    override var inputAccessoryView: UIView? {
-        return iaView
-    }
-    
-    // IMPORTANT Allows input view to stay visible
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    // Handle Rotation
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        iaView.reloadHeight()
-    }
-}
-
-
-// MARK: ASResizeableInputAccessoryViewDelegate
-extension MessagesViewController: ASResizeableInputAccessoryViewDelegate {
-    
-    func updateInsets(bottom: CGFloat) {
-        var contentInset = collectionView.contentInset
-        contentInset.bottom = bottom
-        collectionView.contentInset = contentInset
-        collectionView.scrollIndicatorInsets = contentInset
-    }
-    
-    func inputAccessoryViewWillAnimateToHeight(view: ASResizeableInputAccessoryView, height: CGFloat, keyboardHeight: CGFloat) -> (() -> Void)? {
-        
-        return { [weak self] in
-            self?.updateInsets(keyboardHeight)
-            self?.collectionView.scrollToBottomContent(false)
-        }
-    }
-    
-    func inputAccessoryViewKeyboardWillPresent(view: ASResizeableInputAccessoryView, height: CGFloat) -> (() -> Void)? {
-        return { [weak self] in
-            self?.updateInsets(height)
-            self?.collectionView.scrollToBottomContent(false)
-        }
-    }
-    
-    func inputAccessoryViewKeyboardWillDismiss(view: ASResizeableInputAccessoryView, notification: NSNotification) -> (() -> Void)? {
-        return { [weak self] in
-            self?.updateInsets(view.frame.size.height)
-        }
-    }
-    
-    func inputAccessoryViewKeyboardDidChangeHeight(view: ASResizeableInputAccessoryView, height: CGFloat) {
-        let shouldScroll = collectionView.isScrolledToBottom
-        updateInsets(height)
-        if shouldScroll {
-            self.collectionView.scrollToBottomContent(false)
-        }
-    }
-}
-
 
 
 //MARK: DataSource
@@ -331,17 +225,6 @@ extension MessagesViewController: LayoutAlignment {
         return UIEdgeInsets(top: 4, left: messageInsideMargin, bottom: 4, right: messageOppositeMargin)
     }
 }
-
-
-// MARK: Actions
-extension MessagesViewController {
-    
-    @IBAction func dismissKeyboard(sender: AnyObject) {
-        self.messageView.textView.resignFirstResponder()
-    }
-    
-}
-
 
 extension MessagesViewController {
     

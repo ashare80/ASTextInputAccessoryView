@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Messages View Controller-->
+        <!--A Share-->
         <scene sceneID="VAY-BG-55U">
             <objects>
                 <viewController id="CQ9-Gy-zX0" customClass="MessagesViewController" customModule="ASTextInputAccessoryView_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,6 +41,7 @@
                             <constraint firstItem="3Xe-6M-Rbz" firstAttribute="top" secondItem="WNd-ZW-c0x" secondAttribute="top" id="iy4-9s-AYP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="A Share" id="8de-bL-lcK"/>
                     <connections>
                         <outlet property="collectionView" destination="3Xe-6M-Rbz" id="dmm-ca-Wc3"/>
                     </connections>

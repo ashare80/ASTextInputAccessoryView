@@ -49,37 +49,10 @@ class MessagesFlowLayout: UICollectionViewFlowLayout {
         
         let currentItemAttributes = super.layoutAttributesForItemAtIndexPath(indexPath)?.copy() as? UICollectionViewLayoutAttributes
         
-        let isFirstItemInSection = indexPath.item == 0
-        
         let sectionInset = evaluatedSectionInsetForItemAtIndexPath(indexPath)
         
-        if isFirstItemInSection {
-            currentItemAttributes?.alignFrameWithInset(sectionInset)
-            return currentItemAttributes
-        }
+        currentItemAttributes?.alignFrameWithInset(sectionInset)
         
-        let previousIndexPath = NSIndexPath(forItem: indexPath.item-1, inSection: indexPath.section)
-        let previousFrame = layoutAttributesForItemAtIndexPath(previousIndexPath)!.frame
-        let currentFrame = currentItemAttributes!.frame
-        let strecthedCurrentFrame = CGRect(x: 0,
-                                           y: currentFrame.origin.y,
-                                           width: collectionView!.frame.size.width,
-                                           height: currentFrame.size.height
-        )
-        // if the current frame, once left aligned to the left and stretched to the full collection view
-        // widht intersects the previous frame then they are on the same line
-        let isFirstItemInRow = !CGRectIntersectsRect(previousFrame, strecthedCurrentFrame)
-        
-        if isFirstItemInRow {
-            currentItemAttributes!.alignFrameWithInset(sectionInset)
-            return currentItemAttributes
-        }
-        
-        let previousFrameLeftPoint = previousFrame.origin.x
-        var frame = currentItemAttributes!.frame
-        let minimumInteritemSpacing = evaluatedMinimumInteritemSpacingForItemAtIndex(indexPath.row)
-        frame.origin.x = previousFrameLeftPoint - minimumInteritemSpacing - frame.size.width
-        currentItemAttributes!.frame = frame
         return currentItemAttributes
     }
     
